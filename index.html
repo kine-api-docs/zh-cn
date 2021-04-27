@@ -497,12 +497,12 @@ These two keys are important to your account safety, please don't share both of 
 <ul>
 <li><code>Request Method</code>  GET/POST  (Websocket is GET)</li>
 <li><code>host</code> api.kine.exchange</li>
-<li><code>Request Path</code>  for example: <code>/v1/order/orders</code></li>
+<li><code>Request Path</code>  for example: <code>/trade/api/order/place</code></li>
 <li><code>accessKey</code>  The &#39;Access Key&#39; in your API Key</li>
 <li><code>SecretKey</code>  Used to sign the request</li>
 <li><code>ts</code>  The UTC timestamp when the request is sent.</li>
-<li><code>Request Parameters and Request Body</code> Each API Method has a group of parameters, you can refer to detailed document for each of them.
-For both GET/POST request, all the parameters and request body must be signed.</li>
+<li><code>Request Parameters</code> Each API Method has a group of parameters, you can refer to detailed document for each of them.
+For both GET/POST request, all the parameters must be signed.</li>
 <li><code>Payload</code> the content to be signed. It includes request info. MUST follow the rule to prepare the payload when calculate the signature.</li>
 <li><code>signature</code> The value after signed, it is guarantee the signature is valid, and the request is not be tempered.</li>
 </ul>
@@ -555,15 +555,15 @@ For both GET/POST request, all the parameters and request body must be signed.</
 <div class="highlight"><pre class="highlight plaintext"><code>--------
 GET
 api.kine.exchange
-/v1/user/account
-userId=123
+/trade/api/history
+clientOrderId=123
 123123123123
 ---------
 </code></pre></div>
 <blockquote>
 <p>signed request sample</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange/v1/user/account?userId=123
+<div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange//trade/api/history?clientOrderId=123
 
 Headers:
 ts:1618561349256
@@ -584,7 +584,7 @@ signature=+xxxxxxxxxx+jJLJwYSxz7iMbA=
 Websocket Request Method should be GET
 </aside>
 <h1 id='market-data-api'>Market Data API</h1>
-<p>The market data api require <strong>readOnly</strong> permission.</p>
+<p>The market data api is open api.</p>
 <h2 id='asset-price'>Asset Price</h2>
 <p>This endpoint retrieves asset realtime prices. The data will update every second.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -746,23 +746,23 @@ Websocket Request Method should be GET
 <td>yes</td>
 <td></td>
 <td>direction of trade</td>
-<td>buy, sell</td>
+<td>BUY, SELL</td>
 </tr>
 <tr>
 <td>closePosition</td>
-<td>string</td>
+<td>boolean</td>
 <td>yes</td>
 <td></td>
 <td>close position of curreny asset to zero</td>
-<td>Y, N</td>
+<td>true, false</td>
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>number</td>
+<td>string</td>
 <td>no</td>
 <td></td>
 <td>clientOrderId , which given by user</td>
-<td></td>
+<td>Valid character, A-Z,a-z,0-9,_,-   length &lt;= 128</td>
 </tr>
 </tbody></table>
 
@@ -799,7 +799,8 @@ Websocket Request Method should be GET
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='query-order'>Query Order</h2>
-<p>This endpoint retrieve the history of order by given clientOrderId</p>
+<p>This endpoint retrieve the history of order by given clientOrderId
+The latest order will be returned if orders have duplicated client order IDs.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /trade/api/history</code></p>
 <h3 id='rate-limit-3'>Rate Limit</h3>
@@ -864,11 +865,11 @@ Websocket Request Method should be GET
 </tr>
 <tr>
 <td>31105</td>
-<td>Quantity scale error</td>
+<td>Quantity precision error</td>
 </tr>
 <tr>
 <td>31106</td>
-<td>Price scale error</td>
+<td>Price precision error</td>
 </tr>
 <tr>
 <td>31107</td>
@@ -1036,7 +1037,7 @@ Websocket Request Method should be GET
 </tr>
 <tr>
 <td>targetLeverage</td>
-<td>string</td>
+<td>number</td>
 <td>yes</td>
 <td></td>
 <td>the target leverage</td>
