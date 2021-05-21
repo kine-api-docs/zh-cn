@@ -35,7 +35,7 @@ run_serve() {
 }
 
 run_build() {
-  bundle exec middleman build --clean
+  bundle exec middleman build --clean --build-dir=../docs
 }
 
 parse_args() {
