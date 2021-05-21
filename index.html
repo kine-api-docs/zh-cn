@@ -459,10 +459,12 @@ WebSocket API</p>
 </ul>
 <h2 id='security'>Security</h2><h3 id='signed-endpoint-security'>Signed Endpoint Security</h3>
 <ul>
-<li><code>SIGNED</code> endpoints require additional headers in request, <code>accessKey</code> , <code>ts</code> ,<code>signature</code>.</li>
+<li><code>SIGNED</code> endpoints require additional headers in request, <code>KINE-API-ACCESS-KEY</code> , <code>KINE-API-TS</code> ,<code>KINE-API-SIGNATURE</code>.</li>
 <li><code>Signature</code> use <code>HMAC SHA256</code> signatures. The HMAC SHA256 signature is a keyed HMAC SHA256 operation. Use your secretKey as the key and all parameters as the value for the HMAC operation. More detail refer to <code>Authentication</code> section.</li>
 </ul>
 <h3 id='timing-security'>Timing Security</h3>
+<p><code>KINE-API-TS</code></p>
+
 <ul>
 <li>A <code>SIGNED</code> endpoint requires a timestamp in headers, to be sent which should be the millisecond timestamp of when the request was created and sent.</li>
 </ul>
@@ -498,13 +500,13 @@ These two keys are important to your account safety, please don't share both of 
 <li><code>Request Method</code>  GET/POST  (Websocket is GET)</li>
 <li><code>host</code> api.kine.exchange</li>
 <li><code>Request Path</code>  for example: <code>/trade/api/order/place</code></li>
-<li><code>accessKey</code>  The &#39;Access Key&#39; in your API Key</li>
+<li><code>accessKey</code>  The &#39;Access Key&#39; in your API Key, should be included in request header. <code>KINE-API-ACCESS-KEY</code></li>
 <li><code>SecretKey</code>  Used to sign the request</li>
-<li><code>ts</code>  The UTC timestamp when the request is sent.</li>
+<li><code>ts</code>  The UTC timestamp when the request is sent. should be included in request header. <code>KINE-API-TS</code></li>
 <li><code>Request Parameters</code> Each API Method has a group of parameters, you can refer to detailed document for each of them.
 For both GET/POST request, all the parameters must be signed.</li>
 <li><code>Payload</code> the content to be signed. It includes request info. MUST follow the rule to prepare the payload when calculate the signature.</li>
-<li><code>signature</code> The value after signed, it is guarantee the signature is valid, and the request is not be tempered.</li>
+<li><code>signature</code> The value after signed, it is guarantee the signature is valid, and the request is not be tempered.  <code>KINE-API-SIGNATURE</code></li>
 </ul>
 <h2 id='signature'>Signature</h2>
 <blockquote>
@@ -534,13 +536,13 @@ For both GET/POST request, all the parameters must be signed.</li>
 </ol>
 
 <ul>
-<li><code>accessKey</code>    Include in payload</li>
-<li><code>ts</code>           Include in payload</li>
-<li><code>signature</code>    The signature</li>
+<li><code>KINE-API-ACCESS-KEY</code>    The access key</li>
+<li><code>KINE-API-TS</code>           The UTC timestamp</li>
+<li><code>KINE-API-SIGNATURE</code>    The signature</li>
 </ul>
 
 <ol>
-<li>Calculate the signature and add it to request parameter</li>
+<li>Calculate the signature and add it to request header</li>
 </ol>
 
 <p>signature = sign(payload, secretKey);   <code>MUST follow the payload format rule below.</code></p>
@@ -566,9 +568,9 @@ clientOrderId=123
 <div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange//trade/api/history?clientOrderId=123
 
 Headers:
-ts:1618561349256
-accessKey:xxxxxxx
-signature=+xxxxxxxxxx+jJLJwYSxz7iMbA=
+KINE-API-TS: 1618561349256
+KINE-API-ACCESS_KEY: xxxxxxx
+KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 </code></pre></div>
 <p>{requestMethod}\n</p>
 
@@ -741,7 +743,7 @@ Websocket Request Method should be GET
 <td></td>
 </tr>
 <tr>
-<td>side</td>
+<td>direct</td>
 <td>string</td>
 <td>yes</td>
 <td></td>
