@@ -254,7 +254,7 @@ Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------| 
 symbol | string  |  |  |
 fundingRate | string  | current funding rate |  |
-estifundingRate | string  | current funding rate |  |
+estifundingRate | string  | Estimated next round funding rate |  |
 nextFundingTime | long  | next round funding time |  |
 timestamp | long  | response time |  |
 
