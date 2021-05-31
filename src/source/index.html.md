@@ -679,14 +679,14 @@ Max live time | Duration  |  24h | Session max live time, server will close the 
 
 ```json
 {
-	"op": "UNSUB",
+	"op": "UN_SUB",
 	"ts": 1618646119181,
 	"data": {
 		"topic": "{topic name}"
 	}
 }
 
-{"status":"success","op":"UNSUB_RESULT","ts":1618805541048,"data":{"topic":"{topic name}"}}
+{"status":"success","op":"UN_SUB_RESULT","ts":1618805541048,"data":{"topic":"{topic name}"}}
 ```
 
 Client send subscribe message to subscribe data stream. 
