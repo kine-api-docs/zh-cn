@@ -2,14 +2,17 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - java
-  - python
+
+- java
+- python
 
 toc_footers:
-  - <a href='#'>Copyright by KINE</a>
+
+- <a href='#'>Copyright by KINE</a>
 
 includes:
-  - errors
+
+- errors
 
 search: true
 
@@ -18,116 +21,171 @@ code_clipboard: true
 
 # Change Log
 
+## 2021-06-04
+
+* Rearrange sections regarding signature and correct typos.
+
 ## 2021-05-21
 
-* Correct Request Headers Name .
+* Correct request headers names.
 
 ## 2021-04-20
 
-* April 2021, Draft version
+* Initial version.
 
 # Introduction
 
-Welcome to the KINE API
+Welcome to the KINE API.
 
-You can use our API to access KINE API endpoints, which can get information on open interest, debt etc. from our system.
+You can use these APIs introduced in this document to access KINE API endpoints, which provide access to place orders,
+and information on your open interest, debt etc. in our system.
 
-There are two types of interface, you can choose the proper one according to your scenario and preferences.
-REST API
+We provide two types of interfaces, REST and WebSocket, and you can choose either one according to your scenario and
+preferences.
 
-REST (Representational State Transfer) is one of the most popular communication mechanism under HTTP, each URL represents a type of resource.
+## REST API
 
-It is suggested to use Rest API for one-off operation, like trading and withdraw.
-WebSocket API
+It is suggested to use Rest API for one-off operation, like placing order and withdraw.
 
-WebSocket is a new protocol in HTML5. It is full-duplex between client and server. The connection can be established by a single handshake, and then server can push the notification to client actively.
+## WebSocket API
 
-It is suggested to use WebSocket API to get data update, like market data and order update.
+It is suggested to use WebSocket API to get data update, like market data and account status update.
 
-Authentication
+## Authentication
 
-Both API has two levels of authentication:
+Both REST and WebSocket APIs involve two levels of security types:
 
-Public API: It is for basic information and market data. It doesn't need authentication.
+Public: For basic information and market data, and do not need authentication.
 
-Private API: It is for account related operation like trading and account management. Each private API must be authenticated with API Key.
+Private: For account related operation like placing order and account management. Each private API endpoint must be
+authenticated with API keys of corresponding permission, i.e., `SIGNED`.
 
 # General Info
 
 ## API URLs
 
-### REST API 
+### REST API
+
 `https://api.kine.exchange`
 
 ### WebSocket API
+
 `wss://api.kine.exchange/ws`
 
 ## Limits
-* Introduce the common limit of API. Such as rate limit and other limit.
+
+For each REST endpoints there is a rate limit, which will be introduced along with its definition. If requests from the
+same IP (for open APIs), or the same user ID (for signed APIs) exceeds the limit, an HTTP 429 response will be returned
+to the caller.
+
+For websocket connections, there are limits to connections, message rate, and max live time. Please see
+the `WebSocket API` - `Session limit` section for details.
 
 ## Security
 
 ### Signed Endpoint Security
-* `SIGNED` endpoints require additional headers in request, `KINE-API-ACCESS-KEY` , `KINE-API-TS` ,`KINE-API-SIGNATURE`.
-* `Signature` use `HMAC SHA256` signatures. The HMAC SHA256 signature is a keyed HMAC SHA256 operation. Use your secretKey as the key and all parameters as the value for the HMAC operation. More detail refer to `Authentication` section.
 
+`SIGNED` endpoints require additional headers in request: `KINE-API-ACCESS-KEY`, `KINE-API-TS`,`KINE-API-SIGNATURE`.
 
-### Timing Security
-
-`KINE-API-TS`
-
-* A `SIGNED` endpoint requires a timestamp in headers, to be sent which should be the millisecond timestamp of when the request was created and sent.
+* `KINE-API-ACCESS-KEY` should be your API key with proper permission.
+* `KINE-API-SIGNATURE` shoule be the `HMAC SHA256` signature. The HMAC SHA256 signature is a keyed HMAC SHA256
+  operation. Use your `SecretKey` as the key and all parameters as the value for the HMAC operation. More detail refer
+  to `Authentication` section.
+* `KINE-API-TS` should be the millisecond timestamp of when the request was created and sent.
 
 ### How to generate your API keys?
 
-please contact support@kine.io to generate your API Keys(`AccessKey`, `SecretKey`).
+Please go to API management page of Kine exchange (https://kine.exchange/account/api-key) to generate your API keys.
 
-`AccessKey` It is used in API request
+`API Key` is used in an API request for identification.
 
-`SecretKey` It is used to generate the signature (only visible once after creation, please keep it safe!!!)
+`SecretKey` is used to generate the signature. (Only visible once after creation. Please keep it safe!!!)
 
-API Key Permission
+API Key Permissions
 
-* `ReadOnly` permission: It is used to query the data, such as order query, trade query.
-* `Trade` permission: It is used to create order, cancel order and transfer, etc.  It's include ReadOnly permission.
-* `Withdraw` permission: It is used to create withdraw order, cancel withdraw order, etc.  It's include Trade/ReadOnly permission.
+* `ReadOnly` permission grants the access to data queries, such as order history and account status.
+* `Trade` permission allows API key to place orders, cancel order, transfer assets between accounts etc.
+
+[comment]: <> (* `Withdraw` permission: It is used to create withdraw order, cancel withdraw order, etc. It's include Trade/ReadOnly permission)
 
 <aside class="warning">
 Warning: 
-These two keys are important to your account safety, please don't share both of them together to anyone else. If you find your API Key is disposed, please remove it immediately. 
+These two keys are important to your account safety. Please don't share them with anyone else. If you find your API Key exposed, please remove it from your account immediately. 
 </aside>
 
 ### How to sign the endpoint?
 
-Please refer to below Authentication selection.
+Please refer to Authentication section below.
 
 # Authentication
 
-The API request may be tampered during internet, therefore all private API must be signed by your API Key (Secrete Key).
+The API request may be tampered during traveling through internet. Therefore, all calls to private API endpoints must be
+signed with your API key (secrete key).
 
-Each API Key has permission property, please check the API permission, and make sure your API key has proper permission.
+Each API key would be assigned with a permission during application. Please check the permission, and make sure your API
+key has proper permission to access the target API endpoints.
 
-A valid request consists of below parts:
+A valid signature for a request is generated based on the following information:
 
-* `Request Method`  GET/POST  (Websocket is GET)
-* `host` api.kine.exchange
-* `Request Path`  for example: `/trade/api/order/place`
-* `accessKey`  The 'Access Key' in your API Key, should be included in request header. `KINE-API-ACCESS-KEY`
+* `Request Method`  GET/POST  (for Websocket authentication please use GET)
+* `Host` The host of the API endpoints, for now it is only `api.kine.exchange`
+* `Request path` For example: `/trade/api/order/place`
+* `API key`  Your API key, which should also be included in request header `KINE-API-ACCESS-KEY` as mentioned above
 * `SecretKey`  Used to sign the request
-* `ts`  The UTC timestamp when the request is sent. should be included in request header. `KINE-API-TS`
-* `Request Parameters` Each API Method has a group of parameters, you can refer to detailed document for each of them.
-    For both GET/POST request, all the parameters must be signed.
-* `Payload` the content to be signed. It includes request info. MUST follow the rule to prepare the payload when calculate the signature.
-* `signature` The value after signed, it is guarantee the signature is valid, and the request is not be tempered.  `KINE-API-SIGNATURE`
-
+* `Timestamp` The UTC timestamp when the request is sent, which should also be included in request header `KINE-API-TS`
+  as mentioned above
+* `Request Parameters` The parameters of the request. For both GET and POST request, all the parameters must be included
+  in signing.
+* `Payload` The actual content to be signed. MUST be organized following the rule instructed in the `Payload` section
+  below.
+* `Signature` The generated hash value after signing, which will be verified at server side to guarantee the request has
+  not been tempered, and should be included in request header  `KINE-API-SIGNATURE`
 
 ## Signature
 
+The signature is calculated according to a particular algorithm, based on the information mentioned above.
+
+### 1. Prepare the payload, in the following format:
+
+```text
+{requestMethod}\n
+
+{host}\n
+
+{request path}\n
+
+{request parameters}\n #If no paramters, keep it as empty line
+
+{timestamp}
+```
+
+<aside class="notice">
+For a websocket request, method should be GET
+</aside>
+
+> Payload Example
+
+```text
+GET
+api.kine.exchange
+/trade/api/history
+clientOrderId=123
+123123123123
+```
+
+### 2. Generate the signature.
+
+```signature = sign(payload, secretKey);```
+
+**sign() is the method to calculate the signature. (HMAC SHA256)**
+
+Please refer to sample code.
+
 > Sample Code for signature
 
-```java
-        String accessKey = "xxx";
-        String secretKey = "xxx";
+``` java
+        String accessKey = "123485552fb24cf49412345688888888";
+        String secretKey = "e95a0ba0648215e61d7c29ad6c96c2185c2c15fa3ce173d2b412345688888888";
 
         // sign:
         Mac hmacSha256 = null;
@@ -146,67 +204,30 @@ A valid request consists of below parts:
         String signature = Base64.getEncoder().encodeToString(hash);
 ```
 
-1. Request `Headers` for signed request.
+### 3. Add request headers for signed request.
 
-* `KINE-API-ACCESS-KEY`    The access key
+* `KINE-API-ACCESS-KEY`   The API key
 * `KINE-API-TS`           The UTC timestamp
-* `KINE-API-SIGNATURE`    The signature
-
-2. Calculate the signature and add it to request header
-
-signature = sign(payload, secretKey);   `MUST follow the payload format rule below.`
-
-**sign() is the method to calculate the signature.(The HMAC SHA256 signature is a keyed HMAC SHA256 operation.)**
-
-Please refer to sample code.
-
-
-## Payload
-
-> Payload Example
-
-```text
---------
-GET
-api.kine.exchange
-/trade/api/history
-clientOrderId=123
-123123123123
----------
-```
+* `KINE-API-SIGNATURE`    The signature generated in Step. 2
 
 > signed request sample
 
 ```text
-GET https://api.kine.exchange//trade/api/history?clientOrderId=123
+GET https://api.kine.exchange/trade/api/history?clientOrderId=123
 
 Headers:
 KINE-API-TS: 1618561349256
-KINE-API-ACCESS_KEY: xxxxxxx
+KINE-API-ACCESS_KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 ```
 
-{requestMethod}\n
-
-{host}\n
-
-{request path}\n
-
-{request parameters}\n    #If no paramters, keep it as empty line
-
-{timestamp}
-
-<aside class="notice">
-Websocket Request Method should be GET
-</aside>
-
 # Market Data API
 
-The market data api is open api.
+Market data APIs are all with open access.
 
 ## Asset Price
 
-This endpoint retrieves asset realtime prices. The data will update every second.
+This endpoint retrieves asset prices, which are updated every second.
 
 ### HTTP Request
 
@@ -226,7 +247,6 @@ Parameter | DataType | Required | Default Value | Description | Value Range |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol | string | yes |    | the symbol, for example 'BTCUSD' |  |
 
-
 ### Response Content
 
 Field | DataType | Description | Value Range |
@@ -237,11 +257,12 @@ timestamp | long  |  |  |
 
 ## Funding Rate
 
-This endpoints retrieves the funding rate related information. 
+This endpoints retrieves the funding rate related information.
 
 ### HTTP Request
 
 `GET /market/api/funding-rate/{symbol}`
+
 ### Query Parameters
 
 Parameter | DataType | Required | Default Value | Description | Value Range |
@@ -274,7 +295,7 @@ Place an order
 
 ### Required Permission
 
-`Write`
+`Trade`
 
 ### Request Body(Json)
 
@@ -284,7 +305,7 @@ symbol | string | yes |    | symbol |  |
 amt | string | yes |    | amount |  |
 direct | string | yes |    | direction of trade |  BUY, SELL|
 closePosition | boolean | yes |    | close position of curreny asset to zero |  true, false|
-clientOrderId | string | no |    | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,-   length <= 128|
+clientOrderId | string | no |    | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
 
 examples
 
@@ -330,11 +351,10 @@ refer to the sample on the right side
 }
 ```
 
-
 ## Query Order
 
-This endpoint retrieve the history of order by given clientOrderId
-The latest order will be returned if orders have duplicated client order IDs.
+This endpoint retrieve the history of order by given clientOrderId. The latest order will be returned if orders have
+duplicated client order IDs.
 
 ### HTTP Request
 
@@ -397,12 +417,11 @@ Error Code | Description |
 31203 | Invalid direction |
 31204 | Illegal client order ID |
 
-
 # Account API
 
 ## Query Account Balance
 
-This endpoint retrieves user's balance 
+This endpoint retrieves user's balance
 
 ### HTTP Request
 
@@ -410,12 +429,11 @@ This endpoint retrieves user's balance
 
 ### Rate Limit
 
-5/s 
+5/s
 
 ### Required Permission
 
 `ReadOnly`
-
 
 ### Response Content
 
@@ -488,7 +506,7 @@ Change leverage of isolated positions
 
 ### Required Permission
 
-`Write`
+`Trade`
 
 ### Request Body(Json)
 
@@ -521,10 +539,9 @@ code  | string  |  description of the code | |
 }
 ```
 
-
 # WebSocket API
 
-WebSocket API provide market price, order , account update data stream subscription.
+WebSocket API provide market price, order, account update data stream subscription.
 
 ## Authentication
 
@@ -546,16 +563,16 @@ var host = "api.kine.exchange";
 var path = "/ws";
 
 
-var payload = requestMethod.toUpperCase()+"\n"+
+var payload = requestMethod.toUpperCase() + "\n" +
 
-            host.toLowerCase()+"\n"+
+  host.toLowerCase() + "\n" +
 
-            path+"\n"+
+  path + "\n" +
 
-            "accessKey=" + awsAccessKeyId + "\n" +
-            
-            "" + timestamp ;
-            ;
+  "accessKey=" + awsAccessKeyId + "\n" +
+
+  "" + timestamp;
+;
 
 var signatureBytes = CryptoJS.HmacSHA256(payload, awsAccessKeySecret);
 
@@ -583,27 +600,36 @@ console.log(JSON.stringify(authMessage));
 
 ```
 
-The websocket api authentication required a signed auth message. After verified the signed auth message, the websocket session will be marked at authed session.
-So that, it can subscribe projected stream(Order/Account).
+A websocket session requires a signed `AUTH` message as its first message. With this signed auth message verified, the
+websocket session will be marked as authorised, after which, it can subscribe projected streams (Order/Account).
 
-The signed auth message is a json message. the payload is similar with REST API.
+The signed auth message is a json message. The payload is similar with REST API.
 
 ### Auth Message
+
 > websocket auth message
 
 ```json
 {
-	"op": "AUTH",
-	"ts": 1618232922010,
-	"data": {
-		"accessKey": "96b514aee78f1a1ed1a24453fc8e5c52b1c04361",
+  "op": "AUTH",
+  "ts": 1618232922010,
+  "data": {
+    "accessKey": "96b514aee78f1a1ed1a24453fc8e5c52b1c04361",
     "ts": 12345678789,
     "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
-	}
+  }
 }
+```
 
 Response:
-{"status":"success","op":"AUTH_RESULT","ts":1618805541051,"data":10079469}
+
+```json
+{
+  "status": "success",
+  "op": "AUTH_RESULT",
+  "ts": 1618805541051,
+  "data": 10079469
+}
 ```
 
 > Payload Example
@@ -620,44 +646,53 @@ accessKey=xxxxxxxxxxxx
 
 The signature is same as Rest API. The auth message refer to the example.
 
-
 ## Live check (Ping/Pong)
 
 > Ping Message
 
 ```json
-{"op":"PING","ts":1618232485224,"params":{}}
+{
+  "op": "PING",
+  "ts": 1618232485224,
+  "params": {}
+}
 ```
 
 > Pong Message
 
 ```json
-{"status":"success","op":"PONG","ts":1618232485337,"data":{"op":"PING","ts":1618232485224}}
+{
+  "status": "success",
+  "op": "PONG",
+  "ts": 1618232485337,
+  "data": {
+    "op": "PING",
+    "ts": 1618232485224
+  }
+}
 ```
 
-It's a customized ping/pong message, rather than websocket protocol ping/pong frame.
+We use a customized ping/pong message, rather than websocket protocol ping/pong frame.
 
-We support both direction ping/pong, Server ping and Client ping.
-Once the client/server received the ping message, must reply a pong message ASAP.
+We support both direction ping/pong, server ping and client ping. Once the client/server received the ping message, they
+must reply a pong message ASAP.
 
 
 <aside class="warning">
-MUST reply pong when you received the ping.
-Websocket server sent ping to client every `5s`, if don't receive pong more than `15s`, then server will close the session.
+MUST reply a pong when you received a ping.
+Websocket server sends ping to client every `5s`. If no pong message is received within `15s`, the session will be closed from server side.
 </aside>
-
 
 ## Session limit
 
-There are some limit about the websocket session.
+There are some limits about the websocket session.
 
 Limit | Limit Type | Limit Value | Deesc |
 --------- | ----------- | -----------| ----------|
-Count per IP | count  |  50  | Session count limit per IP |
-Count per AccessKey | count  |  10 | Authed Session count limit per accessKey |
-Msg Rate per session | Rate  |  10/s | InComing Msg Rate limit per session, No limit for output  |
-Max live time | Duration  |  24h | Session max live time, server will close the session once it's expired  |
-
+Sessions per IP | count  |  50  | Max number of sessions per IP |
+Sessions per API key | count  |  10 | Max number of authed sessions per API key |
+Message rate per session | Rate  |  10/s | Incoming message rate limit per session (No limit for output)  |
+Max live time | Duration  |  24h | Session max live time. Server will close the session once it's expired  |
 
 ## Subscribe Topics
 
@@ -665,31 +700,49 @@ Max live time | Duration  |  24h | Session max live time, server will close the 
 
 ```json
 {
-	"op": "SUB",
-	"ts": 1618646119181,
-	"data": {
-		"topic": "{topic name}"
-	}
+  "op": "SUB",
+  "ts": 1618646119181,
+  "data": {
+    "topic": "{topic name}"
+  }
 }
+```
 
-{"status":"success","op":"SUB_RESULT","ts":1618805541048,"data":{"topic":"{topic name}"}}
+```json
+{
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618805541048,
+  "data": {
+    "topic": "{topic name}"
+  }
+}
 ```
 
 > un-subscribe message
 
 ```json
 {
-	"op": "UN_SUB",
-	"ts": 1618646119181,
-	"data": {
-		"topic": "{topic name}"
-	}
+  "op": "UN_SUB",
+  "ts": 1618646119181,
+  "data": {
+    "topic": "{topic name}"
+  }
 }
-
-{"status":"success","op":"UN_SUB_RESULT","ts":1618805541048,"data":{"topic":"{topic name}"}}
 ```
 
-Client send subscribe message to subscribe data stream. 
+```json
+{
+  "status": "success",
+  "op": "UN_SUB_RESULT",
+  "ts": 1618805541048,
+  "data": {
+    "topic": "{topic name}"
+  }
+}
+```
+
+Client send subscribe message to subscribe data stream.
 
 | Topic Name |  Comment |
 |--- | ----|
@@ -700,12 +753,11 @@ Client send subscribe message to subscribe data stream.
 
 Price topic : `md.index-price.aggregated`
 
+The process to establish price consuming is:
 
-To establish the price consuming, the process as below:
-
-  * client initate the connection by send the subscribe message out
-  * server will response the success if the request accepted
-  * prices will send to client from server to client every 500ms.
+* Client initiate the connection by sending the subscription message
+* Server will respond a success message if the request is accepted
+* Prices will send to client from server every 500ms.
 
 ### Message examples
 
@@ -715,24 +767,24 @@ Please find them on the right side.
 
 ```json
 {
-	"op": "SUB",
-	"ts": 1618646119181,
-	"data": {
-		"topic": "md.index-price.aggregated"
-	}
+  "op": "SUB",
+  "ts": 1618646119181,
+  "data": {
+    "topic": "md.index-price.aggregated"
+  }
 }
 ```
 
-> Subscribe Response 
+> Subscribe Response
 
 ```json
 {
-	"status": "success",
-	"op": "SUB_RESULT",
-	"ts": 1618646119344,
-	"data": {
-		"topic": "md.index-price.aggregated"
-	}
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618646119344,
+  "data": {
+    "topic": "md.index-price.aggregated"
+  }
 }
 ```
 
@@ -740,43 +792,49 @@ Please find them on the right side.
 
 ```json
 {
-	"topic": "md.index-price.aggregated",
-	"status": "success",
-	"op": "DATA",
-	"ts": 1618646334452,
-	"data": [{
-		"symbol": "BTCUSD",
-		"price": "62120",
-		"ts": 1618644164511
-	}, {
-		"symbol": "RAZEUSD",
-		"price": "1.59",
-		"ts": 1618646262217
-	}, {
-		"symbol": "ETHUSD",
-		"price": "2455.3",
-		"ts": 1618644164511
-	},
-	....
-	]
+  "topic": "md.index-price.aggregated",
+  "status": "success",
+  "op": "DATA",
+  "ts": 1618646334452,
+  "data": [
+    {
+      "symbol": "BTCUSD",
+      "price": "62120",
+      "ts": 1618644164511
+    },
+    {
+      "symbol": "RAZEUSD",
+      "price": "1.59",
+      "ts": 1618646262217
+    },
+    {
+      "symbol": "ETHUSD",
+      "price": "2455.3",
+      "ts": 1618644164511
+    },
+    ....
+  ]
 }
 ```
-####  Response of price
+
+#### Response of price
 
 Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------| 
-symbol | String  | Asset Symbol | Asset Reference |
+symbol | String  | Asset Symbol |  |
 price | String  | Current price |  |
-ts | long  | UTC timestamp | Asset Reference |
+ts | long  | UTC timestamp |  |
 
 ## Account Update
 
-Topis: `account.all`
+Topic: `account.all`
 
-the accounts will be published to client on two behaviours 
+The account snapshots will be published to client on two conditions
 
-1. price change, all accounts will be published to client every 3 seconds, recalculated by lastest price.
-2. asset change, some user activites , such as place an order, transfer/withdraw assets, will leads to a accounts publish.
+1. On price change, snapshots of all accounts will be published to client every 3 seconds, recalculated by latest
+   prices.
+2. Asset change. Some user activities, such as placing an order, transferring / withdrawing assets, will lead to a
+   publish.
 
 > Subscribe account
 
@@ -794,12 +852,12 @@ the accounts will be published to client on two behaviours
 
 ```json
 {
-	"status": "success",
-	"op": "SUB_RESULT",
-	"ts": 1618646119344,
-	"data": {
-		"topic": "account.all"
-	}
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618646119344,
+  "data": {
+    "topic": "account.all"
+  }
 }
 ```
 
@@ -807,95 +865,105 @@ the accounts will be published to client on two behaviours
 
 ```json
 {
-	"topic": "account.all",
-	"status": "success",
-	"op": "DATA",
-	"ts": 1618990231304,
-	"data": {
-		"totalEquity": "3034.37796911",
-		"walletEquity": "161.47170911",
-		"walletAccounts": [{
-			"currency": "KINE",
-			"amt": "57.28470000",
-			"equity": "161.47164911"
-		}, {
-			"currency": "kUSD",
-			"amt": "0.00006000",
-			"equity": "0.00006000"
-		},...],
-		"crossLeverage": "1.00000000",
-		"crossEquity": "2872.90626000",
-		"crossMarginAccounts": [{
-			"symbol": "BTCUSD",
-			"amt": "0.00000000",
-			"markValue": "0.00000000",
-			"profit": null,
-			"profitRate": null,
-			"avgPrice": null
-		}, ...],
-		"isolatedEquity": "0.00000000",
-		"isolatedMarginAccounts": [{
-			"symbol": "XRPUSD",
-			"amt": "0.00000000",
-			"markValue": "0.00000000",
-			"avgPrice": null,
-			"profit": null,
-			"profitRate": null,
-			"kUSDAmt": "0.00000000",
-			"leverage": null,
-			"liquidationPrice": null
-		}, ..]
-	}
+  "topic": "account.all",
+  "status": "success",
+  "op": "DATA",
+  "ts": 1618990231304,
+  "data": {
+    "totalEquity": "3034.37796911",
+    "walletEquity": "161.47170911",
+    "walletAccounts": [
+      {
+        "currency": "KINE",
+        "amt": "57.28470000",
+        "equity": "161.47164911"
+      },
+      {
+        "currency": "kUSD",
+        "amt": "0.00006000",
+        "equity": "0.00006000"
+      },
+      ...
+    ],
+    "crossLeverage": "1.00000000",
+    "crossEquity": "2872.90626000",
+    "crossMarginAccounts": [
+      {
+        "symbol": "BTCUSD",
+        "amt": "0.00000000",
+        "markValue": "0.00000000",
+        "profit": null,
+        "profitRate": null,
+        "avgPrice": null
+      },
+      ...
+    ],
+    "isolatedEquity": "0.00000000",
+    "isolatedMarginAccounts": [
+      {
+        "symbol": "XRPUSD",
+        "amt": "0.00000000",
+        "markValue": "0.00000000",
+        "avgPrice": null,
+        "profit": null,
+        "profitRate": null,
+        "kUSDAmt": "0.00000000",
+        "leverage": null,
+        "liquidationPrice": null
+      },
+      ...
+    ]
+  }
 }
 ```
 
 Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------| 
 totalEquity | Number  |  walletEquity + crossEquity + isolatedEquity |  |
-walletEquity | Number  |  walletEquity |  |
-crossEquity | Number  |  crossEquity |  |
-crossLeverage | Number  |  crossLeverage |  |
-isolatedEquity | Number  |  walletEquity |  |
-walletAccounts | List<WalletAccount>  |  Wallet Account Detail for all asset |  |
-crossMarginAccounts | List<CrossMarginAccount>  |  Cross Margin Account Detail for all asset |  |
-isolatedMarginAccounts | List<IsolatedMarginAccount>  |  Isolated Margin Account Detail for all asset |  |
+walletEquity | Number  |  wallet equity |  |
+crossEquity | Number  |  cross equity |  |
+crossLeverage | Number  |  leverage cross account |  |
+isolatedEquity | Number  |  wallet equity |  |
+walletAccounts | List<WalletAccount>  |  Wallet account details for all assets |  |
+crossMarginAccounts | List<CrossMarginAccount>  |  Cross margin account details for all assets |  |
+isolatedMarginAccounts | List<IsolatedMarginAccount>  |  Isolated margin account details for all assets |  |
 
 **WalletAccount**
 
 Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------|
-currency | String  | The currency  | Asset Reference |
-amt | Number  |  The amount |  |
-equity | Number  |  The equity |   |
+currency | String  | currency  | Asset Reference |
+amt | Number  |  amount |  |
+equity | Number  |  equity |   |
 
 **CrossMarginAccount**
 
 Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------|
-symbol | String  |  The symbol of the asset | Asset Reference |
-amt | Number  |  The amount |  |
-markValue | Number  |  The markValue |  |
-profit | Number  |  The profit |  |
-profitRate | Number  |  The profitRate |  |
-avgPrice | Number  |  The avgPrice |  |
+symbol | String  |  symbol of the asset | Asset Reference |
+amt | Number  |  amount |  |
+markValue | Number  | current mark value |  |
+profit | Number  |  profit |  |
+profitRate | Number  |  profit rate |  |
+avgPrice | Number  |  average price |  |
 
 **IsolatedMarginAccount**
 
 Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------|
-symbol | String  |  The symbol of the asset | Asset Reference |
-amt | Number  |  The amount |  |
-markValue | Number  |  The markValue |  |
-profit | Number  |  The profit |  |
-profitRate | Number  |  The profitRate |  |
-kUSDAmt | Number  |  The kUSD Amount |  |
-leverage | Number  |  The leverage |  |
-liquidationPrice | Number  |  The liquidationPrice |  |
-
+symbol | String  |  symbol of the asset | Asset Reference |
+amt | Number  |  amount |  |
+markValue | Number  |  mark value |  |
+profit | Number  |  profit |  |
+profitRate | Number  |  profit rate |  |
+kUSDAmt | Number  |  kUSD Amount |  |
+leverage | Number  |  leverage |  |
+liquidationPrice | Number  |  liquidation price |  |
 
 # Reference
 
 ## Asset Reference
+
 Asset Symbol | Base Currency | Quote Currency | Comment |
 --------- | ----------- | -----------| ----------| 
 BTCUSD | BTC  | kUSD | xx |
