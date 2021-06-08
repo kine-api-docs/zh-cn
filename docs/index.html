@@ -310,6 +310,12 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-06-08" class="toc-h2 toc-link" data-title="2021-06-08">2021-06-08</a>
+                  </li>
+                  <li>
+                    <a href="#2021-06-04" class="toc-h2 toc-link" data-title="2021-06-04">2021-06-04</a>
+                  </li>
+                  <li>
                     <a href="#2021-05-21" class="toc-h2 toc-link" data-title="2021-05-21">2021-05-21</a>
                   </li>
                   <li>
@@ -319,6 +325,17 @@
           </li>
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#rest-api" class="toc-h2 toc-link" data-title="REST API">REST API</a>
+                  </li>
+                  <li>
+                    <a href="#websocket-api" class="toc-h2 toc-link" data-title="WebSocket API">WebSocket API</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#general-info" class="toc-h1 toc-link" data-title="General Info">General Info</a>
@@ -335,13 +352,10 @@
               </ul>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#authentication-2" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#signature" class="toc-h2 toc-link" data-title="Signature">Signature</a>
-                  </li>
-                  <li>
-                    <a href="#payload" class="toc-h2 toc-link" data-title="Payload">Payload</a>
                   </li>
               </ul>
           </li>
@@ -350,6 +364,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#asset-price" class="toc-h2 toc-link" data-title="Asset Price">Asset Price</a>
+                  </li>
+                  <li>
+                    <a href="#aggregated-asset-prices" class="toc-h2 toc-link" data-title="Aggregated Asset Prices">Aggregated Asset Prices</a>
                   </li>
                   <li>
                     <a href="#funding-rate" class="toc-h2 toc-link" data-title="Funding Rate">Funding Rate</a>
@@ -371,18 +388,45 @@
             <a href="#account-api" class="toc-h1 toc-link" data-title="Account API">Account API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#query-account-balance" class="toc-h2 toc-link" data-title="Query Account Balance">Query Account Balance</a>
+                    <a href="#query-account-balances" class="toc-h2 toc-link" data-title="Query Account Balances">Query Account Balances</a>
+                  </li>
+                  <li>
+                    <a href="#max-and-min-target-isolated-risk-rate" class="toc-h2 toc-link" data-title="Max and min target isolated risk rate">Max and min target isolated risk rate</a>
                   </li>
                   <li>
                     <a href="#leverage-adjustment" class="toc-h2 toc-link" data-title="Leverage Adjustment">Leverage Adjustment</a>
                   </li>
+                  <li>
+                    <a href="#switch-to-isolated" class="toc-h2 toc-link" data-title="Switch to isolated">Switch to isolated</a>
+                  </li>
+                  <li>
+                    <a href="#switch-to-crossed" class="toc-h2 toc-link" data-title="Switch to crossed">Switch to crossed</a>
+                  </li>
+                  <li>
+                    <a href="#account-history" class="toc-h2 toc-link" data-title="Account history">Account history</a>
+                  </li>
+                  <li>
+                    <a href="#max-transferable-of-wallet-account" class="toc-h2 toc-link" data-title="Max transferable of wallet account">Max transferable of wallet account</a>
+                  </li>
+                  <li>
+                    <a href="#max-transferable-of-crossed-account" class="toc-h2 toc-link" data-title="Max transferable of crossed account">Max transferable of crossed account</a>
+                  </li>
+                  <li>
+                    <a href="#max-transferable-of-isolated-account" class="toc-h2 toc-link" data-title="Max transferable of isolated account">Max transferable of isolated account</a>
+                  </li>
+                  <li>
+                    <a href="#transfer-between-the-wallet-and-crossed-trading-account" class="toc-h2 toc-link" data-title="Transfer between the wallet and crossed trading account">Transfer between the wallet and crossed trading account</a>
+                  </li>
+                  <li>
+                    <a href="#transfer-between-crossed-isolated-trading-accounts" class="toc-h2 toc-link" data-title="Transfer between crossed/isolated trading accounts">Transfer between crossed/isolated trading accounts</a>
+                  </li>
               </ul>
           </li>
           <li>
-            <a href="#websocket-api-2" class="toc-h1 toc-link" data-title="WebSocket API">WebSocket API</a>
+            <a href="#websocket-api-3" class="toc-h1 toc-link" data-title="WebSocket API">WebSocket API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#authentication-2" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                    <a href="#authentication-3" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
                   </li>
                   <li>
                     <a href="#live-check-ping-pong" class="toc-h2 toc-link" data-title="Live check (Ping/Pong)">Live check (Ping/Pong)</a>
@@ -420,103 +464,144 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='change-log'>Change Log</h1><h2 id='2021-05-21'>2021-05-21</h2>
+        <h1 id='change-log'>Change Log</h1><h2 id='2021-06-08'>2021-06-08</h2>
 <ul>
-<li>Correct Request Headers Name .</li>
+<li>Add new interfaces for market price and account actions. Add holding average price field in account detail interface.</li>
+</ul>
+<h2 id='2021-06-04'>2021-06-04</h2>
+<ul>
+<li>Rearrange sections regarding signature and correct typos.</li>
+</ul>
+<h2 id='2021-05-21'>2021-05-21</h2>
+<ul>
+<li>Correct request headers names.</li>
 </ul>
 <h2 id='2021-04-20'>2021-04-20</h2>
 <ul>
-<li>April 2021, Draft version</li>
+<li>Initial version.</li>
 </ul>
 <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the KINE API</p>
+<p>Welcome to the KINE API.</p>
 
-<p>You can use our API to access KINE API endpoints, which can get information on open interest, debt etc. from our system.</p>
+<p>You can use these APIs introduced in this document to access KINE API endpoints, which provide access to place orders,
+and information on your open interest, debt etc. in our system.</p>
 
-<p>There are two types of interface, you can choose the proper one according to your scenario and preferences.
-REST API</p>
+<p>We provide two types of interfaces, REST and WebSocket, and you can choose either one according to your scenario and
+preferences.</p>
+<h2 id='rest-api'>REST API</h2>
+<p>It is suggested to use Rest API for one-off operation, like placing order and withdraw.</p>
+<h2 id='websocket-api'>WebSocket API</h2>
+<p>It is suggested to use WebSocket API to get data update, like market data and account status update.</p>
+<h2 id='authentication'>Authentication</h2>
+<p>Both REST and WebSocket APIs involve two levels of security types:</p>
 
-<p>REST (Representational State Transfer) is one of the most popular communication mechanism under HTTP, each URL represents a type of resource.</p>
+<p>Public: For basic information and market data, and do not need authentication.</p>
 
-<p>It is suggested to use Rest API for one-off operation, like trading and withdraw.
-WebSocket API</p>
-
-<p>WebSocket is a new protocol in HTML5. It is full-duplex between client and server. The connection can be established by a single handshake, and then server can push the notification to client actively.</p>
-
-<p>It is suggested to use WebSocket API to get data update, like market data and order update.</p>
-
-<p>Authentication</p>
-
-<p>Both API has two levels of authentication:</p>
-
-<p>Public API: It is for basic information and market data. It doesn&#39;t need authentication.</p>
-
-<p>Private API: It is for account related operation like trading and account management. Each private API must be authenticated with API Key.</p>
-<h1 id='general-info'>General Info</h1><h2 id='api-urls'>API URLs</h2><h3 id='rest-api'>REST API</h3>
+<p>Private: For account related operation like placing order and account management. Each private API endpoint must be
+authenticated with API keys of corresponding permission, i.e., <code>SIGNED</code>.</p>
+<h1 id='general-info'>General Info</h1><h2 id='api-urls'>API URLs</h2><h3 id='rest-api-2'>REST API</h3>
 <p><code>https://api.kine.exchange</code></p>
-<h3 id='websocket-api'>WebSocket API</h3>
+<h3 id='websocket-api-2'>WebSocket API</h3>
 <p><code>wss://api.kine.exchange/ws</code></p>
 <h2 id='limits'>Limits</h2>
-<ul>
-<li>Introduce the common limit of API. Such as rate limit and other limit.</li>
-</ul>
+<p>For each REST endpoints there is a rate limit, which will be introduced along with its definition. If requests from the
+same IP (for open APIs), or the same user ID (for signed APIs) exceeds the limit, an HTTP 429 response will be returned
+to the caller.</p>
+
+<p>For websocket connections, there are limits to connections, message rate, and max live time. Please see
+the <code>WebSocket API</code> - <code>Session limit</code> section for details.</p>
 <h2 id='security'>Security</h2><h3 id='signed-endpoint-security'>Signed Endpoint Security</h3>
-<ul>
-<li><code>SIGNED</code> endpoints require additional headers in request, <code>KINE-API-ACCESS-KEY</code> , <code>KINE-API-TS</code> ,<code>KINE-API-SIGNATURE</code>.</li>
-<li><code>Signature</code> use <code>HMAC SHA256</code> signatures. The HMAC SHA256 signature is a keyed HMAC SHA256 operation. Use your secretKey as the key and all parameters as the value for the HMAC operation. More detail refer to <code>Authentication</code> section.</li>
-</ul>
-<h3 id='timing-security'>Timing Security</h3>
-<p><code>KINE-API-TS</code></p>
+<p><code>SIGNED</code> endpoints require additional headers in request: <code>KINE-API-ACCESS-KEY</code>, <code>KINE-API-TS</code>,<code>KINE-API-SIGNATURE</code>.</p>
 
 <ul>
-<li>A <code>SIGNED</code> endpoint requires a timestamp in headers, to be sent which should be the millisecond timestamp of when the request was created and sent.</li>
+<li><code>KINE-API-ACCESS-KEY</code> should be your API key with proper permission.</li>
+<li><code>KINE-API-SIGNATURE</code> shoule be the <code>HMAC SHA256</code> signature. The HMAC SHA256 signature is a keyed HMAC SHA256
+operation. Use your <code>SecretKey</code> as the key and all parameters as the value for the HMAC operation. More detail refer
+to <code>Authentication</code> section.</li>
+<li><code>KINE-API-TS</code> should be the millisecond timestamp of when the request was created and sent.</li>
 </ul>
 <h3 id='how-to-generate-your-api-keys'>How to generate your API keys?</h3>
-<p>please contact support@kine.io to generate your API Keys(<code>AccessKey</code>, <code>SecretKey</code>).</p>
+<p>Please go to API management page of Kine exchange (https://kine.exchange/account/api-key) to generate your API keys.</p>
 
-<p><code>AccessKey</code> It is used in API request</p>
+<p><code>API Key</code> is used in an API request for identification.</p>
 
-<p><code>SecretKey</code> It is used to generate the signature (only visible once after creation, please keep it safe!!!)</p>
+<p><code>SecretKey</code> is used to generate the signature. (Only visible once after creation. Please keep it safe!!!)</p>
 
-<p>API Key Permission</p>
+<p>API Key Permissions</p>
 
 <ul>
-<li><code>ReadOnly</code> permission: It is used to query the data, such as order query, trade query.</li>
-<li><code>Trade</code> permission: It is used to create order, cancel order and transfer, etc.  It&#39;s include ReadOnly permission.</li>
-<li><code>Withdraw</code> permission: It is used to create withdraw order, cancel withdraw order, etc.  It&#39;s include Trade/ReadOnly permission.</li>
+<li><code>ReadOnly</code> permission grants the access to data queries, such as order history and account status.</li>
+<li><code>Trade</code> permission allows API key to place orders, cancel order, transfer assets between accounts etc.</li>
 </ul>
+
+<p>[comment]: &lt;&gt; (* <code>Withdraw</code> permission: It is used to create withdraw order, cancel withdraw order, etc. It&#39;s include Trade/ReadOnly permission)</p>
 
 <aside class="warning">
 Warning: 
-These two keys are important to your account safety, please don't share both of them together to anyone else. If you find your API Key is disposed, please remove it immediately. 
+These two keys are important to your account safety. Please don't share them with anyone else. If you find your API Key exposed, please remove it from your account immediately. 
 </aside>
 <h3 id='how-to-sign-the-endpoint'>How to sign the endpoint?</h3>
-<p>Please refer to below Authentication selection.</p>
-<h1 id='authentication'>Authentication</h1>
-<p>The API request may be tampered during internet, therefore all private API must be signed by your API Key (Secrete Key).</p>
+<p>Please refer to Authentication section below.</p>
+<h1 id='authentication-2'>Authentication</h1>
+<p>The API request may be tampered during traveling through internet. Therefore, all calls to private API endpoints must be
+signed with your API key (secrete key).</p>
 
-<p>Each API Key has permission property, please check the API permission, and make sure your API key has proper permission.</p>
+<p>Each API key would be assigned with a permission during application. Please check the permission, and make sure your API
+key has proper permission to access the target API endpoints.</p>
 
-<p>A valid request consists of below parts:</p>
+<p>A valid signature for a request is generated based on the following information:</p>
 
 <ul>
-<li><code>Request Method</code>  GET/POST  (Websocket is GET)</li>
-<li><code>host</code> api.kine.exchange</li>
-<li><code>Request Path</code>  for example: <code>/trade/api/order/place</code></li>
-<li><code>accessKey</code>  The &#39;Access Key&#39; in your API Key, should be included in request header. <code>KINE-API-ACCESS-KEY</code></li>
+<li><code>Request Method</code>  GET/POST  (for Websocket authentication please use GET)</li>
+<li><code>Host</code> The host of the API endpoints, for now it is only <code>api.kine.exchange</code></li>
+<li><code>Request path</code> For example: <code>/trade/api/order/place</code></li>
+<li><code>API key</code>  Your API key, which should also be included in request header <code>KINE-API-ACCESS-KEY</code> as mentioned above</li>
 <li><code>SecretKey</code>  Used to sign the request</li>
-<li><code>ts</code>  The UTC timestamp when the request is sent. should be included in request header. <code>KINE-API-TS</code></li>
-<li><code>Request Parameters</code> Each API Method has a group of parameters, you can refer to detailed document for each of them.
-For both GET/POST request, all the parameters must be signed.</li>
-<li><code>Payload</code> the content to be signed. It includes request info. MUST follow the rule to prepare the payload when calculate the signature.</li>
-<li><code>signature</code> The value after signed, it is guarantee the signature is valid, and the request is not be tempered.  <code>KINE-API-SIGNATURE</code></li>
+<li><code>Timestamp</code> The UTC timestamp when the request is sent, which should also be included in request header <code>KINE-API-TS</code>
+as mentioned above</li>
+<li><code>Request Parameters</code> The parameters of the request. For both GET and POST request, all the parameters must be included
+in signing.</li>
+<li><code>Payload</code> The actual content to be signed. MUST be organized following the rule instructed in the <code>Payload</code> section
+below.</li>
+<li><code>Signature</code> The generated hash value after signing, which will be verified at server side to guarantee the request has
+not been tempered, and should be included in request header  <code>KINE-API-SIGNATURE</code></li>
 </ul>
 <h2 id='signature'>Signature</h2>
+<p>The signature is calculated according to a particular algorithm, based on the information mentioned above.</p>
+<h3 id='1-prepare-the-payload-in-the-following-format'>1. Prepare the payload, in the following format:</h3><div class="highlight"><pre class="highlight plaintext"><code>{requestMethod}\n
+
+{host}\n
+
+{request path}\n
+
+{request parameters}\n #If no paramters, keep it as empty line
+
+{timestamp}
+</code></pre></div>
+<aside class="notice">
+For a websocket request, method should be GET
+</aside>
+
+<blockquote>
+<p>Payload Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET
+api.kine.exchange
+/trade/api/history
+clientOrderId=123
+123123123123
+</code></pre></div><h3 id='2-generate-the-signature'>2. Generate the signature.</h3>
+<p><code>signature = sign(payload, secretKey);</code></p>
+
+<p><strong>sign() is the method to calculate the signature. (HMAC SHA256)</strong></p>
+
+<p>Please refer to sample code.</p>
+
 <blockquote>
 <p>Sample Code for signature</p>
 </blockquote>
-<div class="highlight"><pre class="highlight java tab-java"><code>        <span class="nc">String</span> <span class="n">accessKey</span> <span class="o">=</span> <span class="s">"xxx"</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="s">"xxx"</span><span class="o">;</span>
+<div class="highlight"><pre class="highlight java tab-java"><code>        <span class="nc">String</span> <span class="n">accessKey</span> <span class="o">=</span> <span class="s">"123485552fb24cf49412345688888888"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="s">"e95a0ba0648215e61d7c29ad6c96c2185c2c15fa3ce173d2b412345688888888"</span><span class="o">;</span>
 
         <span class="c1">// sign:</span>
         <span class="nc">Mac</span> <span class="n">hmacSha256</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -533,65 +618,26 @@ For both GET/POST request, all the parameters must be signed.</li>
         <span class="nc">String</span> <span class="n">payload</span> <span class="o">=</span> <span class="s">"The payload text"</span><span class="o">;</span>
         <span class="kt">byte</span><span class="o">[]</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">hmacSha256</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
         <span class="nc">String</span> <span class="n">signature</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">hash</span><span class="o">);</span>
-</code></pre></div>
-<ol>
-<li>Request <code>Headers</code> for signed request.</li>
-</ol>
-
+</code></pre></div><h3 id='3-add-request-headers-for-signed-request'>3. Add request headers for signed request.</h3>
 <ul>
-<li><code>KINE-API-ACCESS-KEY</code>    The access key</li>
+<li><code>KINE-API-ACCESS-KEY</code>   The API key</li>
 <li><code>KINE-API-TS</code>           The UTC timestamp</li>
-<li><code>KINE-API-SIGNATURE</code>    The signature</li>
+<li><code>KINE-API-SIGNATURE</code>    The signature generated in Step. 2</li>
 </ul>
 
-<ol>
-<li>Calculate the signature and add it to request header</li>
-</ol>
-
-<p>signature = sign(payload, secretKey);   <code>MUST follow the payload format rule below.</code></p>
-
-<p><strong>sign() is the method to calculate the signature.(The HMAC SHA256 signature is a keyed HMAC SHA256 operation.)</strong></p>
-
-<p>Please refer to sample code.</p>
-<h2 id='payload'>Payload</h2>
-<blockquote>
-<p>Payload Example</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>--------
-GET
-api.kine.exchange
-/trade/api/history
-clientOrderId=123
-123123123123
----------
-</code></pre></div>
 <blockquote>
 <p>signed request sample</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange//trade/api/history?clientOrderId=123
+<div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange/trade/api/history?clientOrderId=123
 
 Headers:
 KINE-API-TS: 1618561349256
-KINE-API-ACCESS_KEY: xxxxxxx
+KINE-API-ACCESS_KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
-</code></pre></div>
-<p>{requestMethod}\n</p>
-
-<p>{host}\n</p>
-
-<p>{request path}\n</p>
-
-<p>{request parameters}\n    #If no paramters, keep it as empty line</p>
-
-<p>{timestamp}</p>
-
-<aside class="notice">
-Websocket Request Method should be GET
-</aside>
-<h1 id='market-data-api'>Market Data API</h1>
-<p>The market data api is open api.</p>
+</code></pre></div><h1 id='market-data-api'>Market Data API</h1>
+<p>Market data APIs are all with open access.</p>
 <h2 id='asset-price'>Asset Price</h2>
-<p>This endpoint retrieves asset realtime prices. The data will update every second.</p>
+<p>This endpoint retrieves asset prices, which are updated every second.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /market/api/price/{symbol}</code></p>
 <h3 id='rate-limit'>Rate Limit</h3>
@@ -646,9 +692,86 @@ Websocket Request Method should be GET
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='funding-rate'>Funding Rate</h2>
-<p>This endpoints retrieves the funding rate related information. </p>
+<h2 id='aggregated-asset-prices'>Aggregated Asset Prices</h2>
+<p>This endpoint retrieves aggregated mark prices of all assets, which are updated every second.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /market/api/agg-price</code></p>
+<h3 id='rate-limit-2'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-2'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='response-content-2'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prices</td>
+<td>Price</td>
+<td>(see below)</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>aggregated price updated timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Price:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>price updated timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Examples.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798400000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798360000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46578"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798367000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.5"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='funding-rate'>Funding Rate</h2>
+<p>This endpoints retrieves the funding rate related information.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /market/api/funding-rate/{symbol}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
@@ -670,7 +793,7 @@ Websocket Request Method should be GET
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-content-2'>Response Content</h3>
+<h3 id='response-content-3'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -712,12 +835,12 @@ Websocket Request Method should be GET
 </tbody></table>
 <h1 id='trade-api'>Trade API</h1><h2 id='place-order'>Place Order</h2>
 <p>Place an order</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /trade/api/order/place</code></p>
-<h3 id='rate-limit-2'>Rate Limit</h3>
+<h3 id='rate-limit-3'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-2'>Required Permission</h3>
-<p><code>Write</code></p>
+<h3 id='required-permission-3'>Required Permission</h3>
+<p><code>Trade</code></p>
 <h3 id='request-body-json'>Request Body(Json)</h3>
 <table><thead>
 <tr>
@@ -767,7 +890,7 @@ Websocket Request Method should be GET
 <td>no</td>
 <td></td>
 <td>clientOrderId , which given by user</td>
-<td>Valid character, A-Z,a-z,0-9,_,-   length &lt;= 128</td>
+<td>Valid character, A-Z,a-z,0-9,_,- length &lt;= 128</td>
 </tr>
 </tbody></table>
 
@@ -784,7 +907,7 @@ Websocket Request Method should be GET
   </span><span class="nl">"closePosition"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-3'>Response Content</h3>
+</span></code></pre></div><h3 id='response-content-4'>Response Content</h3>
 <p>refer to the sample on the right side</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -804,13 +927,13 @@ Websocket Request Method should be GET
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='query-order'>Query Order</h2>
-<p>This endpoint retrieve the history of order by given clientOrderId
-The latest order will be returned if orders have duplicated client order IDs.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<p>This endpoint retrieve the history of order by given clientOrderId. The latest order will be returned if orders have
+duplicated client order IDs.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /trade/api/history</code></p>
-<h3 id='rate-limit-3'>Rate Limit</h3>
+<h3 id='rate-limit-4'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-3'>Required Permission</h3>
+<h3 id='required-permission-4'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
@@ -832,7 +955,7 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-content-4'>Response Content</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='response-content-5'>Response Content</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-123"</span><span class="p">,</span><span class="w">
@@ -921,15 +1044,15 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 <td>Illegal client order ID</td>
 </tr>
 </tbody></table>
-<h1 id='account-api'>Account API</h1><h2 id='query-account-balance'>Query Account Balance</h2>
-<p>This endpoint retrieves user&#39;s balance </p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h1 id='account-api'>Account API</h1><h2 id='query-account-balances'>Query Account Balances</h2>
+<p>This endpoint retrieves user&#39;s balance</p>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /account/api/account-balances</code></p>
-<h3 id='rate-limit-4'>Rate Limit</h3>
-<p>5/s </p>
-<h3 id='required-permission-4'>Required Permission</h3>
+<h3 id='rate-limit-5'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-5'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='response-content-5'>Response Content</h3>
+<h3 id='response-content-6'>Response Content</h3>
 <p>The content consists 3 parts, cross, isolated and total equity.</p>
 
 <table><thead>
@@ -972,55 +1095,150 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"crossEquity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"crossLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crossEquity"</span><span class="p">:</span><span class="w"> </span><span class="mf">12345.67</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crossLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
     </span><span class="nl">"crossMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">34567.8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgHoldPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">34578.9</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">6851.7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3456</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">-1.23</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">2345.67</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgHoldPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">2367.89</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">-3157.41</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">-123.45</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.09</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">12345.6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgHoldPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"isolatedEquity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isolatedEquity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.56</span><span class="p">,</span><span class="w">
     </span><span class="nl">"isolatedMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"kUSDAmt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.34</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">345.6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgHoldPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">345.1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kUSDAmt"</span><span class="p">:</span><span class="w"> </span><span class="mf">4567.8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.34</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">234.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">9876.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.56</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNBUSD"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"totalEquity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalEquity"</span><span class="p">:</span><span class="w"> </span><span class="mf">23456.7</span><span class="p">,</span><span class="w">
     </span><span class="nl">"walletAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.5</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"walletEquity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="nl">"walletEquity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1234.5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='max-and-min-target-isolated-risk-rate'>Max and min target isolated risk rate</h2>
+<p>Get the max and min target risk rate, when switch the trading account of a given currency to isolated</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /account/api/get-riskrate-when-swap-to-isolated</code></p>
+<h3 id='rate-limit-6'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-6'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of the target currency</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><code>http request
+GET /account/api/get-riskrate-when-swap-to-isolated?symbol=BTCUSD
+</code></p>
+<h3 id='response-content-7'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>map</td>
+<td>min and max risk rate</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"minRiskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maxRiskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.85"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='leverage-adjustment'>Leverage Adjustment</h2>
 <p>Change leverage of isolated positions</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /account/api/update-isolated-target-leverage</code></p>
-<h3 id='rate-limit-5'>Rate Limit</h3>
+<h3 id='rate-limit-7'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-5'>Required Permission</h3>
-<p><code>Write</code></p>
+<h3 id='required-permission-7'>Required Permission</h3>
+<p><code>Trade</code></p>
 <h3 id='request-body-json-2'>Request Body(Json)</h3>
 <table><thead>
 <tr>
@@ -1053,7 +1271,7 @@ The latest order will be returned if orders have duplicated client order IDs.</p
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"targetLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-6'>Response Content</h3>
+</span></code></pre></div><h3 id='response-content-8'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1077,7 +1295,7 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 <tr>
 <td>code</td>
 <td>string</td>
-<td>description of the code</td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1087,9 +1305,592 @@ The latest order will be returned if orders have duplicated client order IDs.</p
   "message": "string",
   "success": true
 }
-</code></pre></div><h1 id='websocket-api-2'>WebSocket API</h1>
-<p>WebSocket API provide market price, order , account update data stream subscription.</p>
-<h2 id='authentication-2'>Authentication</h2>
+</code></pre></div><h2 id='switch-to-isolated'>Switch to isolated</h2>
+<p>Switch to an isolated trading account for a give currency</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-isolated</code></p>
+<h3 id='rate-limit-8'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-8'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-3'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of target currency</td>
+<td></td>
+</tr>
+<tr>
+<td>targetLeverage</td>
+<td>number</td>
+<td>yes</td>
+<td></td>
+<td>the target leverage</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"riskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.85"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-9'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='switch-to-crossed'>Switch to crossed</h2>
+<p>Switch an isolated trading account to the crossed trading account for a give currency</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-crossed</code></p>
+<h3 id='rate-limit-9'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-9'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-4'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of target currency</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-10'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='account-history'>Account history</h2>
+<p>Get the history of account changes</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /account/api/account-history</code></p>
+<h3 id='rate-limit-10'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-10'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startTime</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>starting timestamp of the querying scope</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>ending timestamp of the querying scope</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>currency</td>
+<td></td>
+</tr>
+<tr>
+<td>action</td>
+<td>number</td>
+<td>no</td>
+<td></td>
+<td></td>
+<td>1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TRADE, 4 - TRANSFER_TRADE_TO_WALLET, 5 - DEDUCT, 6 - REFUND, 7 - TRANSFER_IN, 8 - TRANSFER_OUT, 9 - REWARD, 10 - REBATE, 11 - EXCHANGE_IN, 12 - EXCHANGE_OUT, 13 - FUNDING_FEE_PAY, 14 - FUNDING_FEE_COLLECT, 17 - FREEZE, 18 - UNFREEZE, 24 - WITHDRAW_REJECTED, 30 - TRADE_MINING_JUNIOR_REWARD, 31 - AIR_DROP, 33 - TRADE_MINING_SENIOR_REWARD, 34 - LOCK, 35 - UNLOCK, 100 - OTHERS</td>
+</tr>
+<tr>
+<td>page</td>
+<td>number</td>
+<td>no</td>
+<td>1</td>
+<td>page number</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>number</td>
+<td>no</td>
+<td>20</td>
+<td>number of items per page</td>
+<td>1-200</td>
+</tr>
+</tbody></table>
+
+<p>[comment]: &lt;&gt; (todo: scope)</p>
+
+<p><code>http request
+GET /account/api/account-history?startTime=1619798400000&amp;endTime=1619798460000&amp;currency=kUSD&amp;action=1&amp;page=2&amp;size=10
+</code></p>
+<h3 id='response-content-11'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>map</td>
+<td>min and max risk rate</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"minRiskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maxRiskRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.85"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='max-transferable-of-wallet-account'>Max transferable of wallet account</h2>
+<p>Get the max available amount (in kUSD) that can be transferred from wallet account</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET /account/api/max-wallet-transfer-out</code></p>
+<h3 id='rate-limit-11'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-11'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='response-content-12'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>decimal</td>
+<td>max available amount</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 200,
+  "data": "1324.56",
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='max-transferable-of-crossed-account'>Max transferable of crossed account</h2>
+<p>Get the max available amount (in kUSD) that can be transferred from the crossed trading account</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /account/api/max-crossed-transfer-out</code></p>
+<h3 id='rate-limit-12'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-12'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='response-content-13'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>decimal</td>
+<td>max available amount</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 200,
+  "data": "1324.56",
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='max-transferable-of-isolated-account'>Max transferable of isolated account</h2>
+<p>Get the max available amount (in kUSD) that can be transferred from a specified isolated trading account</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET /account/api/max-isolated-transfer-out</code></p>
+<h3 id='rate-limit-13'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-13'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of the target currency</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><code>http request
+GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
+</code></p>
+<h3 id='response-content-14'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>map</td>
+<td>symbole and max available amount</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"BTCUSD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5432.1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='transfer-between-the-wallet-and-crossed-trading-account'>Transfer between the wallet and crossed trading account</h2>
+<p>Transfer (in kUSD) between the wallet and crossed trading account</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST /account/api/transfer</code></p>
+<h3 id='rate-limit-14'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-14'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-5'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the amount to be transferred</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>number</td>
+<td>yes</td>
+<td></td>
+<td>the direction to be transferred</td>
+<td>1 - wallet to trading account, 2 - trading to wallet account</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-15'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='transfer-between-crossed-isolated-trading-accounts'>Transfer between crossed/isolated trading accounts</h2>
+<p>Transfer (in kUSD) between the crossed trading account and a specified isolated trading account</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST /account/api/isolated-transfer</code></p>
+<h3 id='rate-limit-15'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-15'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-6'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the isolated trading account to be transferred from or to</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the amount to be transferred</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>number</td>
+<td>yes</td>
+<td></td>
+<td>the direction to be transferred</td>
+<td>3 - crossed to isolated trading account, 4 - isolated to crossed trading account</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-16'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h1 id='websocket-api-3'>WebSocket API</h1>
+<p>WebSocket API provide market price, order, account update data stream subscription.</p>
+<h2 id='authentication-3'>Authentication</h2>
 <blockquote>
 <p>Sample Code for websocket signature</p>
 </blockquote>
@@ -1108,16 +1909,16 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/ws</span><span class="dl">"</span><span class="p">;</span>
 
 
-<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">requestMethod</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">requestMethod</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
 
-            <span class="nx">host</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span>
+  <span class="nx">host</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
 
-            <span class="nx">path</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span>
+  <span class="nx">path</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
 
-            <span class="dl">"</span><span class="s2">accessKey=</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">awsAccessKeyId</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
+  <span class="dl">"</span><span class="s2">accessKey=</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">awsAccessKeyId</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
 
-            <span class="dl">""</span> <span class="o">+</span> <span class="nx">timestamp</span> <span class="p">;</span>
-            <span class="p">;</span>
+  <span class="dl">""</span> <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
+<span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">signatureBytes</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">awsAccessKeySecret</span><span class="p">);</span>
 
@@ -1144,26 +1945,31 @@ The latest order will be returned if orders have duplicated client order IDs.</p
 
 
 </code></pre></div>
-<p>The websocket api authentication required a signed auth message. After verified the signed auth message, the websocket session will be marked at authed session.
-So that, it can subscribe projected stream(Order/Account).</p>
+<p>A websocket session requires a signed <code>AUTH</code> message as its first message. With this signed auth message verified, the
+websocket session will be marked as authorised, after which, it can subscribe projected streams (Order/Account).</p>
 
-<p>The signed auth message is a json message. the payload is similar with REST API.</p>
+<p>The signed auth message is a json message. The payload is similar with REST API.</p>
 <h3 id='auth-message'>Auth Message</h3>
 <blockquote>
 <p>websocket auth message</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTH"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232922010</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"96b514aee78f1a1ed1a24453fc8e5c52b1c04361"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232922010</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"96b514aee78f1a1ed1a24453fc8e5c52b1c04361"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678789</span><span class="p">,</span><span class="w">
     </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span><span class="err">Response:</span><span class="w">
-</span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"AUTH_RESULT"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618805541051</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:</span><span class="mi">10079469</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Response:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTH_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541051</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">10079469</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>Payload Example</p>
@@ -1181,24 +1987,36 @@ accessKey=xxxxxxxxxxxx
 <blockquote>
 <p>Ping Message</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"PING"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618232485224</span><span class="p">,</span><span class="nl">"params"</span><span class="p">:{}}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PING"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485224</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>Pong Message</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"PONG"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618232485337</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"PING"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618232485224</span><span class="p">}}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PONG"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485337</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PING"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485224</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>It&#39;s a customized ping/pong message, rather than websocket protocol ping/pong frame.</p>
+<p>We use a customized ping/pong message, rather than websocket protocol ping/pong frame.</p>
 
-<p>We support both direction ping/pong, Server ping and Client ping.
-Once the client/server received the ping message, must reply a pong message ASAP.</p>
+<p>We support both direction ping/pong, server ping and client ping. Once the client/server received the ping message, they
+must reply a pong message ASAP.</p>
 
 <aside class="warning">
-MUST reply pong when you received the ping.
-Websocket server sent ping to client every `5s`, if don't receive pong more than `15s`, then server will close the session.
+MUST reply a pong when you received a ping.
+Websocket server sends ping to client every `5s`. If no pong message is received within `15s`, the session will be closed from server side.
 </aside>
 <h2 id='session-limit'>Session limit</h2>
-<p>There are some limit about the websocket session.</p>
+<p>There are some limits about the websocket session.</p>
 
 <table><thead>
 <tr>
@@ -1209,28 +2027,28 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 </tr>
 </thead><tbody>
 <tr>
-<td>Count per IP</td>
+<td>Sessions per IP</td>
 <td>count</td>
 <td>50</td>
-<td>Session count limit per IP</td>
+<td>Max number of sessions per IP</td>
 </tr>
 <tr>
-<td>Count per AccessKey</td>
+<td>Sessions per API key</td>
 <td>count</td>
 <td>10</td>
-<td>Authed Session count limit per accessKey</td>
+<td>Max number of authed sessions per API key</td>
 </tr>
 <tr>
-<td>Msg Rate per session</td>
+<td>Message rate per session</td>
 <td>Rate</td>
 <td>10/s</td>
-<td>InComing Msg Rate limit per session, No limit for output</td>
+<td>Incoming message rate limit per session (No limit for output)</td>
 </tr>
 <tr>
 <td>Max live time</td>
 <td>Duration</td>
 <td>24h</td>
-<td>Session max live time, server will close the session once it&#39;s expired</td>
+<td>Session max live time. Server will close the session once it&#39;s expired</td>
 </tr>
 </tbody></table>
 <h2 id='subscribe-topics'>Subscribe Topics</h2>
@@ -1238,29 +2056,41 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <p>subscribe message</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618805541048</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"{topic name}"</span><span class="p">}}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>un-subscribe message</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
-</span><span class="p">{</span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"UN_SUB_RESULT"</span><span class="p">,</span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1618805541048</span><span class="p">,</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"{topic name}"</span><span class="p">}}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Client send subscribe message to subscribe data stream. </p>
+<p>Client send subscribe message to subscribe data stream.</p>
 
 <table><thead>
 <tr>
@@ -1280,12 +2110,12 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <h2 id='price-data-stream'>Price Data Stream</h2>
 <p>Price topic : <code>md.index-price.aggregated</code></p>
 
-<p>To establish the price consuming, the process as below:</p>
+<p>The process to establish price consuming is:</p>
 
 <ul>
-<li>client initate the connection by send the subscribe message out</li>
-<li>server will response the success if the request accepted</li>
-<li>prices will send to client from server to client every 500ms.</li>
+<li>Client initiate the connection by sending the subscription message</li>
+<li>Server will respond a success message if the request is accepted</li>
+<li>Prices will send to client from server every 500ms.</li>
 </ul>
 <h3 id='message-examples'>Message examples</h3>
 <p>Please find them on the right side.</p>
@@ -1294,48 +2124,51 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <p>Subscribe the prices</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Subscribe Response </p>
+<p>Subscribe Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>Example of price response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646334452</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62120"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAZEUSD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.59"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646262217</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2455.3"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646334452</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62120"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAZEUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.59"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646262217</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2455.3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">....</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h4 id='response-of-price'>Response of price</h4>
 <table><thead>
@@ -1350,7 +2183,7 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <td>symbol</td>
 <td>String</td>
 <td>Asset Symbol</td>
-<td>Asset Reference</td>
+<td></td>
 </tr>
 <tr>
 <td>price</td>
@@ -1362,17 +2195,19 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <td>ts</td>
 <td>long</td>
 <td>UTC timestamp</td>
-<td>Asset Reference</td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='account-update'>Account Update</h2>
-<p>Topis: <code>account.all</code></p>
+<p>Topic: <code>account.all</code></p>
 
-<p>the accounts will be published to client on two behaviours </p>
+<p>The account snapshots will be published to client on two conditions</p>
 
 <ol>
-<li>price change, all accounts will be published to client every 3 seconds, recalculated by lastest price.</li>
-<li>asset change, some user activites , such as place an order, transfer/withdraw assets, will leads to a accounts publish.</li>
+<li>On price change, snapshots of all accounts will be published to client every 3 seconds, recalculated by latest
+prices.</li>
+<li>Asset change. Some user activities, such as placing an order, transferring / withdrawing assets, will lead to a
+publish.</li>
 </ol>
 
 <blockquote>
@@ -1390,57 +2225,67 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <p>Subscribe response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account.all"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>User accounts</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account.all"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"totalEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3034.37796911"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"walletEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161.47170911"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"walletAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57.28470000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161.47164911"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00006000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00006000"</span><span class="w">
-        </span><span class="p">},</span><span class="err">...</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"crossLeverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"crossEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2872.90626000"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"crossMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"isolatedEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"isolatedMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"kUSDAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="err">..</span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account.all"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"totalEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3034.37796911"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"walletEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161.47170911"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"walletAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57.28470000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161.47164911"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00006000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"equity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00006000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"crossLeverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crossEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2872.90626000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crossMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"isolatedEquity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isolatedMarginAccounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"markValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kUSDAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -1460,43 +2305,43 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <tr>
 <td>walletEquity</td>
 <td>Number</td>
-<td>walletEquity</td>
+<td>wallet equity</td>
 <td></td>
 </tr>
 <tr>
 <td>crossEquity</td>
 <td>Number</td>
-<td>crossEquity</td>
+<td>cross equity</td>
 <td></td>
 </tr>
 <tr>
 <td>crossLeverage</td>
 <td>Number</td>
-<td>crossLeverage</td>
+<td>leverage cross account</td>
 <td></td>
 </tr>
 <tr>
 <td>isolatedEquity</td>
 <td>Number</td>
-<td>walletEquity</td>
+<td>wallet equity</td>
 <td></td>
 </tr>
 <tr>
 <td>walletAccounts</td>
 <td>List<WalletAccount></td>
-<td>Wallet Account Detail for all asset</td>
+<td>Wallet account details for all assets</td>
 <td></td>
 </tr>
 <tr>
 <td>crossMarginAccounts</td>
 <td>List<CrossMarginAccount></td>
-<td>Cross Margin Account Detail for all asset</td>
+<td>Cross margin account details for all assets</td>
 <td></td>
 </tr>
 <tr>
 <td>isolatedMarginAccounts</td>
 <td>List<IsolatedMarginAccount></td>
-<td>Isolated Margin Account Detail for all asset</td>
+<td>Isolated margin account details for all assets</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1514,19 +2359,19 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <tr>
 <td>currency</td>
 <td>String</td>
-<td>The currency</td>
+<td>currency</td>
 <td>Asset Reference</td>
 </tr>
 <tr>
 <td>amt</td>
 <td>Number</td>
-<td>The amount</td>
+<td>amount</td>
 <td></td>
 </tr>
 <tr>
 <td>equity</td>
 <td>Number</td>
-<td>The equity</td>
+<td>equity</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1544,37 +2389,37 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <tr>
 <td>symbol</td>
 <td>String</td>
-<td>The symbol of the asset</td>
+<td>symbol of the asset</td>
 <td>Asset Reference</td>
 </tr>
 <tr>
 <td>amt</td>
 <td>Number</td>
-<td>The amount</td>
+<td>amount</td>
 <td></td>
 </tr>
 <tr>
 <td>markValue</td>
 <td>Number</td>
-<td>The markValue</td>
+<td>current mark value</td>
 <td></td>
 </tr>
 <tr>
 <td>profit</td>
 <td>Number</td>
-<td>The profit</td>
+<td>profit</td>
 <td></td>
 </tr>
 <tr>
 <td>profitRate</td>
 <td>Number</td>
-<td>The profitRate</td>
+<td>profit rate</td>
 <td></td>
 </tr>
 <tr>
 <td>avgPrice</td>
 <td>Number</td>
-<td>The avgPrice</td>
+<td>average price</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1592,49 +2437,49 @@ Websocket server sent ping to client every `5s`, if don't receive pong more than
 <tr>
 <td>symbol</td>
 <td>String</td>
-<td>The symbol of the asset</td>
+<td>symbol of the asset</td>
 <td>Asset Reference</td>
 </tr>
 <tr>
 <td>amt</td>
 <td>Number</td>
-<td>The amount</td>
+<td>amount</td>
 <td></td>
 </tr>
 <tr>
 <td>markValue</td>
 <td>Number</td>
-<td>The markValue</td>
+<td>mark value</td>
 <td></td>
 </tr>
 <tr>
 <td>profit</td>
 <td>Number</td>
-<td>The profit</td>
+<td>profit</td>
 <td></td>
 </tr>
 <tr>
 <td>profitRate</td>
 <td>Number</td>
-<td>The profitRate</td>
+<td>profit rate</td>
 <td></td>
 </tr>
 <tr>
 <td>kUSDAmt</td>
 <td>Number</td>
-<td>The kUSD Amount</td>
+<td>kUSD Amount</td>
 <td></td>
 </tr>
 <tr>
 <td>leverage</td>
 <td>Number</td>
-<td>The leverage</td>
+<td>leverage</td>
 <td></td>
 </tr>
 <tr>
 <td>liquidationPrice</td>
 <td>Number</td>
-<td>The liquidationPrice</td>
+<td>liquidation price</td>
 <td></td>
 </tr>
 </tbody></table>
