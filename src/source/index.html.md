@@ -21,6 +21,10 @@ code_clipboard: true
 
 # Change Log
 
+## 2021-06-08
+
+* Add new interfaces for market price and account actions. Add holding average price field in account detail interface.
+
 ## 2021-06-04
 
 * Rearrange sections regarding signature and correct typos.
@@ -255,6 +259,57 @@ symbol | string  |  |  |
 price | string  |  |  |
 timestamp | long  |  |  |
 
+## Aggregated Asset Prices
+
+This endpoint retrieves aggregated mark prices of all assets, which are updated every second.
+
+### HTTP Request
+
+`GET /market/api/agg-price`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+prices | Price  | (see below) |  |
+ts | long  | aggregated price updated timestamp |  |
+
+Price:
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+ts | long  | price updated timestamp |  |
+symbol | string  |  |  |
+price | string  |  |  |
+
+Examples.
+
+```json
+{
+  "ts": 1619798400000,
+  "prices": [
+    {
+      "ts": 1619798360000,
+      "symbol": "BTCUSD",
+      "price": "46578"
+    },
+    {
+      "ts": 1619798367000,
+      "symbol": "ETHUSD",
+      "price": "1234.5"
+    }
+  ]
+}
+```
+
 ## Funding Rate
 
 This endpoints retrieves the funding rate related information.
@@ -419,7 +474,7 @@ Error Code | Description |
 
 # Account API
 
-## Query Account Balance
+## Query Account Balances
 
 This endpoint retrieves user's balance
 
@@ -449,43 +504,110 @@ profit | number | profile | |
 
 ```json
 {
-  "code": 0,
+  "code": 200,
   "data": {
-    "crossEquity": 0,
-    "crossLeverage": 0,
+    "crossEquity": 12345.67,
+    "crossLeverage": 3.45,
     "crossMarginAccounts": [
       {
-        "amt": 0,
-        "avgPrice": 0,
-        "markValue": 0,
+        "amt": 0.15,
+        "avgPrice": 34567.8,
+        "avgHoldPrice": 34578.9,
+        "markValue": 6851.7,
+        "profit": 1234.5,
+        "profitRate": 0.3456,
+        "symbol": "BTCUSD"
+      },
+      {
+        "amt": -1.23,
+        "avgPrice": 2345.67,
+        "avgHoldPrice": 2367.89,
+        "markValue": -3157.41,
+        "profit": -123.45,
+        "profitRate": -0.09,
+        "symbol": "ETHUSD"
+      },
+      {
+        "amt": 12345.6,
+        "avgPrice": 1,
+        "avgHoldPrice": 1,
+        "markValue": 1,
         "profit": 0,
         "profitRate": 0,
-        "symbol": "string"
+        "symbol": "kUSD"
       }
     ],
-    "isolatedEquity": 0,
+    "isolatedEquity": 1234.56,
     "isolatedMarginAccounts": [
       {
-        "amt": 0,
-        "avgPrice": 0,
-        "kUSDAmt": 0,
-        "leverage": 0,
-        "liquidationPrice": 0,
-        "markValue": 0,
-        "profit": 0,
-        "profitRate": 0,
-        "symbol": "string"
+        "amt": 12.34,
+        "avgPrice": 345.6,
+        "avgHoldPrice": 345.1,
+        "kUSDAmt": 4567.8,
+        "leverage": 2.34,
+        "liquidationPrice": 234.5,
+        "markValue": 9876.5,
+        "profit": 1234.5,
+        "profitRate": 0.56,
+        "symbol": "BNBUSD"
       }
     ],
-    "totalEquity": 0,
+    "totalEquity": 23456.7,
     "walletAccounts": [
       {
-        "amt": 0,
-        "currency": "string",
-        "equity": 0
+        "amt": 1234.5,
+        "currency": "kUSD",
+        "equity": 1234.5
       }
     ],
-    "walletEquity": 0
+    "walletEquity": 1234.5
+  },
+  "message": "string",
+  "success": true
+}
+```
+
+## Max and min target isolated risk rate
+
+Get the max and min target risk rate, when switch the trading account of a given currency to isolated
+
+### HTTP Request
+
+`GET /account/api/get-riskrate-when-swap-to-isolated`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Request Parameters
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | the symbol of the target currency| |
+
+```http request
+GET /account/api/get-riskrate-when-swap-to-isolated?symbol=BTCUSD
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |  | |
+data  | map  | min and max risk rate | |
+
+```json
+{
+  "code": 200,
+  "data": {
+    "minRiskRate": "0.1",
+    "maxRiskRate": "0.85"
   },
   "message": "string",
   "success": true
@@ -528,7 +650,363 @@ Field | DataType | Description | Value Range |
 --------- | ----------- | -----------| ----------| 
 success | boolean  | true: the request be processed, false: fail | |
 message | string  |  description of the code | |
-code  | string  |  description of the code | |
+code  | string  |   | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+## Switch to isolated
+
+Switch to an isolated trading account for a give currency
+
+### HTTP Request
+
+`POST /account/api/swap-to-isolated`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | the symbol of target currency | |
+targetLeverage | number | yes |    | the target leverage | |
+
+```json
+{
+  "symbol": "ETHUSD",
+  "riskRate": "0.85"
+}
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |   | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+## Switch to crossed
+
+Switch an isolated trading account to the crossed trading account for a give currency
+
+### HTTP Request
+
+`POST /account/api/swap-to-crossed`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | the symbol of target currency | |
+
+```json
+{
+  "symbol": "BTCUSD"
+}
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |   | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+## Account history
+
+Get the history of account changes
+
+### HTTP Request
+
+`GET /account/api/account-history`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Request Parameters
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+startTime | number | no | 0 | starting timestamp of the querying scope | |
+endTime | number | no | 0 | ending timestamp of the querying scope | |
+currency | string | no |  | currency | |
+action | number | no |  | | 1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TRADE, 4 - TRANSFER_TRADE_TO_WALLET, 5 - DEDUCT, 6 - REFUND, 7 - TRANSFER_IN, 8 - TRANSFER_OUT, 9 - REWARD, 10 - REBATE, 11 - EXCHANGE_IN, 12 - EXCHANGE_OUT, 13 - FUNDING_FEE_PAY, 14 - FUNDING_FEE_COLLECT, 17 - FREEZE, 18 - UNFREEZE, 24 - WITHDRAW_REJECTED, 30 - TRADE_MINING_JUNIOR_REWARD, 31 - AIR_DROP, 33 - TRADE_MINING_SENIOR_REWARD, 34 - LOCK, 35 - UNLOCK, 100 - OTHERS |
+page | number | no | 1 | page number | |
+size | number | no | 20 | number of items per page | 1-200 |
+
+[comment]: <> (todo: scope)
+
+```http request
+GET /account/api/account-history?startTime=1619798400000&endTime=1619798460000&currency=kUSD&action=1&page=2&size=10
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |  | |
+data  | map  | min and max risk rate | |
+
+```json
+{
+  "code": 200,
+  "data": {
+    "minRiskRate": "0.1",
+    "maxRiskRate": "0.85"
+  },
+  "message": "string",
+  "success": true
+}
+```
+
+## Max transferable of wallet account
+
+Get the max available amount (in kUSD) that can be transferred from wallet account
+
+### HTTP Request
+
+`GET /account/api/max-wallet-transfer-out`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |  | |
+data  | decimal  | max available amount | |
+
+```
+{
+  "code": 200,
+  "data": "1324.56",
+  "message": "string",
+  "success": true
+}
+```
+
+## Max transferable of crossed account
+
+Get the max available amount (in kUSD) that can be transferred from the crossed trading account
+
+### HTTP Request
+
+`GET /account/api/max-crossed-transfer-out`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |  | |
+data  | decimal  | max available amount | |
+
+```
+{
+  "code": 200,
+  "data": "1324.56",
+  "message": "string",
+  "success": true
+}
+```
+
+## Max transferable of isolated account
+
+Get the max available amount (in kUSD) that can be transferred from a specified isolated trading account
+
+### HTTP Request
+
+`GET /account/api/max-isolated-transfer-out`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Request Parameters
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | the symbol of the target currency | |
+
+```http request
+GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |  | |
+data  | map  | symbole and max available amount | |
+
+```json
+{
+  "code": 200,
+  "data": {
+    "BTCUSD": "5432.1"
+  },
+  "message": "string",
+  "success": true
+}
+```
+
+## Transfer between the wallet and crossed trading account
+
+Transfer (in kUSD) between the wallet and crossed trading account
+
+### HTTP Request
+
+`POST /account/api/transfer`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+amount | string | yes |    | the amount to be transferred | |
+direction | number | yes |    | the direction to be transferred | 1 - wallet to trading account, 2 - trading to wallet account|
+
+```json
+{
+  "amount": "1234.56",
+  "direction": 1
+}
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |   | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+## Transfer between crossed/isolated trading accounts
+
+Transfer (in kUSD) between the crossed trading account and a specified isolated trading account
+
+### HTTP Request
+
+`POST /account/api/isolated-transfer`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | the isolated trading account to be transferred from or to| |
+amount | string | yes |    | the amount to be transferred | |
+direction | number | yes |    | the direction to be transferred | 3 - crossed to isolated trading account, 4 - isolated to crossed trading account|
+
+```json
+{
+  "symbol": "ETHUSD",
+  "amount": "1234.56",
+  "direction": 3
+}
+```
+
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: the request be processed, false: fail | |
+message | string  |  description of the code | |
+code  | string  |   | |
 
 ```
 {
