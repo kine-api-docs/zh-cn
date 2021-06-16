@@ -499,6 +499,7 @@ Field | DataType | Description | Value Range |
 amt | number  | amount |  |
 symbol | string | symbol| |
 avgPrice| number | average price | |
+avgHoldPrice| number | average holding price | |
 markValue | number | market value | |
 profit | number | profile | |
 
