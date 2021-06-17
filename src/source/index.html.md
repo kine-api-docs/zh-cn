@@ -781,8 +781,6 @@ action | number | no |  | | 1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TR
 page | number | no | 1 | page number | |
 size | number | no | 20 | number of items per page | 1-200 |
 
-[comment]: <> (todo: scope)
-
 ```http request
 GET /account/api/account-history?startTime=1619798400000&endTime=1619798460000&currency=kUSD&action=1&page=2&size=10
 ```
@@ -794,17 +792,70 @@ Field | DataType | Description | Value Range |
 success | boolean  | true: the request be processed, false: fail | |
 message | string  |  description of the code | |
 code  | string  |  | |
-data  | map  | min and max risk rate | |
+data  | pagedItems  |  | |
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+userId  | number | user ID| |
+startTime | number   | starting timestamp of the querying scope | |
+endTime | number   | ending timestamp of the querying scope | |
+currency | string  |  |  |
+action | string  |  |  |
+page | number   | page number | |
+size | number   | number of items per page |  |
 
 ```json
 {
+  "success": true,
   "code": 200,
+  "message": null,
   "data": {
-    "minRiskRate": "0.1",
-    "maxRiskRate": "0.85"
-  },
-  "message": "string",
-  "success": true
+    "page": 1,
+    "size": 4,
+    "total": 123,
+    "items": [
+      {
+        "createTime": 1623722199450,
+        "updateTime": 1623722199450,
+        "userId": 10077439,
+        "action": "EXCHANGE_OUT",
+        "source": "",
+        "currency": "kUSD",
+        "amount": 1000.000000000000000000,
+        "status": "SUCCESS"
+      },
+      {
+        "createTime": 1623722199450,
+        "updateTime": 1623722199450,
+        "userId": 10077439,
+        "action": "EXCHANGE_IN",
+        "source": "",
+        "currency": "USDC",
+        "amount": 1000.000000000000000000,
+        "status": "SUCCESS"
+      },
+      {
+        "createTime": 1623722189929,
+        "updateTime": 1623722189929,
+        "userId": 10077439,
+        "action": "TRANSFER_WALLET_TO_TRADE",
+        "source": "",
+        "currency": "kUSD",
+        "amount": 1000.000000000000000000,
+        "status": "SUCCESS"
+      },
+      {
+        "createTime": 1623665804197,
+        "updateTime": 1623665804197,
+        "userId": 10077439,
+        "action": "TRANSFER_TRADE_TO_WALLET",
+        "source": "",
+        "currency": "kUSD",
+        "amount": 1000.000000000000000000,
+        "status": "SUCCESS"
+      }
+    ]
+  }
 }
 ```
 
@@ -867,7 +918,7 @@ message | string  |  description of the code | |
 code  | string  |  | |
 data  | decimal  | max available amount | |
 
-```
+```json
 {
   "code": 200,
   "data": "1324.56",
@@ -909,13 +960,13 @@ Field | DataType | Description | Value Range |
 success | boolean  | true: the request be processed, false: fail | |
 message | string  |  description of the code | |
 code  | string  |  | |
-data  | map  | symbole and max available amount | |
+data  | map  | max available amount to transfer out | |
 
 ```json
 {
   "code": 200,
   "data": {
-    "BTCUSD": "5432.1"
+    "maxTransOut": "5432.1"
   },
   "message": "string",
   "success": true
@@ -960,7 +1011,7 @@ success | boolean  | true: the request be processed, false: fail | |
 message | string  |  description of the code | |
 code  | string  |   | |
 
-```
+```json
 {
   "code": 0,
   "data": true,
@@ -1009,7 +1060,7 @@ success | boolean  | true: the request be processed, false: fail | |
 message | string  |  description of the code | |
 code  | string  |   | |
 
-```
+```json
 {
   "code": 0,
   "data": true,
