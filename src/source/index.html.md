@@ -149,7 +149,7 @@ A valid signature for a request is generated based on the following information:
 
 The signature is calculated according to a particular algorithm, based on the information mentioned above.
 
-### 1. Prepare the payload, in the following format:
+### 1. Prepare the payload, in the format to right side.
 
 ```text
 {requestMethod}\n
