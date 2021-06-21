@@ -617,7 +617,8 @@ data  | map  | min and max risk rate | |
 
 ## Leverage Adjustment
 
-Change leverage of isolated positions
+Change leverage of isolated positions. Note: this interface only works when no existing position. If you want to change
+the leverage of an existing position, please use `POST /account/api/isolated-transfer`.
 
 ### HTTP Request
 
