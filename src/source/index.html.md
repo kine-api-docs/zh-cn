@@ -221,7 +221,7 @@ GET https://api.kine.exchange/trade/api/history?clientOrderId=123
 
 Headers:
 KINE-API-TS: 1618561349256
-KINE-API-ACCESS_KEY: 072285552fb24cf49412345688888888
+KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 ```
 
@@ -357,7 +357,7 @@ Place an order
 Parameter | DataType | Required | Default Value | Description | Value Range |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol | string | yes |    | symbol |  |
-amt | string | yes |    | amount |  |
+amount | string | yes |    | amount |  |
 direct | string | yes |    | direction of trade |  BUY, SELL|
 closePosition | boolean | yes |    | close position of curreny asset to zero |  true, false|
 clientOrderId | string | no |    | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
