@@ -21,7 +21,7 @@ code_clipboard: true
 
 # Change Log
 
-## 2021-06-08
+## 2021-06-21
 
 * Add new interfaces for market price and account actions. Add holding average price field in account detail interface.
 
