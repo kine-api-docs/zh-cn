@@ -310,6 +310,9 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-08-03" class="toc-h2 toc-link" data-title="2021-08-03">2021-08-03</a>
+                  </li>
+                  <li>
                     <a href="#2021-06-21" class="toc-h2 toc-link" data-title="2021-06-21">2021-06-21</a>
                   </li>
                   <li>
@@ -464,7 +467,11 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='change-log'>Change Log</h1><h2 id='2021-06-21'>2021-06-21</h2>
+        <h1 id='change-log'>Change Log</h1><h2 id='2021-08-03'>2021-08-03</h2>
+<ul>
+<li>Logic updated, regarding <code>/account/api/update-isolated-target-leverage</code>.</li>
+</ul>
+<h2 id='2021-06-21'>2021-06-21</h2>
 <ul>
 <li>Add new interfaces for market price and account actions. Add holding average price field in account detail interface.</li>
 </ul>
@@ -632,7 +639,7 @@ clientOrderId=123
 
 Headers:
 KINE-API-TS: 1618561349256
-KINE-API-ACCESS_KEY: 072285552fb24cf49412345688888888
+KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 </code></pre></div><h1 id='market-data-api'>Market Data API</h1>
 <p>Market data APIs are all with open access.</p>
@@ -861,7 +868,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 <tr>
-<td>amt</td>
+<td>amount</td>
 <td>string</td>
 <td>yes</td>
 <td></td>
@@ -1238,8 +1245,10 @@ GET /account/api/get-riskrate-when-swap-to-isolated?symbol=BTCUSD
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='leverage-adjustment'>Leverage Adjustment</h2>
-<p>Change leverage of isolated positions. Note: this interface only works when no existing position. If you want to change
-the leverage of an existing position, please use <code>POST /account/api/isolated-transfer</code>.</p>
+<p>Change the leverage of isolated accounts. Note: with no existing position, by calling this endpoint user will update
+target leverage. Otherwise, i.e., with an open position, calling this endpoint will adjust the target leverage, as well
+as the actual leverage by transferring into / out of the isolated account, which does the same thing
+as <code>POST /account/api/isolated-transfer</code>.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /account/api/update-isolated-target-leverage</code></p>
 <h3 id='rate-limit-7'>Rate Limit</h3>
