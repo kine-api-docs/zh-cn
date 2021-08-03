@@ -21,6 +21,10 @@ code_clipboard: true
 
 # Change Log
 
+## 2021-08-03
+
+* Logic updated, regarding `/account/api/update-isolated-target-leverage`.
+
 ## 2021-06-21
 
 * Add new interfaces for market price and account actions. Add holding average price field in account detail interface.
@@ -617,8 +621,10 @@ data  | map  | min and max risk rate | |
 
 ## Leverage Adjustment
 
-Change leverage of isolated positions. Note: this interface only works when no existing position. If you want to change
-the leverage of an existing position, please use `POST /account/api/isolated-transfer`.
+Change the leverage of isolated accounts. Note: with no existing position, by calling this endpoint user will update
+target leverage. Otherwise, i.e., with an open position, calling this endpoint will adjust the target leverage, as well
+as the actual leverage by transferring into / out of the isolated account, which does the same thing
+as `POST /account/api/isolated-transfer`.
 
 ### HTTP Request
 
