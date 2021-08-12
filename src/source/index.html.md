@@ -439,21 +439,37 @@ clientOrderId  | string | yes | false   |  |  |
 {
   "code": 200,
   "data": {
-    "clientOrderID": "test-123",
-    "direct": "SELL",
-    "executedAmount": 2,
-    "executedPrice": 60321,
-    "executedQuoteAmount": 120642,
-    "fee": 12.0642,
-    "orderID": 1234567890123,
-    "status": 4,
+    "orderID": 3410874959646425217,
+    "clientOrderID": "test-0622-0001",
     "symbol": "BTCUSD",
-    "timestamp": 1618531200000
+    "direct": "SELL",
+    "executedPrice": "37300",
+    "executedAmount": "0.005",
+    "executedQuoteAmount": "186.5",
+    "fee": "0.1865",
+    "timestamp": 1627378607623,
+    "status": "EXECUTED",
+    "profit": "0"
   },
   "message": "string",
   "success": true
 }
 ```
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+orderID | number  | Order ID |  |
+clientOrderID | string  | Client order ID |  |
+symbol | string  | symbol |  |
+direct | string  | direct | BUY, SELL |
+executedPrice | string  | Executed price |  |
+executedAmount | string  | Executed amount |  |
+executedQuoteAmount | string  | Executed quote amount |  |
+fee | string  | fee |  |
+timestamp | number  | executed timestamp |  |
+status | string  | order status | EXECUTED, FAILED |
+profit | string  | estimated profit (fee not included) |  |
 
 ### Error code
 
