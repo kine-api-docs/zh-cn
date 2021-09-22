@@ -21,6 +21,21 @@ code_clipboard: true
 
 # Change Log
 
+## 2021-09-22
+
+* removed api `/account/api/get-riskrate-when-swap-to-isolated`.
+
+* removed api `/account/api/update-isolated-target-leverage`.
+
+* added api `/account/api/update-leverage`
+
+* removed parameter targetLeverage on `/account/api/swap-to-isolated`.
+
+* updated response content on api `/account/api/account-balances`.
+
+* updated response content on websocket 'account.all' subscription.
+
+
 ## 2021-08-03
 
 * Logic updated, regarding `/account/api/update-isolated-target-leverage`.
@@ -588,63 +603,14 @@ profit | number | profile | |
 }
 ```
 
-## Max and min target isolated risk rate
-
-Get the max and min target risk rate, when switch the trading account of a given currency to isolated
-
-### HTTP Request
-
-`GET /account/api/get-riskrate-when-swap-to-isolated`
-
-### Rate Limit
-
-5/s
-
-### Required Permission
-
-`ReadOnly`
-
-### Request Parameters
-
-Parameter | DataType | Required | Default Value | Description | Value Range |
---------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol of the target currency| |
-
-```http request
-GET /account/api/get-riskrate-when-swap-to-isolated?symbol=BTCUSD
-```
-
-### Response Content
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |  | |
-data  | map  | min and max risk rate | |
-
-```json
-{
-  "code": 200,
-  "data": {
-    "minRiskRate": "0.1",
-    "maxRiskRate": "0.85"
-  },
-  "message": "string",
-  "success": true
-}
-```
 
 ## Leverage Adjustment
 
-Change the leverage of isolated accounts. Note: with no existing position, by calling this endpoint user will update
-target leverage. Otherwise, i.e., with an open position, calling this endpoint will adjust the target leverage, as well
-as the actual leverage by transferring into / out of the isolated account, which does the same thing
-as `POST /account/api/isolated-transfer`.
+Change the leverage of trading accounts. 
 
 ### HTTP Request
 
-`POST /account/api/update-isolated-target-leverage`
+`POST /account/api/update-leverage`
 
 ### Rate Limit
 
@@ -659,12 +625,12 @@ as `POST /account/api/isolated-transfer`.
 Parameter | DataType | Required | Default Value | Description | Value Range |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol | string | yes |    | the symbol | |
-targetLeverage | number | yes |    | the target leverage | |
+leverage | int | yes |    | the leverage, i.e 10, 50, 100 and 125 | |
 
 ```json
 {
   "symbol": "string",
-  "targetLeverage": 0
+  "leverage": 10
 }
 ```
 
@@ -706,12 +672,12 @@ Switch to an isolated trading account for a give currency
 Parameter | DataType | Required | Default Value | Description | Value Range |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol | string | yes |    | the symbol of target currency | |
-targetLeverage | number | yes |    | the target leverage | |
+leverage | int | yes |    | the leverage | |
 
 ```json
 {
   "symbol": "ETHUSD",
-  "riskRate": "0.85"
+  "leverage": 10
 }
 ```
 
@@ -1438,7 +1404,6 @@ The account snapshots will be published to client on two conditions
       },
       ...
     ],
-    "crossLeverage": "1.00000000",
     "crossEquity": "2872.90626000",
     "crossMarginAccounts": [
       {
@@ -1499,6 +1464,14 @@ markValue | Number  | current mark value |  |
 profit | Number  |  profit |  |
 profitRate | Number  |  profit rate |  |
 avgPrice | Number  |  average price |  |
+leverage | Number  |  leverage |  |
+liquidationPrice | Number  |  liquidation price |  |
+initialMargin | Number  |  position initial margin |  |
+positionMargin | Number  |  position margin |  |
+maintMargin | Number  |  maintenance margin |  |
+marginBalance | Number  |  margin balance |  |
+marginRatio | Number  |  margin ratio |  |
+marginAvailable | Number  | available margin |  |
 
 **IsolatedMarginAccount**
 
@@ -1512,6 +1485,12 @@ profitRate | Number  |  profit rate |  |
 kUSDAmt | Number  |  kUSD Amount |  |
 leverage | Number  |  leverage |  |
 liquidationPrice | Number  |  liquidation price |  |
+initialMargin | Number  |  position initial margin |  |
+positionMargin | Number  |  position margin |  |
+maintMargin | Number  |  maintenance margin |  |
+marginBalance | Number  |  margin balance |  |
+marginRatio | Number  |  margin ratio |  |
+marginAvailable | Number  | available margin |  |
 
 # Reference
 
