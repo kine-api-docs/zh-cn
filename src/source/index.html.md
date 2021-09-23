@@ -33,12 +33,11 @@ code_clipboard: true
 
 * updated response content on api GET `/account/api/account-balances`
   * removed crossLeverage.
-  * adding account position margin, maintenance margin, margin ratio and available margin etc.
+  * added account position margin, maintenance margin, margin ratio and available margin etc.
 
 * updated response content on websocket `account.all` subscription 
   * removed crossLeverage.
-  * adding account position margin, maintenance margin, margin ratio and available margin etc.
-
+  * added account position margin, maintenance margin, margin ratio and available margin etc.
 
 ## 2021-08-03
 
