@@ -29,11 +29,15 @@ code_clipboard: true
 
 * added api `/account/api/update-leverage` to support setting leverage on both crossed and isolated accounts
 
-* removed parameter targetLeverage on `/account/api/swap-to-isolated`.
+* removed parameter targetLeverage from `/account/api/swap-to-isolated`.
 
-* updated response content on api GET `/account/api/account-balances` to include account position margin, maintenance margin, margin ratio and available margin etc.
+* updated response content on api GET `/account/api/account-balances`
+  * removed crossLeverage.
+  * adding account position margin, maintenance margin, margin ratio and available margin etc.
 
-* updated response content on websocket 'account.all' subscription to include account position margin, maintenance margin, margin ratio and available margin etc.
+* updated response content on websocket `account.all` subscription 
+  * removed crossLeverage.
+  * adding account position margin, maintenance margin, margin ratio and available margin etc.
 
 
 ## 2021-08-03
