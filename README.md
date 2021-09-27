@@ -1,20 +1,20 @@
 # kine-api-docs.github.io
 Kine API Documents release
 
-## Modify and Test on Local
+## 1. Modify and Test on Local
 ./slate.sh serve
 
-## Build
+## 2. Build
 ./slate.sh build
 
 The target dir is ./docs
 
-## Commit and Push
+## 3. Commit and Push
 
 ./src
 
 ./docs
 
-## Access Api Docs
+## 4. Access Api Docs
 
 https://github.com/kine-api-docs/kine-api-docs.github.io

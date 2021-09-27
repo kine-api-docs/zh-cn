@@ -471,10 +471,20 @@
 <ul>
 <li><p>removed api <code>/account/api/get-riskrate-when-swap-to-isolated</code>.</p></li>
 <li><p>removed api <code>/account/api/update-isolated-target-leverage</code>.</p></li>
-<li><p>added api <code>/account/api/update-leverage</code></p></li>
-<li><p>removed parameter targetLeverage on <code>/account/api/swap-to-isolated</code>.</p></li>
-<li><p>updated response content on api <code>/account/api/account-balances</code>.</p></li>
-<li><p>updated response content on websocket &#39;account.all&#39; subscription.</p></li>
+<li><p>added api <code>/account/api/update-leverage</code> to support setting leverage on both crossed and isolated accounts</p></li>
+<li><p>removed parameter targetLeverage from <code>/account/api/swap-to-isolated</code>.</p></li>
+<li><p>updated response content on api GET <code>/account/api/account-balances</code></p>
+
+<ul>
+<li>removed crossLeverage.</li>
+<li>added account position margin, maintenance margin, margin ratio and available margin etc.</li>
+</ul></li>
+<li><p>updated response content on websocket <code>account.all</code> subscription </p>
+
+<ul>
+<li>removed crossLeverage.</li>
+<li>added account position margin, maintenance margin, margin ratio and available margin etc.</li>
+</ul></li>
 </ul>
 <h2 id='2021-08-03'>2021-08-03</h2>
 <ul>
