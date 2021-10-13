@@ -310,6 +310,9 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-10-13" class="toc-h2 toc-link" data-title="2021-10-13">2021-10-13</a>
+                  </li>
+                  <li>
                     <a href="#2021-09-22" class="toc-h2 toc-link" data-title="2021-09-22">2021-09-22</a>
                   </li>
                   <li>
@@ -387,6 +390,9 @@
                   </li>
                   <li>
                     <a href="#query-order" class="toc-h2 toc-link" data-title="Query Order">Query Order</a>
+                  </li>
+                  <li>
+                    <a href="#query-all-orders" class="toc-h2 toc-link" data-title="Query All Orders">Query All Orders</a>
                   </li>
               </ul>
           </li>
@@ -467,7 +473,11 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='change-log'>Change Log</h1><h2 id='2021-09-22'>2021-09-22</h2>
+        <h1 id='change-log'>Change Log</h1><h2 id='2021-10-13'>2021-10-13</h2>
+<ul>
+<li>added api <code>/trade/api/all-orders</code> to query all history orders</li>
+</ul>
+<h2 id='2021-09-22'>2021-09-22</h2>
 <ul>
 <li><p>removed api <code>/account/api/get-riskrate-when-swap-to-isolated</code>.</p></li>
 <li><p>removed api <code>/account/api/update-isolated-target-leverage</code>.</p></li>
@@ -1075,6 +1085,175 @@ duplicated client order IDs.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-all-orders'>Query All Orders</h2>
+<p>This endpoint retrieve the history of all orders with given conditions.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /trade/api/all-orders</code></p>
+<h3 id='rate-limit-5'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-5'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>if given, only orders with greater IDs will be queried</td>
+<td></td>
+</tr>
+<tr>
+<td>startTs</td>
+<td>number</td>
+<td>no</td>
+<td></td>
+<td>start timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>endTs</td>
+<td>number</td>
+<td>no</td>
+<td></td>
+<td>end timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number</td>
+<td>no</td>
+<td>200</td>
+<td>max record returned, max value 500</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-content-7'>Response Content</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3424812602398605456</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNIUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.58"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1634024603901</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAILED"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3424811865291620496</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNIUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23.056"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"461.12"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.46112"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1634024242330</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXECUTED"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2709"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-8'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderID</td>
+<td>number</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderID</td>
+<td>string</td>
+<td>Client order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>direct</td>
+<td>BUY, SELL</td>
+</tr>
+<tr>
+<td>executedPrice</td>
+<td>string</td>
+<td>Executed price</td>
+<td></td>
+</tr>
+<tr>
+<td>executedAmount</td>
+<td>string</td>
+<td>Executed amount</td>
+<td></td>
+</tr>
+<tr>
+<td>executedQuoteAmount</td>
+<td>string</td>
+<td>Executed quote amount</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>fee</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>number</td>
+<td>executed timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>order status</td>
+<td>EXECUTED, FAILED</td>
+</tr>
+<tr>
+<td>profit</td>
+<td>string</td>
+<td>estimated profit (fee not included)</td>
+<td></td>
+</tr>
+</tbody></table>
 <h3 id='error-code'>Error code</h3>
 <table><thead>
 <tr>
@@ -1149,13 +1328,13 @@ duplicated client order IDs.</p>
 </tbody></table>
 <h1 id='account-api'>Account API</h1><h2 id='query-account-balances'>Query Account Balances</h2>
 <p>This endpoint retrieves user&#39;s balance</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /account/api/account-balances</code></p>
-<h3 id='rate-limit-5'>Rate Limit</h3>
+<h3 id='rate-limit-6'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-5'>Required Permission</h3>
+<h3 id='required-permission-6'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='response-content-7'>Response Content</h3>
+<h3 id='response-content-9'>Response Content</h3>
 <p>The content consists 3 parts, cross, isolated and total equity.</p>
 
 <table><thead>
@@ -1267,11 +1446,11 @@ duplicated client order IDs.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='leverage-adjustment'>Leverage Adjustment</h2>
 <p>Change the leverage of trading accounts. </p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /account/api/update-leverage</code></p>
-<h3 id='rate-limit-6'>Rate Limit</h3>
+<h3 id='rate-limit-7'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-6'>Required Permission</h3>
+<h3 id='required-permission-7'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json-2'>Request Body(Json)</h3>
 <table><thead>
@@ -1304,145 +1483,6 @@ duplicated client order IDs.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-8'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>DataType</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>success</td>
-<td>boolean</td>
-<td>true: the request be processed, false: fail</td>
-<td></td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>description of the code</td>
-<td></td>
-</tr>
-<tr>
-<td>code</td>
-<td>string</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "code": 0,
-  "data": true,
-  "message": "string",
-  "success": true
-}
-</code></pre></div><h2 id='switch-to-isolated'>Switch to isolated</h2>
-<p>Switch to an isolated trading account for a give currency</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>POST /account/api/swap-to-isolated</code></p>
-<h3 id='rate-limit-7'>Rate Limit</h3>
-<p>5/s</p>
-<h3 id='required-permission-7'>Required Permission</h3>
-<p><code>Trade</code></p>
-<h3 id='request-body-json-3'>Request Body(Json)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>DataType</th>
-<th>Required</th>
-<th>Default Value</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>yes</td>
-<td></td>
-<td>the symbol of target currency</td>
-<td></td>
-</tr>
-<tr>
-<td>leverage</td>
-<td>int</td>
-<td>yes</td>
-<td></td>
-<td>the leverage</td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-9'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>DataType</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>success</td>
-<td>boolean</td>
-<td>true: the request be processed, false: fail</td>
-<td></td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>description of the code</td>
-<td></td>
-</tr>
-<tr>
-<td>code</td>
-<td>string</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "code": 0,
-  "data": true,
-  "message": "string",
-  "success": true
-}
-</code></pre></div><h2 id='switch-to-crossed'>Switch to crossed</h2>
-<p>Switch an isolated trading account to the crossed trading account for a give currency</p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>POST /account/api/swap-to-crossed</code></p>
-<h3 id='rate-limit-8'>Rate Limit</h3>
-<p>5/s</p>
-<h3 id='required-permission-8'>Required Permission</h3>
-<p><code>Trade</code></p>
-<h3 id='request-body-json-4'>Request Body(Json)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>DataType</th>
-<th>Required</th>
-<th>Default Value</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>yes</td>
-<td></td>
-<td>the symbol of target currency</td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='response-content-10'>Response Content</h3>
 <table><thead>
@@ -1478,13 +1518,152 @@ duplicated client order IDs.</p>
   "message": "string",
   "success": true
 }
-</code></pre></div><h2 id='account-history'>Account history</h2>
-<p>Get the history of account changes</p>
+</code></pre></div><h2 id='switch-to-isolated'>Switch to isolated</h2>
+<p>Switch to an isolated trading account for a give currency</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-isolated</code></p>
+<h3 id='rate-limit-8'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-8'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-3'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of target currency</td>
+<td></td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>the leverage</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-11'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='switch-to-crossed'>Switch to crossed</h2>
+<p>Switch an isolated trading account to the crossed trading account for a give currency</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET /account/api/account-history</code></p>
+<p><code>POST /account/api/swap-to-crossed</code></p>
 <h3 id='rate-limit-9'>Rate Limit</h3>
 <p>5/s</p>
 <h3 id='required-permission-9'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-4'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>DataType</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>the symbol of target currency</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-content-12'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: the request be processed, false: fail</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>description of the code</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='account-history'>Account history</h2>
+<p>Get the history of account changes</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /account/api/account-history</code></p>
+<h3 id='rate-limit-10'>Rate Limit</h3>
+<p>5/s</p>
+<h3 id='required-permission-10'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
@@ -1550,7 +1729,7 @@ duplicated client order IDs.</p>
 <p><code>http request
 GET /account/api/account-history?startTime=1619798400000&amp;endTime=1619798460000&amp;currency=kUSD&amp;action=1&amp;page=2&amp;size=10
 </code></p>
-<h3 id='response-content-11'>Response Content</h3>
+<h3 id='response-content-13'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1690,13 +1869,13 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='max-transferable-of-wallet-account'>Max transferable of wallet account</h2>
 <p>Get the max available amount (in kUSD) that can be transferred from wallet account</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET /account/api/max-wallet-transfer-out</code></p>
-<h3 id='rate-limit-10'>Rate Limit</h3>
+<h3 id='rate-limit-11'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-10'>Required Permission</h3>
+<h3 id='required-permission-11'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='response-content-12'>Response Content</h3>
+<h3 id='response-content-14'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1738,13 +1917,13 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 }
 </code></pre></div><h2 id='max-transferable-of-crossed-account'>Max transferable of crossed account</h2>
 <p>Get the max available amount (in kUSD) that can be transferred from the crossed trading account</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET /account/api/max-crossed-transfer-out</code></p>
-<h3 id='rate-limit-11'>Rate Limit</h3>
+<h3 id='rate-limit-12'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-11'>Required Permission</h3>
+<h3 id='required-permission-12'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='response-content-13'>Response Content</h3>
+<h3 id='response-content-15'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1786,11 +1965,11 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='max-transferable-of-isolated-account'>Max transferable of isolated account</h2>
 <p>Get the max available amount (in kUSD) that can be transferred from a specified isolated trading account</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET /account/api/max-isolated-transfer-out</code></p>
-<h3 id='rate-limit-12'>Rate Limit</h3>
+<h3 id='rate-limit-13'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-12'>Required Permission</h3>
+<h3 id='required-permission-13'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
@@ -1816,7 +1995,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <p><code>http request
 GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
 </code></p>
-<h3 id='response-content-14'>Response Content</h3>
+<h3 id='response-content-16'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1860,11 +2039,11 @@ GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='transfer-between-the-wallet-and-crossed-trading-account'>Transfer between the wallet and crossed trading account</h2>
 <p>Transfer (in kUSD) between the wallet and crossed trading account</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST /account/api/transfer</code></p>
-<h3 id='rate-limit-13'>Rate Limit</h3>
+<h3 id='rate-limit-14'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-13'>Required Permission</h3>
+<h3 id='required-permission-14'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json-5'>Request Body(Json)</h3>
 <table><thead>
@@ -1898,7 +2077,7 @@ GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-15'>Response Content</h3>
+</span></code></pre></div><h3 id='response-content-17'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1934,11 +2113,11 @@ GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='transfer-between-crossed-isolated-trading-accounts'>Transfer between crossed/isolated trading accounts</h2>
 <p>Transfer (in kUSD) between the crossed trading account and a specified isolated trading account</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST /account/api/isolated-transfer</code></p>
-<h3 id='rate-limit-14'>Rate Limit</h3>
+<h3 id='rate-limit-15'>Rate Limit</h3>
 <p>5/s</p>
-<h3 id='required-permission-14'>Required Permission</h3>
+<h3 id='required-permission-15'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json-6'>Request Body(Json)</h3>
 <table><thead>
@@ -1981,7 +2160,7 @@ GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-content-16'>Response Content</h3>
+</span></code></pre></div><h3 id='response-content-18'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
