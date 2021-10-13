@@ -21,6 +21,10 @@ code_clipboard: true
 
 # Change Log
 
+## 2021-10-13
+
+* added api `/trade/api/all-orders` to query all history orders
+
 ## 2021-09-22
 
 * removed api `/account/api/get-riskrate-when-swap-to-isolated`.
@@ -471,6 +475,85 @@ clientOrderId  | string | yes | false   |  |  |
   },
   "message": "string",
   "success": true
+}
+```
+### Response Content
+
+Field | DataType | Description | Value Range |
+--------- | ----------- | -----------| ----------| 
+orderID | number  | Order ID |  |
+clientOrderID | string  | Client order ID |  |
+symbol | string  | symbol |  |
+direct | string  | direct | BUY, SELL |
+executedPrice | string  | Executed price |  |
+executedAmount | string  | Executed amount |  |
+executedQuoteAmount | string  | Executed quote amount |  |
+fee | string  | fee |  |
+timestamp | number  | executed timestamp |  |
+status | string  | order status | EXECUTED, FAILED |
+profit | string  | estimated profit (fee not included) |  |
+
+## Query All Orders
+
+This endpoint retrieve the history of all orders with given conditions.
+
+### HTTP Request
+
+`GET /trade/api/all-orders`
+
+### Rate Limit
+
+5/s
+
+### Required Permission
+
+`ReadOnly`
+
+### Query Parameters
+
+Parameter | DataType | Required | Default Value | Description | Value Range |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol  | string | yes |  | symbol |  |
+orderId  | number | no | 0 | if given, only orders with greater IDs will be queried |  |
+startTs  | number | no |  | start timestamp |  |
+endTs  | number | no |  | end timestamp |  |
+limit  | number | no | 200 | max record returned, max value 500 |  |
+
+### Response Content
+
+```json
+{
+  "success": true,
+  "code": 200,
+  "message": null,
+  "data": [
+    {
+      "orderID": 3424812602398605456,
+      "clientOrderID": "",
+      "symbol": "UNIUSD",
+      "direct": "BUY",
+      "executedPrice": "0",
+      "executedAmount": "9.58",
+      "executedQuoteAmount": "0",
+      "fee": "0",
+      "timestamp": 1634024603901,
+      "status": "FAILED",
+      "profit": "0"
+    },
+    {
+      "orderID": 3424811865291620496,
+      "clientOrderID": "",
+      "symbol": "UNIUSD",
+      "direct": "SELL",
+      "executedPrice": "23.056",
+      "executedAmount": "20",
+      "executedQuoteAmount": "461.12",
+      "fee": "0.46112",
+      "timestamp": 1634024242330,
+      "status": "EXECUTED",
+      "profit": "0.2709"
+    }
+  ]
 }
 ```
 ### Response Content
