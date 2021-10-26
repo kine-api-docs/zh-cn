@@ -21,12 +21,18 @@ code_clipboard: true
 
 # Change Log
 
-## 2021-10-13
+## 2021-11-05
+* updated api `GET /account/api/account-balances` to include all user positions
+* updated websocket `account.all` subscription to include all user positions
+* updated api `GET /account/api/max-isolated-transfer-out` 
+  * added request paramter `positionId`
+* updated api `POST /account/api/isolated-transfer` 
+  * added request paramter `positionId`
 
+## 2021-10-13
 * added api `/trade/api/all-orders` to query all history orders
 
 ## 2021-09-22
-
 * removed api `/account/api/get-riskrate-when-swap-to-isolated`.
 
 * removed api `/account/api/update-isolated-target-leverage`.
@@ -1023,6 +1029,7 @@ Get the max available amount (in kUSD) that can be transferred from a specified 
 Parameter | DataType | Required | Default Value | Description | Value Range |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol | string | yes |    | the symbol of the target currency | |
+positionId | long | yes |    | which position you want to transfer out | |
 
 ```http request
 GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
@@ -1118,6 +1125,7 @@ Parameter | DataType | Required | Default Value | Description | Value Range |
 symbol | string | yes |    | the isolated trading account to be transferred from or to| |
 amount | string | yes |    | the amount to be transferred | |
 direction | number | yes |    | the direction to be transferred | 3 - crossed to isolated trading account, 4 - isolated to crossed trading account|
+positionId | long | yes |    | which position you want to transfer out | |
 
 ```json
 {
