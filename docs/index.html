@@ -310,6 +310,9 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-11-05" class="toc-h2 toc-link" data-title="2021-11-05">2021-11-05</a>
+                  </li>
+                  <li>
                     <a href="#2021-10-13" class="toc-h2 toc-link" data-title="2021-10-13">2021-10-13</a>
                   </li>
                   <li>
@@ -473,7 +476,22 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='change-log'>Change Log</h1><h2 id='2021-10-13'>2021-10-13</h2>
+        <h1 id='change-log'>Change Log</h1><h2 id='2021-11-05'>2021-11-05</h2>
+<ul>
+<li>updated api <code>GET /account/api/account-balances</code> to include all user positions</li>
+<li>updated websocket <code>account.all</code> subscription to include all user positions</li>
+<li>updated api <code>GET /account/api/max-isolated-transfer-out</code> 
+
+<ul>
+<li>added request paramter <code>positionId</code></li>
+</ul></li>
+<li>updated api <code>POST /account/api/isolated-transfer</code> 
+
+<ul>
+<li>added request paramter <code>positionId</code></li>
+</ul></li>
+</ul>
+<h2 id='2021-10-13'>2021-10-13</h2>
 <ul>
 <li>added api <code>/trade/api/all-orders</code> to query all history orders</li>
 </ul>
@@ -1990,6 +2008,14 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <td>the symbol of the target currency</td>
 <td></td>
 </tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>yes</td>
+<td></td>
+<td>which position you want to transfer out</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <p><code>http request
@@ -2153,6 +2179,14 @@ GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
 <td></td>
 <td>the direction to be transferred</td>
 <td>3 - crossed to isolated trading account, 4 - isolated to crossed trading account</td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>yes</td>
+<td></td>
+<td>which position you want to transfer out</td>
+<td></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
