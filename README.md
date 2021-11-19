@@ -1,5 +1,5 @@
 # kine-api-docs.github.io
-Kine API Documents release
+Kine API 中文文档
 
 ## 1. Modify and Test on Local
 ./slate.sh serve
@@ -17,4 +17,4 @@ The target dir is ./docs
 
 ## 4. Access Api Docs
 
-https://github.com/kine-api-docs/kine-api-docs.github.io
+https://github.com/kine-api-docs/zh-cn

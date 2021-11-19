@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
 
@@ -21,71 +21,26 @@ code_clipboard: true
 
 # Change Log
 
-## 2021-11-05
-* updated api `GET /account/api/account-balances` to include all user positions
-* updated websocket `account.all` subscription to include all user positions
-* updated api `GET /account/api/max-isolated-transfer-out` 
-  * added request paramter `positionId`
-* updated api `POST /account/api/isolated-transfer` 
-  * added request paramter `positionId`
+## 2021-11-19
 
-## 2021-10-13
-* added api `/trade/api/all-orders` to query all history orders
-
-## 2021-09-22
-* removed api `/account/api/get-riskrate-when-swap-to-isolated`.
-
-* removed api `/account/api/update-isolated-target-leverage`.
-
-* added api `/account/api/update-leverage` to support setting leverage on both crossed and isolated accounts
-
-* removed parameter targetLeverage from `/account/api/swap-to-isolated`.
-
-* updated response content on api GET `/account/api/account-balances`
-  * removed crossLeverage.
-  * added account position margin, maintenance margin, margin ratio and available margin etc.
-
-* updated response content on websocket `account.all` subscription 
-  * removed crossLeverage.
-  * added account position margin, maintenance margin, margin ratio and available margin etc.
-
-## 2021-08-03
-
-* Logic updated, regarding `/account/api/update-isolated-target-leverage`.
-
-## 2021-06-21
-
-* Add new interfaces for market price and account actions. Add holding average price field in account detail interface.
-
-## 2021-06-04
-
-* Rearrange sections regarding signature and correct typos.
-
-## 2021-05-21
-
-* Correct request headers names.
-
-## 2021-04-20
-
-* Initial version.
+* 中文文档上线 - 进行中
 
 # Introduction
 
-Welcome to the KINE API.
+欢迎查看KINE API文档。
 
-You can use these APIs introduced in this document to access KINE API endpoints, which provide access to place orders,
-and information on your open interest, debt etc. in our system.
+您可以通过API来访问KINE平台，用于下单，查询您需要的订单、账户信息。
 
-We provide two types of interfaces, REST and WebSocket, and you can choose either one according to your scenario and
-preferences.
+我们提供了两种类型的接口 REST 、 WebSocket， 您可以根据需要选择适合您的。
+
 
 ## REST API
 
-It is suggested to use Rest API for one-off operation, like placing order and withdraw.
+建议您使用REST API来完成一次性的操作，例如下单，提币等。
 
 ## WebSocket API
 
-It is suggested to use WebSocket API to get data update, like market data and account status update.
+建议您使用WebSocket API来获取数据更新。例如：市场数据，账户更新，订单更新等。
 
 ## Authentication
 
