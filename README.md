@@ -18,3 +18,7 @@ The target dir is ./docs
 ## 4. Access Api Docs
 
 https://github.com/kine-api-docs/zh-cn
+
+## Document about Slate Docs
+
+https://github.com/slatedocs/slate

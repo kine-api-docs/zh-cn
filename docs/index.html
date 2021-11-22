@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>API 文档</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -310,28 +310,7 @@
             <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2021-11-05" class="toc-h2 toc-link" data-title="2021-11-05">2021-11-05</a>
-                  </li>
-                  <li>
-                    <a href="#2021-10-13" class="toc-h2 toc-link" data-title="2021-10-13">2021-10-13</a>
-                  </li>
-                  <li>
-                    <a href="#2021-09-22" class="toc-h2 toc-link" data-title="2021-09-22">2021-09-22</a>
-                  </li>
-                  <li>
-                    <a href="#2021-08-03" class="toc-h2 toc-link" data-title="2021-08-03">2021-08-03</a>
-                  </li>
-                  <li>
-                    <a href="#2021-06-21" class="toc-h2 toc-link" data-title="2021-06-21">2021-06-21</a>
-                  </li>
-                  <li>
-                    <a href="#2021-06-04" class="toc-h2 toc-link" data-title="2021-06-04">2021-06-04</a>
-                  </li>
-                  <li>
-                    <a href="#2021-05-21" class="toc-h2 toc-link" data-title="2021-05-21">2021-05-21</a>
-                  </li>
-                  <li>
-                    <a href="#2021-04-20" class="toc-h2 toc-link" data-title="2021-04-20">2021-04-20</a>
+                    <a href="#2021-11-19" class="toc-h2 toc-link" data-title="2021-11-19">2021-11-19</a>
                   </li>
               </ul>
           </li>
@@ -476,76 +455,20 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='change-log'>Change Log</h1><h2 id='2021-11-05'>2021-11-05</h2>
+        <h1 id='change-log'>Change Log</h1><h2 id='2021-11-19'>2021-11-19</h2>
 <ul>
-<li>updated api <code>GET /account/api/account-balances</code> to include all user positions</li>
-<li>updated websocket <code>account.all</code> subscription to include all user positions</li>
-<li>updated api <code>GET /account/api/max-isolated-transfer-out</code> 
-
-<ul>
-<li>added request paramter <code>positionId</code></li>
-</ul></li>
-<li>updated api <code>POST /account/api/isolated-transfer</code> 
-
-<ul>
-<li>added request paramter <code>positionId</code></li>
-</ul></li>
-</ul>
-<h2 id='2021-10-13'>2021-10-13</h2>
-<ul>
-<li>added api <code>/trade/api/all-orders</code> to query all history orders</li>
-</ul>
-<h2 id='2021-09-22'>2021-09-22</h2>
-<ul>
-<li><p>removed api <code>/account/api/get-riskrate-when-swap-to-isolated</code>.</p></li>
-<li><p>removed api <code>/account/api/update-isolated-target-leverage</code>.</p></li>
-<li><p>added api <code>/account/api/update-leverage</code> to support setting leverage on both crossed and isolated accounts</p></li>
-<li><p>removed parameter targetLeverage from <code>/account/api/swap-to-isolated</code>.</p></li>
-<li><p>updated response content on api GET <code>/account/api/account-balances</code></p>
-
-<ul>
-<li>removed crossLeverage.</li>
-<li>added account position margin, maintenance margin, margin ratio and available margin etc.</li>
-</ul></li>
-<li><p>updated response content on websocket <code>account.all</code> subscription </p>
-
-<ul>
-<li>removed crossLeverage.</li>
-<li>added account position margin, maintenance margin, margin ratio and available margin etc.</li>
-</ul></li>
-</ul>
-<h2 id='2021-08-03'>2021-08-03</h2>
-<ul>
-<li>Logic updated, regarding <code>/account/api/update-isolated-target-leverage</code>.</li>
-</ul>
-<h2 id='2021-06-21'>2021-06-21</h2>
-<ul>
-<li>Add new interfaces for market price and account actions. Add holding average price field in account detail interface.</li>
-</ul>
-<h2 id='2021-06-04'>2021-06-04</h2>
-<ul>
-<li>Rearrange sections regarding signature and correct typos.</li>
-</ul>
-<h2 id='2021-05-21'>2021-05-21</h2>
-<ul>
-<li>Correct request headers names.</li>
-</ul>
-<h2 id='2021-04-20'>2021-04-20</h2>
-<ul>
-<li>Initial version.</li>
+<li>中文文档上线 - 进行中</li>
 </ul>
 <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the KINE API.</p>
+<p>欢迎查看KINE API文档。</p>
 
-<p>You can use these APIs introduced in this document to access KINE API endpoints, which provide access to place orders,
-and information on your open interest, debt etc. in our system.</p>
+<p>您可以通过API来访问KINE平台，用于下单，查询您需要的订单、账户信息。</p>
 
-<p>We provide two types of interfaces, REST and WebSocket, and you can choose either one according to your scenario and
-preferences.</p>
+<p>我们提供了两种类型的接口 REST 、 WebSocket， 您可以根据需要选择适合您的。</p>
 <h2 id='rest-api'>REST API</h2>
-<p>It is suggested to use Rest API for one-off operation, like placing order and withdraw.</p>
+<p>建议您使用REST API来完成一次性的操作，例如下单，提币等。</p>
 <h2 id='websocket-api'>WebSocket API</h2>
-<p>It is suggested to use WebSocket API to get data update, like market data and account status update.</p>
+<p>建议您使用WebSocket API来获取数据更新。例如：市场数据，账户更新，订单更新等。</p>
 <h2 id='authentication'>Authentication</h2>
 <p>Both REST and WebSocket APIs involve two levels of security types:</p>
 

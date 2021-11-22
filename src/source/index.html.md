@@ -1,5 +1,5 @@
 ---
-title: API 文档
+title: KINE API 文档
 
 language_tabs: # must be one of https://git.io/vQNgJ
 
@@ -19,13 +19,13 @@ search: true
 code_clipboard: true
 ---
 
-# Change Log
+# 更新历史
 
 ## 2021-11-19
 
 * 中文文档上线 - 进行中
 
-# Introduction
+# 简介
 
 欢迎查看KINE API文档。
 
@@ -42,16 +42,15 @@ code_clipboard: true
 
 建议您使用WebSocket API来获取数据更新。例如：市场数据，账户更新，订单更新等。
 
-## Authentication
+## 鉴权
 
-Both REST and WebSocket APIs involve two levels of security types:
+REST 和 WebSocket 接口都有公开接口和私有接口:
 
-Public: For basic information and market data, and do not need authentication.
+公开接口: 用于获取基础数据，例如市场数据.
 
-Private: For account related operation like placing order and account management. Each private API endpoint must be
-authenticated with API keys of corresponding permission, i.e., `SIGNED`.
+私有接口: 用于用户账户相关的操作。 例如下单，划转，账户余额查询。 私有接口调用需要使用API Key进行签名（`SIGNED`）以保证用户数据的安全。
 
-# General Info
+# 基本信息
 
 ## API URLs
 
@@ -63,7 +62,7 @@ authenticated with API keys of corresponding permission, i.e., `SIGNED`.
 
 `wss://api.kine.exchange/ws`
 
-## Limits
+## 限频
 
 For each REST endpoints there is a rate limit, which will be introduced along with its definition. If requests from the
 same IP (for open APIs), or the same user ID (for signed APIs) exceeds the limit, an HTTP 429 response will be returned
