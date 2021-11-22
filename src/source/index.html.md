@@ -23,7 +23,7 @@ code_clipboard: true
 
 ## 2021-11-19
 
-* 中文文档上线 - 进行中
+* 中文文档 - 进行中
 
 # 简介
 
@@ -62,114 +62,112 @@ REST 和 WebSocket 接口都有公开接口和私有接口:
 
 `wss://api.kine.exchange/ws`
 
-## 限频
+## Limits 限频
 
-For each REST endpoints there is a rate limit, which will be introduced along with its definition. If requests from the
-same IP (for open APIs), or the same user ID (for signed APIs) exceeds the limit, an HTTP 429 response will be returned
-to the caller.
+我们对REST接口访问有限频管理，具体请参考接口定义。
 
-For websocket connections, there are limits to connections, message rate, and max live time. Please see
-the `WebSocket API` - `Session limit` section for details.
+公开API根据IP地址限频，非公开接口按照用户ID来限频。
 
-## Security
+限频错误码为  `HTTP 429` 
 
-### Signed Endpoint Security
+关于Websocket长链接，关于连接数，消息发送速率，链接最大存活时间我们也有相关的限制。
+具体请参考 `WebSocket API` - `Session limit`
 
-`SIGNED` endpoints require additional headers in request: `KINE-API-ACCESS-KEY`, `KINE-API-TS`,`KINE-API-SIGNATURE`.
+## Security 安全
 
-* `KINE-API-ACCESS-KEY` should be your API key with proper permission.
-* `KINE-API-SIGNATURE` shoule be the `HMAC SHA256` signature. The HMAC SHA256 signature is a keyed HMAC SHA256
-  operation. Use your `SecretKey` as the key and all parameters as the value for the HMAC operation. More detail refer
-  to `Authentication` section.
-* `KINE-API-TS` should be the millisecond timestamp of when the request was created and sent.
+### 使用签名进行身份认证
 
-### How to generate your API keys?
+`SIGNED` 接口调用，需要额外的Http Request Headers: 
 
-Please go to API management page of Kine exchange (https://kine.exchange/account/api-key) to generate your API keys.
+`KINE-API-ACCESS-KEY`, `KINE-API-TS`,`KINE-API-SIGNATURE`.
 
-`API Key` is used in an API request for identification.
+* `KINE-API-ACCESS-KEY` 是您的API KEY
+* `KINE-API-SIGNATURE` 是通过 `HMAC SHA256` 算法得到的签名. 签名算法请参考 `身份验证` 部分.
+* `KINE-API-TS` 是当前时间的时间戳，如果时间差距太大，签名验证可能失败，请确保您的服务器时间是准确的。 `毫秒时间戳`
 
-`SecretKey` is used to generate the signature. (Only visible once after creation. Please keep it safe!!!)
+### 如何获取您的API Key？
 
-API Key Permissions
+请前往API Key管理页面生成您的API KEY。 
 
-* `ReadOnly` permission grants the access to data queries, such as order history and account status.
-* `Trade` permission allows API key to place orders, cancel order, transfer assets between accounts etc.
+https://kine.exchange/account/api-key
 
-[comment]: <> (* `Withdraw` permission: It is used to create withdraw order, cancel withdraw order, etc. It's include Trade/ReadOnly permission)
+`API Key` API Key的ID。
+
+`SecretKey` 用来生成接口调用的签名。 (生成后只能查看一次，请妥善保存。！！！！)
+
+API Key 权限
+
+* `ReadOnly` 只读权限。 只能用来查询用户信息。 例如账户余额，订单历史等。
+* `Trade` 交易权限。允许使用该API Key进行下单，平仓，划转等。
 
 <aside class="warning">
-Warning: 
-These two keys are important to your account safety. Please don't share them with anyone else. If you find your API Key exposed, please remove it from your account immediately. 
+注意: 
+为了确保您账户资产的安全。
+
+1. 请不要将API Key分享给别人。
+   
+2. 如果API Key被泄露，请尽快在管理页面删除。 
 </aside>
 
-### How to sign the endpoint?
+### 如何签名您的接口调用?
 
-Please refer to Authentication section below.
+请参考`身份认证`章节。
 
-# Authentication
+# Authentication 身份验证
 
-The API request may be tampered during traveling through internet. Therefore, all calls to private API endpoints must be
-signed with your API key (secrete key).
+网络中的请求有可能被拦截并篡改，为了保证数据安全，所有请求个人账户数据的接口调用需要使用用户的Secret Key进行签名，确保您的请求不会被攻击者篡改。
 
-Each API key would be assigned with a permission during application. Please check the permission, and make sure your API
-key has proper permission to access the target API endpoints.
+每一个API Key有权限范围，请确保您的 API Key有调用相关接口的权限。
 
-A valid signature for a request is generated based on the following information:
+请求中，一个合法的签名是根据以下信息计算得出的:
 
-* `Request Method`  GET/POST  (for Websocket authentication please use GET)
-* `Host` The host of the API endpoints, for now it is only `api.kine.exchange`
-* `Request path` For example: `/trade/api/order/place`
-* `API key`  Your API key, which should also be included in request header `KINE-API-ACCESS-KEY` as mentioned above
-* `SecretKey`  Used to sign the request
-* `Timestamp` The UTC timestamp when the request is sent, which should also be included in request header `KINE-API-TS`
-  as mentioned above
-* `Request Parameters` The parameters of the request. For both GET and POST request, all the parameters must be included
-  in signing.
-* `Payload` The actual content to be signed. MUST be organized following the rule instructed in the `Payload` section
-  below.
-* `Signature` The generated hash value after signing, which will be verified at server side to guarantee the request has
-  not been tempered, and should be included in request header  `KINE-API-SIGNATURE`
+* `Request Method`  GET/POST  (Websocket 签名请使用 GET)
+* `Host` 主域名 目前只有一个 `api.kine.exchange`
+* `Request path` 接口请求路径，不包含域名。 例如: `/trade/api/order/place`
+* `API key`  API Key ID，需要包含在Request Header中 `KINE-API-ACCESS-KEY`
+* `SecretKey`  用于计算签名的秘钥。
+* `Timestamp` 毫秒时间戳 需要包含在request header `KINE-API-TS`
+* `Request Parameters` 请求参数。 这里的请求参数是指HTTP请求参数，拼接在URL中的参数，而不是Request Body中的数据。 不论GET、POST请求， 签名只需要HTTP请求参数，不需要Body中的数据。
+* `Payload` 将以上相关信息拼接成固定格式的文本，然后对其进行加密得到最终的签名.  格式请参考 `Payload` 章节
+* `Signature` 对Payload加密得到的签名， 需要包含在 request header  `KINE-API-SIGNATURE`
 
-## Signature
+## Signature 签名
 
-The signature is calculated according to a particular algorithm, based on the information mentioned above.
-
-### 1. Prepare the payload, in the format to right side.
+### 1. 准备签名用的文本 Payload ， 请参考右侧示例
 
 ```text
 {requestMethod}\n
-
-{host}\n
-
-{request path}\n
-
-{request parameters}\n #If no paramters, keep it as empty line
-
-{timestamp}
+{host}\n               
+{request path}\n       ## 请求路径
+{request parameters}\n ## 实际拼接在URL上？右侧的部分， 如果没有参数，请保留 `空行`。
+{timestamp}            ## 发起请求时的时间戳
 ```
 
 <aside class="notice">
 For a websocket request, method should be GET
 </aside>
 
-> Payload Example
+> Payload 实例
 
 ```text
 GET
 api.kine.exchange
 /trade/api/history
-clientOrderId=123
+clientOrderId=123&status=2
 123123123123
 ```
 
-### 2. Generate the signature.
+### 2. 生成签名.
+
+
 
 ```signature = sign(payload, secretKey);```
 
-**sign() is the method to calculate the signature. (HMAC SHA256)**
+签名方法的入参是Payload和SecretKey
 
-Please refer to sample code.
+签名方法可以使用不同的语言实现。 右侧提供了Java和Python两种编程语言的实现。
+
+其它编程语言请自行百度 (HMAC SHA256)。
 
 > Sample Code for signature
 
@@ -200,10 +198,10 @@ Please refer to sample code.
 * `KINE-API-TS`           The UTC timestamp
 * `KINE-API-SIGNATURE`    The signature generated in Step. 2
 
-> signed request sample
+> 签名请求示例
 
 ```text
-GET https://api.kine.exchange/trade/api/history?clientOrderId=123
+GET https://api.kine.exchange/trade/api/history?clientOrderId=123&status=2
 
 Headers:
 KINE-API-TS: 1618561349256
@@ -211,13 +209,13 @@ KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 ```
 
-# Market Data API
+# Market Data API 市场数据
 
-Market data APIs are all with open access.
+市场数据API是公开接口，不需要签名
 
-## Asset Price
+## Asset Price 资产价格
 
-This endpoint retrieves asset prices, which are updated every second.
+查询某个资产最新价格。
 
 ### HTTP Request
 
@@ -245,9 +243,9 @@ symbol | string  |  |  |
 price | string  |  |  |
 timestamp | long  |  |  |
 
-## Aggregated Asset Prices
+## Aggregated Asset Prices 全部资产价格
 
-This endpoint retrieves aggregated mark prices of all assets, which are updated every second.
+一次查询全部资产的最新价格。
 
 ### HTTP Request
 
@@ -1108,9 +1106,9 @@ code  | string  |   | |
 
 # WebSocket API
 
-WebSocket API provide market price, order, account update data stream subscription.
+WebSocket API 提供了市场数据，账户更新的订阅。 以topic进行订阅，订阅后将收到相应数据的更新。
 
-## Authentication
+## Authentication 身份认证
 
 > Sample Code for websocket signature
 
@@ -1167,16 +1165,20 @@ console.log(JSON.stringify(authMessage));
 
 ```
 
-A websocket session requires a signed `AUTH` message as its first message. With this signed auth message verified, the
-websocket session will be marked as authorised, after which, it can subscribe projected streams (Order/Account).
+建立websocket会话后，需要发送Auth消息进行身份认证， 认证通过后才能订阅私有数据（账户、订单更新）。否则只能订阅市场公开数据。
 
 The signed auth message is a json message. The payload is similar with REST API.
 
-### Auth Message
+### Auth Message 身份认证消息
 
 > websocket auth message
 
+身份认证消息包含使用API Key进行的签名， 签名算法请参考REST接口签名算法。
+
+Payload以及认证消息示例， 具体请参照右侧示例。
+
 ```json
+// 身份认证消息
 {
   "op": "AUTH",
   "ts": 1618232922010,
@@ -1188,9 +1190,8 @@ The signed auth message is a json message. The payload is similar with REST API.
 }
 ```
 
-Response:
-
 ```json
+// 认证响应消息
 {
   "status": "success",
   "op": "AUTH_RESULT",
@@ -1211,9 +1212,7 @@ accessKey=xxxxxxxxxxxx
 ---------
 ```
 
-The signature is same as Rest API. The auth message refer to the example.
-
-## Live check (Ping/Pong)
+## Live check (Ping/Pong) 存活检查
 
 > Ping Message
 
@@ -1239,32 +1238,36 @@ The signature is same as Rest API. The auth message refer to the example.
 }
 ```
 
-We use a customized ping/pong message, rather than websocket protocol ping/pong frame.
+我们使用自定义的Ping/Pong消息进行存活检查。 （非websocket协议内的ping/pong）
 
-We support both direction ping/pong, server ping and client ping. Once the client/server received the ping message, they
-must reply a pong message ASAP.
+我们同时支持双向的Ping/Pong。
 
+1. 服务端会定时(5/s)Ping客户端，检查客户端是否存活。 
+
+2. 客户端根据需要，也可以主动Ping服务端，检查链接是否存活。
+
+消息格式请参考右侧示例。
 
 <aside class="warning">
-MUST reply a pong when you received a ping.
-Websocket server sends ping to client every `5s`. If no pong message is received within `15s`, the session will be closed from server side.
+客户端收到PING后请立刻回复PONG，如不及时回复(大于15s)，服务端将主动断开链接。
 </aside>
 
-## Session limit
+## Session limit 回话限制
 
-There are some limits about the websocket session.
+关于Websocket回话有一定的限制，请留意。
 
 Limit | Limit Type | Limit Value | Deesc |
 --------- | ----------- | -----------| ----------|
-Sessions per IP | count  |  50  | Max number of sessions per IP |
-Sessions per API key | count  |  10 | Max number of authed sessions per API key |
-Message rate per session | Rate  |  10/s | Incoming message rate limit per session (No limit for output)  |
-Max live time | Duration  |  24h | Session max live time. Server will close the session once it's expired  |
+每个IP允许创建的最大会话数 | count  |  50  |  |
+每个API Key允许创建的最大会话数| count  |  10 | 每个API KEY最多创建的且认证后的websocket会话数|
+最大允许客户端发送消息的速率 | Rate  |  10/s | Incoming message rate limit per session (No limit for output)  |
+会话最大存活时间 | Duration  |  24h | 超时服务端将主动断开链接，客户端请重新链接  |
 
-## Subscribe Topics
+## Subscribe Topics 订阅Topic
 
-> subscribe message
+> subscribe message 订阅消息示例
 
+订阅消息
 ```json
 {
   "op": "SUB",
@@ -1275,6 +1278,7 @@ Max live time | Duration  |  24h | Session max live time. Server will close the 
 }
 ```
 
+订阅成功响应消息
 ```json
 {
   "status": "success",
@@ -1287,7 +1291,7 @@ Max live time | Duration  |  24h | Session max live time. Server will close the 
 ```
 
 > un-subscribe message
-
+取消订阅消息
 ```json
 {
   "op": "UN_SUB",
@@ -1298,6 +1302,7 @@ Max live time | Duration  |  24h | Session max live time. Server will close the 
 }
 ```
 
+取消订阅成功响应消息
 ```json
 {
   "status": "success",
@@ -1309,26 +1314,26 @@ Max live time | Duration  |  24h | Session max live time. Server will close the 
 }
 ```
 
-Client send subscribe message to subscribe data stream.
+客户端发送订阅消息，订阅响应的数据流。
 
 | Topic Name |  Comment |
 |--- | ----|
-|  md.index-price.aggregated   | Aggregated Price, witch include all asset price    |
-|  account.all   |  Account Update   |
+|  md.index-price.aggregated   | 聚合价格，包括所有资产的价格更新    |
+|  account.all   |  账户更新   |
 
-## Price Data Stream
+## Price Data Stream 价格更新数据流
 
 Price topic : `md.index-price.aggregated`
 
-The process to establish price consuming is:
+订阅价格更新数据流的流程:
 
-* Client initiate the connection by sending the subscription message
-* Server will respond a success message if the request is accepted
-* Prices will send to client from server every 500ms.
+* 客户端创建链接，并发送订阅消息。
+* 服务端返回订阅成功消息
+* 服务端发送最新价格 每500ms
 
-### Message examples
+### Message examples 消息示例
 
-Please find them on the right side.
+消息示例，请参考右侧。
 
 > Subscribe the prices
 
@@ -1392,16 +1397,14 @@ symbol | String  | Asset Symbol |  |
 price | String  | Current price |  |
 ts | long  | UTC timestamp |  |
 
-## Account Update
+## Account Update 账户更新
 
 Topic: `account.all`
 
-The account snapshots will be published to client on two conditions
+你账户的快照数据将在下面两个条件触发推送更新。
 
-1. On price change, snapshots of all accounts will be published to client every 3 seconds, recalculated by latest
-   prices.
-2. Asset change. Some user activities, such as placing an order, transferring / withdrawing assets, will lead to a
-   publish.
+1. 每3秒钟，将根据最新价格，计算后进行推送。
+2. 您的资产变更后将立即推送。 例如：下单，平仓，划转等
 
 > Subscribe account
 
@@ -1555,3 +1558,5 @@ LINKUSD | LINK  | kUSD | xx |
 UNIUSD | UNI  | kUSD | xx |
 COMPUSD | COMP  | kUSD | xx |
 SNXUSD | SNX  | kUSD | xx |
+
+[]: https://kine.exchange/account/api-key
