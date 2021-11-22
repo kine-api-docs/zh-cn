@@ -36,7 +36,7 @@ code_clipboard: true
 
 ## REST API
 
-建议您使用REST API来完成一次性的操作，例如下单，提币等。
+建议您使用REST API来完成一次性的操作，例如下单，撤单等。
 
 ## WebSocket API
 
@@ -48,7 +48,8 @@ REST 和 WebSocket 接口都有公开接口和私有接口:
 
 公开接口: 用于获取基础数据，例如市场数据.
 
-私有接口: 用于用户账户相关的操作。 例如下单，划转，账户余额查询。 私有接口调用需要使用API Key进行签名（`SIGNED`）以保证用户数据的安全。
+私有接口: 用于用户账户相关的操作。 例如下单，划转，账户余额查询。 
+私有接口调用需要使用API Key进行签名（`SIGNED`）以保证用户数据的安全。
 
 # 基本信息
 
@@ -83,7 +84,7 @@ REST 和 WebSocket 接口都有公开接口和私有接口:
 
 * `KINE-API-ACCESS-KEY` 是您的API KEY
 * `KINE-API-SIGNATURE` 是通过 `HMAC SHA256` 算法得到的签名. 签名算法请参考 `身份验证` 部分.
-* `KINE-API-TS` 是当前时间的时间戳，如果时间差距太大，签名验证可能失败，请确保您的服务器时间是准确的。 `毫秒时间戳`
+* `KINE-API-TS` 是当前时间的时间戳（UTC时间），如果时间差距太大，签名验证可能失败，请确保您的服务器时间是准确的。 `毫秒时间戳`
 
 ### 如何获取您的API Key？
 
@@ -139,13 +140,9 @@ API Key 权限
 {requestMethod}\n
 {host}\n               
 {request path}\n       ## 请求路径
-{request parameters}\n ## 实际拼接在URL上？右侧的部分， 如果没有参数，请保留 `空行`。
+{request parameters}\n ## 实际拼接在URL上？右侧的部分，如果没有参数，请保留 `空行`。
 {timestamp}            ## 发起请求时的时间戳
 ```
-
-<aside class="notice">
-For a websocket request, method should be GET
-</aside>
 
 > Payload 实例
 
@@ -159,8 +156,6 @@ clientOrderId=123&status=2
 
 ### 2. 生成签名.
 
-
-
 ```signature = sign(payload, secretKey);```
 
 签名方法的入参是Payload和SecretKey
@@ -169,7 +164,7 @@ clientOrderId=123&status=2
 
 其它编程语言请自行百度 (HMAC SHA256)。
 
-> Sample Code for signature
+> 签名样例
 
 ``` java
         String accessKey = "123485552fb24cf49412345688888888";
@@ -192,7 +187,7 @@ clientOrderId=123&status=2
         String signature = Base64.getEncoder().encodeToString(hash);
 ```
 
-### 3. Add request headers for signed request.
+### 3. HTTP HEADER中需要增加以下3个：
 
 * `KINE-API-ACCESS-KEY`   The API key
 * `KINE-API-TS`           The UTC timestamp
@@ -213,68 +208,56 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 
 市场数据API是公开接口，不需要签名
 
-## Asset Price 资产价格
-
-查询某个资产最新价格。
+## 查询某个交易对的指数价格
 
 ### HTTP Request
 
 `GET /market/api/price/{symbol}`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `ReadOnly`
 
-### Query Parameters
+### 请求参数
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 数据类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol, for example 'BTCUSD' |  |
+symbol | string | yes |    | 交易对  |  'BTCUSD' |
 
-### Response Content
 
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-symbol | string  |  |  |
-price | string  |  |  |
-timestamp | long  |  |  |
+### 返回值
 
-## Aggregated Asset Prices 全部资产价格
+字段 | 数据类型 | 描述 | 举例 |
+--------- | ----------- | --------|  ----- | 
+symbol    | string  |  交易对 |  |
+price     | string  |  价格 |  |
+timestamp | long    |  指数时间 |  |
 
-一次查询全部资产的最新价格。
+## 获取全部交易对价格
 
 ### HTTP Request
 
 `GET /market/api/agg-price`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `ReadOnly`
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-prices | Price  | (see below) |  |
-ts | long  | aggregated price updated timestamp |  |
+参数 | 数据类型  | 默认值 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| ------ |
+prices | Price  |  |  | | 
+ts     | long   | 指数时间 |  | | 
 
 Price:
 
-Field | DataType | Description | Value Range |
+Field | 数据类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-ts | long  | price updated timestamp |  |
-symbol | string  |  |  |
-price | string  |  |  |
+ts     | long     | 指数时间 |   |  |
+symbol |string    | 交易对   |   |  |
+price  |bignumber | 价格     |   |  |
 
-Examples.
 
 ```json
 {
@@ -294,43 +277,35 @@ Examples.
 }
 ```
 
-## Funding Rate
-
-This endpoints retrieves the funding rate related information.
+## 获取资金费率
 
 ### HTTP Request
 
 `GET /market/api/funding-rate/{symbol}`
 
-### Query Parameters
+### 请求参数
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 |默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes | false   |  |  |
+symbol | string | yes | false   |  交易对 |  BTCUSD |
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-symbol | string  |  |  |
-fundingRate | string  | current funding rate |  |
-estifundingRate | string  | Estimated next round funding rate |  |
-nextFundingTime | long  | next round funding time |  |
-timestamp | long  | response time |  |
+symbol | string  |  交易对 |  |
+fundingRate | string  | 当前资金费率 |  |
+estifundingRate | string  | 预测资金费率 |  |
+nextFundingTime | long  | 资金费率收取时间 |  |
+timestamp | long  | 响应时间 |  |
 
-# Trade API
+# 交易API
 
-## Place Order
-
-Place an order
+## 下单
 
 ### HTTP Request
 
-`POST /trade/api/order/place`
-
-### Rate Limit
-
-5/s
+`POST /trade/api/order/v2/place`
 
 ### Required Permission
 
@@ -338,82 +313,81 @@ Place an order
 
 ### Request Body(Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | symbol |  |
-amount | string | yes |    | amount |  |
-direct | string | yes |    | direction of trade |  BUY, SELL|
-closePosition | boolean | yes |    | close position of curreny asset to zero |  true, false|
-clientOrderId | string | no |    | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
+symbol          | string | yes |    | 交易对 |  |
+baseAmount      | string | yes |    | 交易数量 |  |
+direct          | string | yes |    | 交易方向 |  BUY, SELL|
+type            | int | yes |       | 订单类型 |  1 市价单，2 条件单|
+positionId      | long | yes |      | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
+clientOrderId   | string | no |     | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
+stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要指定止盈价格 |  0 |
+stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要指定止损价格 |  0 |
+price           | string | no |     | 止盈，止损订单需要传入当前指数价格 |  0 |
 
-examples
 
 ```json
 {
-  "amount": "0.25",
+  "baseAmount": "0.25",
   "clientOrderID": "test-321",
-  "closePosition": false,
   "direct": "SELL",
-  "symbol": "BTCUSD"
+  "symbol": "BTCUSD",
+  "type" : 1,
+  "positionId": 0
 }
 ```
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+result | json  |  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码 |  |
+stopProfitResult | json  | 止盈订单下单结果 |  |
+stopLossResult | json  | 止损订单下单结果 |  |
 
 ```json
 {
-  "clientOrderID": "test-322",
-  "closePosition": true,
-  "symbol": "BTCUSD"
-}
+  "success":true,
+  "code":200,
+  "message":null,
+  "data":{
+    "result":{
+        "success":true,
+        "code":200,
+        "message":null,
+        "data":""
+      },
+    "stopProfitResult":null,
+    "stopLossResult":null
+    }
+  }
 ```
 
-### Response Content
-
-refer to the sample on the right side
-
-```json
-{
-  "code": 0,
-  "data": {
-    "clientOrderID": "string",
-    "direct": "string",
-    "executedAmount": 0,
-    "executedPrice": 0,
-    "executedQuoteAmount": 0,
-    "fee": 0,
-    "orderID": 0,
-    "status": 0,
-    "symbol": "string",
-    "timestamp": 0
-  },
-  "message": "string",
-  "success": true
-}
-```
-
-## Query Order
-
-This endpoint retrieve the history of order by given clientOrderId. The latest order will be returned if orders have
-duplicated client order IDs.
+## 单个订单查询
 
 ### HTTP Request
 
-`GET /trade/api/history`
-
-### Rate Limit
-
-5/s
+`GET /trade/api/v2/history`
 
 ### Required Permission
 
 `ReadOnly`
 
-### Query Parameters
+### 请求参数
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-clientOrderId  | string | yes | false   |  |  |
+clientOrderId  | string | yes |    |  订单的clientOrderId|  |
 
-### Response Content
+
+### 返回值
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+side        | int     | 1 BUY买入, 2 SELL卖出，等同于下单时的direct|  |
+type        | int     | 1 市价单， 4 强平 5 强平 9、10 条件止盈 11、12条件止损  |  |
+status      | int     | 1 新订单，2 过期，3 已撤销，4 已执行，5 拒绝，6 失败，7 挂单 |  |
+price       | string  | 订单成交价格 |  |
+baseAmount  | string  | 订单成交数量 |  |
+quoteAmount | string  | 订单成交金额 |  |
 
 ```json
 {
@@ -422,62 +396,50 @@ clientOrderId  | string | yes | false   |  |  |
     "orderID": 3410874959646425217,
     "clientOrderID": "test-0622-0001",
     "symbol": "BTCUSD",
-    "direct": "SELL",
-    "executedPrice": "37300",
-    "executedAmount": "0.005",
-    "executedQuoteAmount": "186.5",
+    "price": "37300",
+    "baseAmount": "0.005",
+    "quoteAmount": "186.5",
     "fee": "0.1865",
     "timestamp": 1627378607623,
-    "status": "EXECUTED",
-    "profit": "0"
+    "status": 4,
+    "side": 1,
+    "type": 1
   },
   "message": "string",
   "success": true
 }
 ```
-### Response Content
 
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-orderID | number  | Order ID |  |
-clientOrderID | string  | Client order ID |  |
-symbol | string  | symbol |  |
-direct | string  | direct | BUY, SELL |
-executedPrice | string  | Executed price |  |
-executedAmount | string  | Executed amount |  |
-executedQuoteAmount | string  | Executed quote amount |  |
-fee | string  | fee |  |
-timestamp | number  | executed timestamp |  |
-status | string  | order status | EXECUTED, FAILED |
-profit | string  | estimated profit (fee not included) |  |
-
-## Query All Orders
-
-This endpoint retrieve the history of all orders with given conditions.
+## 查询历史订单列表
 
 ### HTTP Request
 
-`GET /trade/api/all-orders`
-
-### Rate Limit
-
-5/s
+`GET /trade/api/v2/all-orders`
 
 ### Required Permission
 
 `ReadOnly`
 
-### Query Parameters
+### 请求参数
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol  | string | yes |  | symbol |  |
-orderId  | number | no | 0 | if given, only orders with greater IDs will be queried |  |
-startTs  | number | no |  | start timestamp |  |
-endTs  | number | no |  | end timestamp |  |
-limit  | number | no | 200 | max record returned, max value 500 |  |
+symbol   | string | yes |  | 交易对 |  |
+orderId  | number | no | 0 | 其实订单ID |  |
+startTs  | number | no |  | 开始时间 |  |
+endTs    | number | no |  | 结束时间 |  |
+limit    | number | no | 200 | 最大返回条数 |  |
 
-### Response Content
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+side        | int     | 1 BUY买入, 2 SELL卖出，等同于下单时的direct|  |
+type        | int     | 1 市价单， 4 强平 5 强平 9、10 条件止盈 11、12条件止损  |  |
+status      | int     | 1 新订单，2 过期，3 已撤销，4 已执行，5 拒绝，6 失败，7 挂单 |  |
+price       | string  | 订单成交价格 |  |
+baseAmount  | string  | 订单成交数量 |  |
+quoteAmount | string  | 订单成交金额 |  |
 
 ```json
 {
@@ -486,51 +448,22 @@ limit  | number | no | 200 | max record returned, max value 500 |  |
   "message": null,
   "data": [
     {
-      "orderID": 3424812602398605456,
-      "clientOrderID": "",
-      "symbol": "UNIUSD",
-      "direct": "BUY",
-      "executedPrice": "0",
-      "executedAmount": "9.58",
-      "executedQuoteAmount": "0",
-      "fee": "0",
-      "timestamp": 1634024603901,
-      "status": "FAILED",
-      "profit": "0"
-    },
-    {
-      "orderID": 3424811865291620496,
-      "clientOrderID": "",
-      "symbol": "UNIUSD",
-      "direct": "SELL",
-      "executedPrice": "23.056",
-      "executedAmount": "20",
-      "executedQuoteAmount": "461.12",
-      "fee": "0.46112",
-      "timestamp": 1634024242330,
-      "status": "EXECUTED",
-      "profit": "0.2709"
-    }
+    "orderID": 3410874959646425217,
+    "clientOrderID": "test-0622-0001",
+    "symbol": "BTCUSD",
+    "price": "37300",
+    "baseAmount": "0.005",
+    "quoteAmount": "186.5",
+    "fee": "0.1865",
+    "timestamp": 1627378607623,
+    "status": 4,
+    "side": 1,
+    "type": 1
+  }
   ]
 }
 ```
-### Response Content
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-orderID | number  | Order ID |  |
-clientOrderID | string  | Client order ID |  |
-symbol | string  | symbol |  |
-direct | string  | direct | BUY, SELL |
-executedPrice | string  | Executed price |  |
-executedAmount | string  | Executed amount |  |
-executedQuoteAmount | string  | Executed quote amount |  |
-fee | string  | fee |  |
-timestamp | number  | executed timestamp |  |
-status | string  | order status | EXECUTED, FAILED |
-profit | string  | estimated profit (fee not included) |  |
-
-### Error code
+### 下单错误编码
 
 Error Code | Description |
 --------- |  ----------| 
@@ -551,114 +484,167 @@ Error Code | Description |
 31203 | Invalid direction |
 31204 | Illegal client order ID |
 
-# Account API
+# 账户API
 
-## Query Account Balances
-
-This endpoint retrieves user's balance
+## 查询用户资产
 
 ### HTTP Request
 
-`GET /account/api/account-balances`
-
-### Rate Limit
-
-5/s
+`GET /account/api/v2/account-balances`
 
 ### Required Permission
 
 `ReadOnly`
 
-### Response Content
-
-The content consists 3 parts, cross, isolated and total equity.
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-amt | number  | amount |  |
-symbol | string | symbol| |
-avgPrice| number | average price | |
-avgHoldPrice| number | average holding price | |
-markValue | number | market value | |
-profit | number | profile | |
+### 返回值
 
 ```json
 {
+  "success": true,
   "code": 200,
+  "message": null,
   "data": {
-    "crossEquity": 12345.67,
-    "crossLeverage": 3.45,
-    "crossMarginAccounts": [
-      {
-        "amt": 0.15,
-        "avgPrice": 34567.8,
-        "avgHoldPrice": 34578.9,
-        "markValue": 6851.7,
-        "profit": 1234.5,
-        "profitRate": 0.3456,
-        "symbol": "BTCUSD"
-      },
-      {
-        "amt": -1.23,
-        "avgPrice": 2345.67,
-        "avgHoldPrice": 2367.89,
-        "markValue": -3157.41,
-        "profit": -123.45,
-        "profitRate": -0.09,
-        "symbol": "ETHUSD"
-      },
-      {
-        "amt": 12345.6,
-        "avgPrice": 1,
-        "avgHoldPrice": 1,
-        "markValue": 1,
-        "profit": 0,
-        "profitRate": 0,
-        "symbol": "kUSD"
-      }
-    ],
-    "isolatedEquity": 1234.56,
-    "isolatedMarginAccounts": [
-      {
-        "amt": 12.34,
-        "avgPrice": 345.6,
-        "avgHoldPrice": 345.1,
-        "kUSDAmt": 4567.8,
-        "leverage": 2.34,
-        "liquidationPrice": 234.5,
-        "markValue": 9876.5,
-        "profit": 1234.5,
-        "profitRate": 0.56,
-        "symbol": "BNBUSD"
-      }
-    ],
-    "totalEquity": 23456.7,
-    "walletAccounts": [
-      {
-        "amt": 1234.5,
-        "currency": "kUSD",
-        "equity": 1234.5
-      }
-    ],
-    "walletEquity": 1234.5
-  },
-  "message": "string",
-  "success": true
+    "tradingMarginCurrency": "USDT",    用户交易保证金类型，目前支持USDT，USDC，kUSD三种
+    "positionType": 1,                  用户仓位类型 1 合仓:每个交易对只允许1个仓位  2 分仓:每个交易对可以有多个仓位
+    "intradayProfit": 0.408419,         当日盈亏（已实现盈亏 + 未实现盈亏)
+    "totalTradingValue": 499.072519,    交易账户总保证金
+    "totalWalletValue": 1322994.310008, 钱包账户总价值（每个币种数量*价格之和）
+    "totalNetValue": 1323493.382527,    交易账户 + 钱包账户 总价值
+    "unrealizedProfit": 4.6,            当前未实现盈亏
+    "intradayProfitRate": 0,            当日收益率
+    "walletAccountSummary": {           钱傲账户每个币种详情
+      "accounts": [
+        {
+          "userId": 10015805,
+          "currency": "KINE",
+          "available": 10000.0168,
+          "freeze": 0,
+          "locked": 0,
+          "price": 1.435,
+          "totalValue": 14350.024108
+        },
+        {
+          "userId": 10015805,
+          "currency": "kUSD",
+          "available": 1298623.6389,
+          "freeze": 0,
+          "locked": 0,
+          "price": 1,
+          "totalValue": 1298623.6389
+        },
+        {
+          "userId": 10015805,
+          "currency": "USDC",
+          "available": 10.647,
+          "freeze": 0,
+          "locked": 0,
+          "price": 1,
+          "totalValue": 10.647
+        },
+        {
+          "userId": 10015805,
+          "currency": "USDT",
+          "available": 10010,
+          "freeze": 0,
+          "locked": 0,
+          "price": 1,
+          "totalValue": 10010
+        }
+      ],
+      "totalValue": 1322994.310008
+    },
+    "tradingAccountSummary": {   交易账户每个账户详情
+      "accounts": 
+        {
+          "symbol": "BTCUSD",           交易对
+          "marginType": "CROSSED",      保证金类型 CROSSED全仓 ISOLATED逐仓
+          "leverage": 10,               账户设置的杠杆
+          "baseCurrency": "BTC",        基础币种
+          "baseAvailable": 0,           账户中计价币种的数量（即多仓，空仓的数量之和，多仓用正数，空仓用负数，如持有1个多仓，-0.5空仓，则结果为0.5）
+          "baseGrossAvailable": 0,      账户中计价币种的数量绝对值之和（即多仓，空仓的数量绝对值之和，如持有1个多仓，-0.5空仓，则结果为1.5）
+          "quoteCurrency": "kUSD",      计价币种，无论是USDT，USDC，kUSD保证金，此处统一为kUSD
+          "quoteAvailable": 0,          计价币种保证金数量，如果是全仓则为0，如果是逐仓则为所有此逐仓仓位的保证金之和
+          "price": 57373,               当前交易对指数价格
+          "initialMargin": null,        持仓情况下账户的初始保证金
+          "positionMargin": null,       持仓情况下账户的仓位保证金
+          "unRealizedPnl": null,        持仓情况下所有此账户下仓位的未实现盈亏
+          "maintMargin": null,          持仓情况下账户所需要的维持保证金，当维持保证金低于可用保证金（marginAvailable）是账户会被强平
+          "marginBalance": 452.556519,   账户的保证金余额
+          "marginAvailable": 452.556519, 账户的可用保证金（可转出）
+          "marginRatio": 0               维持保证金/保证金余额
+        },
+        {
+          "symbol": "ETHUSD",
+          "marginType": "ISOLATED",
+          "leverage": 100,
+          "baseCurrency": "ETH",
+          "baseAvailable": 1,
+          "baseGrossAvailable": 1,
+          "quoteCurrency": "kUSD",
+          "quoteAvailable": 41.916,
+          "price": 4196.2,
+          "initialMargin": 41.916,
+          "positionMargin": 41.962,
+          "unRealizedPnl": 4.6,
+          "maintMargin": 20.981,
+          "marginBalance": 46.516,
+          "marginAvailable": 4.554,
+          "marginRatio": 0.4511
+        }
+      ],
+      "positions": [   所有仓位详情
+        {
+          "id": 10000312,             仓位ID
+          "symbol": "ETHUSD",         交易对
+          "marginType": "ISOLATED",   保证金类型 CROSSED全仓 ISOLATED逐仓
+          "baseCurrency": "ETH",      基础币种
+          "quoteCurrency": "kUSD",    计价币种，无论是USDT，USDC，kUSD保证金，此处统一为kUSD
+          "leverage": 100,            杠杆
+          "amount": 1,                持仓数量，正数表示多仓，负数表示空仓
+          "avgPrice": 4191.6,         开仓均价
+          "avgHoldPrice": 4195.8,     持仓均价
+          "liquidationPrice": 4170.5, 强平价格
+          "markPrice": 4196.2,        当前指数价格
+          "profit": 4.6,              未实现盈亏
+          "profitRate": 0.1098,       盈亏比例
+          "initialMargin": 41.916,    初始保证金
+          "positionMargin": 41.962,   仓位保证金
+          "maintRate": 0.005,         维持保证金率，根据仓位市值大小会对应不同的比例，具体看https://kine.io相应的文档
+          "maintMargin": 20.981,      所需要的维持保证金
+          "unRealizedPnl": 4.6,       未实现盈亏
+          "marginBalance": 46.516,    保证金余额
+          "marginRatio": 0.4511,      维持保证金/保证金余额
+          "marginAvailable": 4.554    可用保证金（可转出）
+        }
+      ],
+      "crossedInitialMargin": 0,           所有全仓仓位的初始保证金之和
+      "crossedPositionMargin": 0,          所有全仓仓位的仓位保证金之和
+      "crossedMaintMargin": 0,             所有全仓仓位所需要的维持保证金之和
+      "crossedUnRealizedPnl": 0,           所有全仓仓位的未实现盈亏之和
+      "crossedMarginBalance": 452.556519,  全仓账户的保证金余额
+      "crossedMarginRatio": 0,             全仓整体的保证金比例
+      "crossedMarginAvailable": 452.556519, 全仓账户的可用保证金
+      "isolatedUnRealizedPnl": 4.6,        所有逐仓仓位的未实现盈亏之和
+      "isolatedMarginBalance": 46.516,     所有逐仓仓位的保证金余额之和
+      "isolatedPositionMargin": 41.962,    所有逐仓仓位的仓位保证金之和
+      "isolatedMarginAvailable": 4.554,    所有逐仓仓位的可用保证金之和
+      "marginBalanceTotal": 499.072519,    全仓+逐仓的保证金余额之和
+      "unRealizedPnlTotal": 4.6,           全仓+逐仓的未实现盈亏之和
+      "positionMarginTotal": 41.962,       全仓+逐仓的保证金余额之和
+      "marginAvailableTotal": 457.110519   全仓+逐仓的可用保证金之和
+    }
+  }
 }
 ```
 
 
-## Leverage Adjustment
-
-Change the leverage of trading accounts. 
+## 调整杠杆
+- 分仓模式下，调整账户杠杆，只影响新的开仓，不影响已有仓位的杠杆
+- 合仓模式下，会改变账户和已存在仓位的杠杆
 
 ### HTTP Request
 
 `POST /account/api/update-leverage`
-
-### Rate Limit
-
-5/s
 
 ### Required Permission
 
@@ -666,10 +652,10 @@ Change the leverage of trading accounts.
 
 ### Request Body(Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol | |
-leverage | int | yes |    | the leverage, i.e 10, 50, 100 and 125 | |
+symbol | string | yes |    | 交易对 | BTCUSD |
+leverage | int | yes |    | 杠杆倍数, i.e 10, 50, 100 and 125 | |
 
 ```json
 {
@@ -678,13 +664,13 @@ leverage | int | yes |    | the leverage, i.e 10, 50, 100 and 125 | |
 }
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |   | |
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code  | string  |   错误码 | |
 
 ```
 {
@@ -695,43 +681,37 @@ code  | string  |   | |
 }
 ```
 
-## Switch to isolated
+## 账户 全仓切换逐仓
 
-Switch to an isolated trading account for a give currency
+全仓账户切换逐仓账户：当前账户不能有仓位和挂单
 
 ### HTTP Request
 
 `POST /account/api/swap-to-isolated`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `Trade`
 
-### Request Body(Json)
+### 参数 (Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例|
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol of target currency | |
-leverage | int | yes |    | the leverage | |
+symbol | string | yes |    | 交易对 | |
 
 ```json
 {
-  "symbol": "ETHUSD",
-  "leverage": 10
+  "symbol": "ETHUSD"
 }
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |   | |
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code  | string  |   错误码 | |
 
 ```
 {
@@ -742,41 +722,38 @@ code  | string  |   | |
 }
 ```
 
-## Switch to crossed
+## 账户 逐仓切换全仓
 
-Switch an isolated trading account to the crossed trading account for a give currency
+逐仓账户切换全仓账户：当前账户不能有仓位和挂单
 
 ### HTTP Request
 
 `POST /account/api/swap-to-crossed`
 
-### Rate Limit
-
-5/s
 
 ### Required Permission
 
 `Trade`
 
-### Request Body(Json)
+### 参数 (Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例|
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol of target currency | |
+symbol | string | yes |    | 交易对 | |
 
 ```json
 {
-  "symbol": "BTCUSD"
+  "symbol": "ETHUSD"
 }
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |   | |
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code  | string  |   错误码 | |
 
 ```
 {
@@ -787,55 +764,43 @@ code  | string  |   | |
 }
 ```
 
-## Account history
-
-Get the history of account changes
+## 账户财务历史
 
 ### HTTP Request
 
 `GET /account/api/account-history`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `ReadOnly`
 
-### Request Parameters
+### 请求参数 
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值| 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-startTime | number | no | 0 | starting timestamp of the querying scope | |
-endTime | number | no | 0 | ending timestamp of the querying scope | |
-currency | string | no |  | currency | |
-action | number | no |  | | 1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TRADE, 4 - TRANSFER_TRADE_TO_WALLET, 5 - DEDUCT, 6 - REFUND, 7 - TRANSFER_IN, 8 - TRANSFER_OUT, 9 - REWARD, 10 - REBATE, 11 - EXCHANGE_IN, 12 - EXCHANGE_OUT, 13 - FUNDING_FEE_PAY, 14 - FUNDING_FEE_COLLECT, 17 - FREEZE, 18 - UNFREEZE, 24 - WITHDRAW_REJECTED, 30 - TRADE_MINING_JUNIOR_REWARD, 31 - AIR_DROP, 33 - TRADE_MINING_SENIOR_REWARD, 34 - LOCK, 35 - UNLOCK, 100 - OTHERS |
-page | number | no | 1 | page number | |
-size | number | no | 20 | number of items per page | 1-200 |
+startTime | number | no | 0 | 开始时间 | |
+endTime   | number | no | 0 | 结束时间 | |
+currency  | string | no |  | 币种 | |
+action    | string | no |  | 操作 | 1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TRADE, 4 - TRANSFER_TRADE_TO_WALLET, 5 - DEDUCT, 6 - REFUND, 7 - TRANSFER_IN, 8 - TRANSFER_OUT, 9 - REWARD, 10 - REBATE, 11 - EXCHANGE_IN, 12 - EXCHANGE_OUT, 13 - FUNDING_FEE_PAY, 14 - FUNDING_FEE_COLLECT, 17 - FREEZE, 18 - UNFREEZE, 24 - WITHDRAW_REJECTED, 30 - TRADE_MINING_JUNIOR_REWARD, 31 - AIR_DROP, 33 - TRADE_MINING_SENIOR_REWARD, 34 - LOCK, 35 - UNLOCK, 100 - OTHERS |
+page      | number | no | 1 | 第几页 | |
+size      | number | no | 20 | 每页多少条 | 最多50条 |
 
 ```http request
 GET /account/api/account-history?startTime=1619798400000&endTime=1619798460000&currency=kUSD&action=1&page=2&size=10
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |  | |
-data  | pagedItems  |  | |
+userId    | number   | 用户UID | |
+startTime | number   | 操作开始时间 | |
+endTime   | number   | 操作结束时间 | |
+currency  | string   | 币种|  |
+action    | string   | 操作 |  |
+amount    | number   | 金额 |  |
+status    | string   | 状态 |  |
 
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-userId  | number | user ID| |
-startTime | number   | starting timestamp of the querying scope | |
-endTime | number   | ending timestamp of the querying scope | |
-currency | string  |  |  |
-action | string  |  |  |
-page | number   | page number | |
-size | number   | number of items per page |  |
 
 ```json
 {
@@ -892,143 +857,25 @@ size | number   | number of items per page |  |
 }
 ```
 
-## Max transferable of wallet account
+## 钱包账户与交易账户之间的划转
 
-Get the max available amount (in kUSD) that can be transferred from wallet account
-
-### HTTP Request
-
-`GET /account/api/max-wallet-transfer-out`
-
-### Rate Limit
-
-5/s
-
-### Required Permission
-
-`ReadOnly`
-
-### Response Content
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |  | |
-data  | decimal  | max available amount | |
-
-```
-{
-  "code": 200,
-  "data": "1324.56",
-  "message": "string",
-  "success": true
-}
-```
-
-## Max transferable of crossed account
-
-Get the max available amount (in kUSD) that can be transferred from the crossed trading account
-
-### HTTP Request
-
-`GET /account/api/max-crossed-transfer-out`
-
-### Rate Limit
-
-5/s
-
-### Required Permission
-
-`ReadOnly`
-
-### Response Content
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |  | |
-data  | decimal  | max available amount | |
-
-```json
-{
-  "code": 200,
-  "data": "1324.56",
-  "message": "string",
-  "success": true
-}
-```
-
-## Max transferable of isolated account
-
-Get the max available amount (in kUSD) that can be transferred from a specified isolated trading account
-
-### HTTP Request
-
-`GET /account/api/max-isolated-transfer-out`
-
-### Rate Limit
-
-5/s
-
-### Required Permission
-
-`ReadOnly`
-
-### Request Parameters
-
-Parameter | DataType | Required | Default Value | Description | Value Range |
---------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the symbol of the target currency | |
-positionId | long | yes |    | which position you want to transfer out | |
-
-```http request
-GET /account/api/max-isolated-transfer-out?symbol=BTCUSD
-```
-
-### Response Content
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |  | |
-data  | map  | max available amount to transfer out | |
-
-```json
-{
-  "code": 200,
-  "data": {
-    "maxTransOut": "5432.1"
-  },
-  "message": "string",
-  "success": true
-}
-```
-
-## Transfer between the wallet and crossed trading account
-
-Transfer (in kUSD) between the wallet and crossed trading account
+1. 划转钱包保证金到交易账户（全仓），即增加全仓保证金
+2. 交易账户（全仓）划转到钱包保证金账户，即减少全仓保证金
 
 ### HTTP Request
 
 `POST /account/api/transfer`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `Trade`
 
-### Request Body(Json)
+### 请求 (Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值| 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-amount | string | yes |    | the amount to be transferred | |
-direction | number | yes |    | the direction to be transferred | 1 - wallet to trading account, 2 - trading to wallet account|
+amount | string | yes |    | 大于0的数字，最多支持4位小数 | |
+direction | number | yes |    | 划转方向 | 1 - 划转钱包保证金到交易账户（全仓）, 2 - 交易账户（全仓）划转到钱包保证金账户|
 
 ```json
 {
@@ -1037,13 +884,13 @@ direction | number | yes |    | the direction to be transferred | 1 - wallet to 
 }
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |   | |
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误信息 | |
+code  | string  |   错误码 |  |
 
 ```json
 {
@@ -1054,46 +901,44 @@ code  | string  |   | |
 }
 ```
 
-## Transfer between crossed/isolated trading accounts
+## 全仓交易账户与逐仓交易账户之间的划转
 
-Transfer (in kUSD) between the crossed trading account and a specified isolated trading account
+3. 全仓交易账户转入逐仓交易账户，即增加逐仓账户保证金，只有在逐仓有仓位情况下才可以划转
+4. 逐仓交易账户转入全仓交易账户，即减少逐仓账户保证金，只有在逐仓有仓位情况下才可以划转
 
 ### HTTP Request
 
 `POST /account/api/isolated-transfer`
 
-### Rate Limit
-
-5/s
-
 ### Required Permission
 
 `Trade`
 
-### Request Body(Json)
+### 请求 (Json)
 
-Parameter | DataType | Required | Default Value | Description | Value Range |
+参数 | 类型 | 是否必须 | 默认值| 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | the isolated trading account to be transferred from or to| |
-amount | string | yes |    | the amount to be transferred | |
-direction | number | yes |    | the direction to be transferred | 3 - crossed to isolated trading account, 4 - isolated to crossed trading account|
-positionId | long | yes |    | which position you want to transfer out | |
+symbol | string | yes |    | 交易对对应的账户 | |
+amount | string | yes |    | 大于0的数字，最多支持4位小数 | |
+direction | number | yes |    |  | 3 - 全仓到逐仓, 4 - 逐仓到全仓|
+positionId | long | yes |    | 要增加保证的逐仓仓位ID，或者要减少保证金的逐仓仓位ID | |
 
 ```json
 {
   "symbol": "ETHUSD",
   "amount": "1234.56",
-  "direction": 3
+  "direction": 3,
+  "positionId" : 10000
 }
 ```
 
-### Response Content
+### 返回值
 
-Field | DataType | Description | Value Range |
+字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-success | boolean  | true: the request be processed, false: fail | |
-message | string  |  description of the code | |
-code  | string  |   | |
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code  | string  |   错误码 | |
 
 ```json
 {
