@@ -23,15 +23,15 @@ code_clipboard: true
 
 ## 2021-11-19
 
-* 中文文档 - 进行中
+* 中文文档 - 更新中
 
 # 简介
 
 欢迎查看KINE API文档。
 
-您可以通过API来访问KINE平台，用于下单，查询您需要的订单、账户信息。
+您可以通过API来访问KINE平台数据，用于下单、撤单、查询订单、获取账户信息等。
 
-我们提供了两种类型的接口 REST 、 WebSocket， 您可以根据需要选择适合您的。
+我们提供了两种类型的接口: RESTFUL接口和WebSocket订阅。
 
 
 ## REST API
@@ -244,7 +244,7 @@ minAmount     | string  |  最小下单金额 |  |
 
 参数 | 数据类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol | string | yes |    | 交易对  |  'BTCUSD' |
+symbol | string | yes |    | 交易对  |  BTCUSD |
 
 
 ### 返回值
@@ -347,7 +347,6 @@ stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要
 stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要指定止损价格 |  0 |
 price           | string | no |     | 止盈，止损订单需要传入当前指数价格 |  0 |
 
-
 ```json
 {
   "baseAmount": "0.25",
@@ -362,9 +361,9 @@ price           | string | no |     | 止盈，止损订单需要传入当前指
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
 --------- | ----------- | -----------| ----------| 
-result | json  |  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码 |  |
-stopProfitResult | json  | 止盈订单下单结果 |  |
-stopLossResult | json  | 止损订单下单结果 |  |
+result           | json格式  | 含有：  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码, data中为下单的orderId |  |
+stopProfitResult | json格式  | 止盈订单下单结果，数据格式同上 |  |
+stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |  |
 
 ```json
 {
@@ -530,7 +529,7 @@ success | boolean  | true: 成功, false: 失败 | |
 message | string  |  错误描述 | |
 code  | string  |   错误码 | |
 
-```
+```json
 {
   "code": 0,
   "data": true,
@@ -713,7 +712,6 @@ Error Code | Description |
   }
 }
 ```
-
 
 ## 调整杠杆
 - 分仓模式下，调整账户杠杆，只影响新的开仓，不影响已有仓位的杠杆
