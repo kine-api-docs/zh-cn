@@ -204,14 +204,36 @@ KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 ```
 
+
 # Market Data API 市场数据
 
 市场数据API是公开接口，不需要签名
 
-## 查询某个交易对的指数价格
 
+## 查询所有交易对以及交易规则
 ### HTTP Request
+`GET /market/api/trading-rules`
 
+### Required Permission
+`ReadOnly`
+
+### 请求参数
+无
+
+### 返回值
+字段 | 数据类型 | 描述 | 举例 |
+--------- | ----------- | --------|  ----- | 
+symbol        | string  |  交易对 | ETHUSD，BTCUSD |
+enabled       | boolean |  是否可交易 true:可交易，false不可交易 |  |
+priceDecimal  | int     |  价格精度 |  |
+qtyDecimal    | int     |  数量精度 |  |
+amountDecimal | int     |  金额精度 |  |
+minQty        | string  |  最小下单数量 |  |
+minAmount     | string  |  最小下单金额 |  |
+
+
+## 查询某个交易对的指数价格
+### HTTP Request
 `GET /market/api/price/{symbol}`
 
 ### Required Permission
@@ -364,9 +386,11 @@ stopLossResult | json  | 止损订单下单结果 |  |
 
 ## 单个订单查询
 
+根据订单orderId或者clientOrderId获取订单数据
+
 ### HTTP Request
 
-`GET /trade/api/v2/history`
+`GET /trade/api/v2/order`
 
 ### Required Permission
 
@@ -376,7 +400,8 @@ stopLossResult | json  | 止损订单下单结果 |  |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-clientOrderId  | string | yes |    |  订单的clientOrderId|  |
+orderId        | long   | no |    |  订单的OrderI d|  |
+clientOrderId  | string | no |    |  订单的clientOrderId|  |
 
 
 ### 返回值
@@ -414,7 +439,7 @@ quoteAmount | string  | 订单成交金额 |  |
 
 ### HTTP Request
 
-`GET /trade/api/v2/all-orders`
+`GET /trade/api/v2/allOrders`
 
 ### Required Permission
 
@@ -463,6 +488,58 @@ quoteAmount | string  | 订单成交金额 |  |
   ]
 }
 ```
+
+
+## 查询委托订单
+
+### HTTP Request
+`GET /trade/api/v2/openOrders`
+
+### Required Permission
+
+`ReadOnly`
+
+### 请求参数
+无
+
+### 返回值
+
+返回数据格式参考 `GET /trade/api/v2/allOrders`
+
+
+## 撤单
+
+### HTTP Request
+`GET /trade/api/v2/cancelOrder`
+
+### Required Permission
+
+`ReadOnly`
+
+### 请求参数
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+orderId        | long   | no |    |  订单的OrderI d|  |
+clientOrderId  | string | no |    |  订单的clientOrderId|  |
+
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code  | string  |   错误码 | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+
 ### 下单错误编码
 
 Error Code | Description |
