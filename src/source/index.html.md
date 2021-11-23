@@ -774,6 +774,33 @@ code  | string  |   错误码 | |
 
 `ReadOnly`
 
+
+```text
+操作枚举
+1 - DEPOSIT,
+2 - WITHDRAW, 
+3 - TRANSFER_WALLET_TO_TRADE, 
+4 - TRANSFER_TRADE_TO_WALLET, 
+5 - DEDUCT, 6 - REFUND, 
+7 - TRANSFER_IN, 
+8 - TRANSFER_OUT, 
+9 - REWARD, 
+10 - REBATE, 
+11 - EXCHANGE_IN, 
+12 - EXCHANGE_OUT, 
+13 - FUNDING_FEE_PAY, 
+14 - FUNDING_FEE_COLLECT, 
+17 - FREEZE, 
+18 - UNFREEZE, 
+24 - WITHDRAW_REJECTED, 
+30 - TRADE_MINING_JUNIOR_REWARD, 
+31 - AIR_DROP, 
+33 - TRADE_MINING_SENIOR_REWARD, 
+34 - LOCK, 
+35 - UNLOCK, 
+100 - OTHERS
+```
+
 ### 请求参数 
 
 参数 | 类型 | 是否必须 | 默认值| 描述 | 举例 |
@@ -781,9 +808,12 @@ code  | string  |   错误码 | |
 startTime | number | no | 0 | 开始时间 | |
 endTime   | number | no | 0 | 结束时间 | |
 currency  | string | no |  | 币种 | |
-action    | string | no |  | 操作 | 1 - DEPOSIT, 2 - WITHDRAW, 3 - TRANSFER_WALLET_TO_TRADE, 4 - TRANSFER_TRADE_TO_WALLET, 5 - DEDUCT, 6 - REFUND, 7 - TRANSFER_IN, 8 - TRANSFER_OUT, 9 - REWARD, 10 - REBATE, 11 - EXCHANGE_IN, 12 - EXCHANGE_OUT, 13 - FUNDING_FEE_PAY, 14 - FUNDING_FEE_COLLECT, 17 - FREEZE, 18 - UNFREEZE, 24 - WITHDRAW_REJECTED, 30 - TRADE_MINING_JUNIOR_REWARD, 31 - AIR_DROP, 33 - TRADE_MINING_SENIOR_REWARD, 34 - LOCK, 35 - UNLOCK, 100 - OTHERS |
+action    | string | no |  | 操作 | 操作枚举，请参考右侧示例 |
 page      | number | no | 1 | 第几页 | |
 size      | number | no | 20 | 每页多少条 | 最多50条 |
+
+
+
 
 ```http request
 GET /account/api/account-history?startTime=1619798400000&endTime=1619798460000&currency=kUSD&action=1&page=2&size=10
@@ -953,7 +983,7 @@ code  | string  |   错误码 | |
 
 WebSocket API 提供了市场数据，账户更新的订阅。 以topic进行订阅，订阅后将收到相应数据的更新。
 
-## Authentication 身份认证
+## 身份认证 (Authentication)
 
 > Sample Code for websocket signature
 
@@ -1057,7 +1087,7 @@ accessKey=xxxxxxxxxxxx
 ---------
 ```
 
-## Live check (Ping/Pong) 存活检查
+## 存活检查 (Ping/Pong)
 
 > Ping Message
 
@@ -1097,7 +1127,7 @@ accessKey=xxxxxxxxxxxx
 客户端收到PING后请立刻回复PONG，如不及时回复(大于15s)，服务端将主动断开链接。
 </aside>
 
-## Session limit 回话限制
+## Websocket回话限制
 
 关于Websocket回话有一定的限制，请留意。
 
@@ -1108,7 +1138,7 @@ Limit | Limit Type | Limit Value | Deesc |
 最大允许客户端发送消息的速率 | Rate  |  10/s | Incoming message rate limit per session (No limit for output)  |
 会话最大存活时间 | Duration  |  24h | 超时服务端将主动断开链接，客户端请重新链接  |
 
-## Subscribe Topics 订阅Topic
+## 订阅Topic
 
 > subscribe message 订阅消息示例
 
@@ -1165,8 +1195,9 @@ Limit | Limit Type | Limit Value | Deesc |
 |--- | ----|
 |  md.index-price.aggregated   | 聚合价格，包括所有资产的价格更新    |
 |  account.all   |  账户更新   |
+|  account-v2.all   |  账户更新 V2   |
 
-## Price Data Stream 价格更新数据流
+## 价格更新数据流
 
 Price topic : `md.index-price.aggregated`
 
@@ -1242,9 +1273,13 @@ symbol | String  | Asset Symbol |  |
 price | String  | Current price |  |
 ts | long  | UTC timestamp |  |
 
-## Account Update 账户更新
 
-Topic: `account.all`
+## 账户更新V2
+
+Topic: `account-v2.all`
+
+V2版本的账户快照推送。
+数据结构定义与/account/api/v2/account-balances接口保持一致。
 
 你账户的快照数据将在下面两个条件触发推送更新。
 
@@ -1258,7 +1293,7 @@ Topic: `account.all`
   "op": "SUB",
   "ts": 1618646724055,
   "data": {
-    "topic": "account.all"
+    "topic": "account-v2.all"
   }
 }
 ```
@@ -1271,7 +1306,7 @@ Topic: `account.all`
   "op": "SUB_RESULT",
   "ts": 1618646119344,
   "data": {
-    "topic": "account.all"
+    "topic": "account-v2.all"
   }
 }
 ```
@@ -1280,128 +1315,17 @@ Topic: `account.all`
 
 ```json
 {
-  "topic": "account.all",
+  "topic": "account-v2.all",
   "status": "success",
   "op": "DATA",
   "ts": 1618990231304,
   "data": {
-    "totalEquity": "3034.37796911",
-    "walletEquity": "161.47170911",
-    "walletAccounts": [
-      {
-        "currency": "KINE",
-        "amt": "57.28470000",
-        "equity": "161.47164911"
-      },
-      {
-        "currency": "kUSD",
-        "amt": "0.00006000",
-        "equity": "0.00006000"
-      },
-      ...
-    ],
-    "crossEquity": "2872.90626000",
-    "crossMarginAccounts": [
-      {
-        "symbol": "BTCUSD",
-        "amt": "0.00000000",
-        "markValue": "0.00000000",
-        "profit": null,
-        "profitRate": null,
-        "avgPrice": null
-      },
-      ...
-    ],
-    "isolatedEquity": "0.00000000",
-    "isolatedMarginAccounts": [
-      {
-        "symbol": "XRPUSD",
-        "amt": "0.00000000",
-        "markValue": "0.00000000",
-        "avgPrice": null,
-        "profit": null,
-        "profitRate": null,
-        "kUSDAmt": "0.00000000",
-        "leverage": null,
-        "liquidationPrice": null
-      },
-      ...
-    ]
+    <<<数据格式与/account/api/v2/account-balances接口数据保持一致，请参考其接口定义>>>
   }
 }
 ```
 
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------| 
-totalEquity | Number  |  walletEquity + crossEquity + isolatedEquity |  |
-walletEquity | Number  |  wallet equity |  |
-crossEquity | Number  |  cross equity |  |
-crossLeverage | Number  |  leverage cross account |  |
-isolatedEquity | Number  |  wallet equity |  |
-walletAccounts | List<WalletAccount>  |  Wallet account details for all assets |  |
-crossMarginAccounts | List<CrossMarginAccount>  |  Cross margin account details for all assets |  |
-isolatedMarginAccounts | List<IsolatedMarginAccount>  |  Isolated margin account details for all assets |  |
 
-**WalletAccount**
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------|
-currency | String  | currency  | Asset Reference |
-amt | Number  |  amount |  |
-equity | Number  |  equity |   |
-
-**CrossMarginAccount**
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------|
-symbol | String  |  symbol of the asset | Asset Reference |
-amt | Number  |  amount |  |
-markValue | Number  | current mark value |  |
-profit | Number  |  profit |  |
-profitRate | Number  |  profit rate |  |
-avgPrice | Number  |  average price |  |
-leverage | Number  |  leverage |  |
-liquidationPrice | Number  |  liquidation price |  |
-initialMargin | Number  |  position initial margin |  |
-positionMargin | Number  |  position margin |  |
-maintMargin | Number  |  maintenance margin |  |
-marginBalance | Number  |  margin balance |  |
-marginRatio | Number  |  margin ratio |  |
-marginAvailable | Number  | available margin |  |
-
-**IsolatedMarginAccount**
-
-Field | DataType | Description | Value Range |
---------- | ----------- | -----------| ----------|
-symbol | String  |  symbol of the asset | Asset Reference |
-amt | Number  |  amount |  |
-markValue | Number  |  mark value |  |
-profit | Number  |  profit |  |
-profitRate | Number  |  profit rate |  |
-kUSDAmt | Number  |  kUSD Amount |  |
-leverage | Number  |  leverage |  |
-liquidationPrice | Number  |  liquidation price |  |
-initialMargin | Number  |  position initial margin |  |
-positionMargin | Number  |  position margin |  |
-maintMargin | Number  |  maintenance margin |  |
-marginBalance | Number  |  margin balance |  |
-marginRatio | Number  |  margin ratio |  |
-marginAvailable | Number  | available margin |  |
 
 # Reference
 
-## Asset Reference
-
-Asset Symbol | Base Currency | Quote Currency | Comment |
---------- | ----------- | -----------| ----------| 
-BTCUSD | BTC  | kUSD | xx |
-ETHUSD | ETH  | kUSD | xx |
-LTCUSD | LTC  | kUSD | xx |
-FILUSD | FIL  | kUSD | xx |
-XRPUSD | XRP  | kUSD | xx |
-LINKUSD | LINK  | kUSD | xx |
-UNIUSD | UNI  | kUSD | xx |
-COMPUSD | COMP  | kUSD | xx |
-SNXUSD | SNX  | kUSD | xx |
-
-[]: https://kine.exchange/account/api-key
