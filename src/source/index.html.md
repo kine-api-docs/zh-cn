@@ -1217,9 +1217,10 @@ Limit | Limit Type | Limit Value | Deesc |
 
 > subscribe message 订阅消息示例
 
-订阅消息
+
 
 ```json
+//订阅消息
 {
   "op": "SUB",
   "ts": 1618646119181,
@@ -1229,9 +1230,10 @@ Limit | Limit Type | Limit Value | Deesc |
 }
 ```
 
-订阅成功响应消息
+
 
 ```json
+//订阅成功响应消息
 {
   "status": "success",
   "op": "SUB_RESULT",
@@ -1244,9 +1246,8 @@ Limit | Limit Type | Limit Value | Deesc |
 
 > un-subscribe message
 
-取消订阅消息
-
 ```json
+//取消订阅消息
 {
   "op": "UN_SUB",
   "ts": 1618646119181,
@@ -1256,9 +1257,10 @@ Limit | Limit Type | Limit Value | Deesc |
 }
 ```
 
-取消订阅成功响应消息
+
 
 ```json
+//取消订阅成功响应消息
 {
   "status": "success",
   "op": "UN_SUB_RESULT",
