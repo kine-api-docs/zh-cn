@@ -1354,7 +1354,7 @@ ts | long  | UTC timestamp |  |
 Topic: `account-v2.all`
 
 V2版本的账户快照推送。
-数据结构定义与/account/api/v2/account-balances接口保持一致。
+数据结构定义与/account/api/v2/account-positions接口保持一致。
 
 你账户的快照数据将在下面两个条件触发推送更新。
 
