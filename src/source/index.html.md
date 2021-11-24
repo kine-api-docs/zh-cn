@@ -566,7 +566,7 @@ Error Code | Description |
 
 ### HTTP Request
 
-`GET /account/api/v2/account-balances`
+`GET /account/api/v2/account-positions`
 
 ### Required Permission
 
