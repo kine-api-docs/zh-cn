@@ -1274,7 +1274,6 @@ Limit | Limit Type | Limit Value | Deesc |
 | Topic Name |  Comment |
 |--- | ----|
 |  md.index-price.aggregated   | 聚合价格，包括所有资产的价格更新    |
-|  account.all   |  账户更新   |
 |  account-v2.all   |  账户更新 V2   |
 
 ## 价格更新数据流

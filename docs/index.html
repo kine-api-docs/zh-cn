@@ -2229,55 +2229,48 @@ accessKey=xxxxxxxxxxxx
 <p>subscribe message 订阅消息示例</p>
 </blockquote>
 
-<p>订阅消息
-<code>json
-{
-  &quot;op&quot;: &quot;SUB&quot;,
-  &quot;ts&quot;: 1618646119181,
-  &quot;data&quot;: {
-    &quot;topic&quot;: &quot;{topic name}&quot;
-  }
-}
-</code></p>
-
-<p>订阅成功响应消息
-<code>json
-{
-  &quot;status&quot;: &quot;success&quot;,
-  &quot;op&quot;: &quot;SUB_RESULT&quot;,
-  &quot;ts&quot;: 1618805541048,
-  &quot;data&quot;: {
-    &quot;topic&quot;: &quot;{topic name}&quot;
-  }
-}
-</code></p>
-
+<p>订阅消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>订阅成功响应消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
-<p>un-subscribe message
-取消订阅消息
-<code>json
-{
-  &quot;op&quot;: &quot;UN_SUB&quot;,
-  &quot;ts&quot;: 1618646119181,
-  &quot;data&quot;: {
-    &quot;topic&quot;: &quot;{topic name}&quot;
-  }
-}
-</code></p>
+<p>un-subscribe message</p>
 </blockquote>
 
-<p>取消订阅成功响应消息
-<code>json
-{
-  &quot;status&quot;: &quot;success&quot;,
-  &quot;op&quot;: &quot;UN_SUB_RESULT&quot;,
-  &quot;ts&quot;: 1618805541048,
-  &quot;data&quot;: {
-    &quot;topic&quot;: &quot;{topic name}&quot;
-  }
-}
-</code></p>
-
+<p>取消订阅消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>取消订阅成功响应消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <p>客户端发送订阅消息，订阅响应的数据流。</p>
 
 <table><thead>
@@ -2289,10 +2282,6 @@ accessKey=xxxxxxxxxxxx
 <tr>
 <td>md.index-price.aggregated</td>
 <td>聚合价格，包括所有资产的价格更新</td>
-</tr>
-<tr>
-<td>account.all</td>
-<td>账户更新</td>
 </tr>
 <tr>
 <td>account-v2.all</td>
