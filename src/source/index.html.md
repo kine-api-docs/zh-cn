@@ -340,7 +340,7 @@ timestamp | long  | 响应时间 |  |
 symbol          | string | yes |    | 交易对 |  |
 baseAmount      | string | yes |    | 交易数量 |  |
 direct          | string | yes |    | 交易方向 |  BUY买入, SELL卖出|
-type            | int    | yes |    | 订单类型 |  1 市价单，2 条件单(现价单)|
+type            | int    | yes |    | 订单类型 |  1 市价单，7 条件单(现价单)|
 positionId      | long   | no  |    | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
 clientOrderId   | string | no |     | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
 stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要指定止盈价格 |  0 |
