@@ -21,4 +21,6 @@ https://github.com/kine-api-docs/zh-cn
 
 ## Document about Slate Docs
 
+Setup your local dev env.
+
 https://github.com/slatedocs/slate
