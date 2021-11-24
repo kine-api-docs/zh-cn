@@ -340,8 +340,8 @@ timestamp | long  | 响应时间 |  |
 symbol          | string | yes |    | 交易对 |  |
 baseAmount      | string | yes |    | 交易数量 |  |
 direct          | string | yes |    | 交易方向 |  BUY, SELL|
-type            | int | yes |       | 订单类型 |  1 市价单，2 条件单|
-positionId      | long | yes |      | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
+type            | int    | yes |    | 订单类型 |  1 市价单，2 条件单|
+positionId      | long   | yes |    | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
 clientOrderId   | string | no |     | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
 stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要指定止盈价格 |  0 |
 stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要指定止损价格 |  0 |
@@ -399,35 +399,41 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-orderId        | long   | no |    |  订单的OrderI d|  |
+orderId        | long   | no |    |  订单的OrderId|  |
 clientOrderId  | string | no |    |  订单的clientOrderId|  |
 
 
 ### 返回值
 字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-side        | int     | 1 BUY买入, 2 SELL卖出，等同于下单时的direct|  |
-type        | int     | 1 市价单， 4 强平 5 强平 9、10 条件止盈 11、12条件止损  |  |
-status      | int     | 1 新订单，2 过期，3 已撤销，4 已执行，5 拒绝，6 失败，7 挂单 |  |
-price       | string  | 订单成交价格 |  |
-baseAmount  | string  | 订单成交数量 |  |
-quoteAmount | string  | 订单成交金额 |  |
+orderID             | long       | 订单ID|  |
+clientOrderID       | string     | 订单ClientOrderId|  |
+symbol              | string     | 交易对|  |
+direct              | string     | BUY买入，SELL卖出 |  |
+executedPrice       | string     | 成交价格 |  |
+executedAmount      | string     | 成交数量 |  |
+executedQuoteAmount | string     | 成交金额  |  |
+fee                 | string     | 手续费 |  |
+status              | string     | 订单状态 |  |
+profit              | string     | 盈亏 |  |
+timestamp           | long       | 订单成交时间 |  |
 
 ```json
 {
   "code": 200,
   "data": {
-    "orderID": 3410874959646425217,
-    "clientOrderID": "test-0622-0001",
-    "symbol": "BTCUSD",
-    "price": "37300",
-    "baseAmount": "0.005",
-    "quoteAmount": "186.5",
-    "fee": "0.1865",
-    "timestamp": 1627378607623,
-    "status": 4,
-    "side": 1,
-    "type": 1
+      "orderID": 3432259521202880500,
+      "clientOrderID": "",
+      "symbol": "ETHUSD",
+      "direct": "SELL",
+      "executedPrice": "4170.5",
+      "executedAmount": "1",
+      "executedQuoteAmount": "4170.5",
+      "fee": "4.1705",
+      "timestamp": 1637575561094,
+      "status": "EXECUTED",
+      "profit": "-37.7455",
+      "profitTakeoffAmount": "0"
   },
   "message": "string",
   "success": true
@@ -438,7 +444,7 @@ quoteAmount | string  | 订单成交金额 |  |
 
 ### HTTP Request
 
-`GET /trade/api/v2/allOrders`
+`GET /trade/api/v2/all-orders`
 
 ### Required Permission
 
@@ -455,36 +461,39 @@ endTs    | number | no |  | 结束时间 |  |
 limit    | number | no | 200 | 最大返回条数 |  |
 
 ### 返回值
-
 字段 | 类型 | 描述 | 举例 |
 --------- | ----------- | -----------| ----------| 
-side        | int     | 1 BUY买入, 2 SELL卖出，等同于下单时的direct|  |
-type        | int     | 1 市价单， 4 强平 5 强平 9、10 条件止盈 11、12条件止损  |  |
-status      | int     | 1 新订单，2 过期，3 已撤销，4 已执行，5 拒绝，6 失败，7 挂单 |  |
-price       | string  | 订单成交价格 |  |
-baseAmount  | string  | 订单成交数量 |  |
-quoteAmount | string  | 订单成交金额 |  |
+orderID             | long       | 订单ID|  |
+clientOrderID       | string     | 订单ClientOrderId|  |
+symbol              | string     | 交易对|  |
+direct              | string     | BUY买入，SELL卖出 |  |
+executedPrice       | string     | 成交价格 |  |
+executedAmount      | string     | 成交数量 |  |
+executedQuoteAmount | string     | 成交金额  |  |
+fee                 | string     | 手续费 |  |
+status              | string     | 订单状态 |  |
+profit              | string     | 盈亏 |  |
+timestamp           | long       | 订单成交时间 |  |
 
 ```json
 {
-  "success": true,
   "code": 200,
-  "message": null,
-  "data": [
-    {
-    "orderID": 3410874959646425217,
-    "clientOrderID": "test-0622-0001",
-    "symbol": "BTCUSD",
-    "price": "37300",
-    "baseAmount": "0.005",
-    "quoteAmount": "186.5",
-    "fee": "0.1865",
-    "timestamp": 1627378607623,
-    "status": 4,
-    "side": 1,
-    "type": 1
-  }
-  ]
+  "data": {
+      "orderID": 3432259521202880500,
+      "clientOrderID": "",
+      "symbol": "ETHUSD",
+      "direct": "SELL",
+      "executedPrice": "4170.5",
+      "executedAmount": "1",
+      "executedQuoteAmount": "4170.5",
+      "fee": "4.1705",
+      "timestamp": 1637575561094,
+      "status": "EXECUTED",
+      "profit": "-37.7455",
+      "profitTakeoffAmount": "0"
+  },
+  "message": "string",
+  "success": true
 }
 ```
 
@@ -492,7 +501,7 @@ quoteAmount | string  | 订单成交金额 |  |
 ## 查询委托订单
 
 ### HTTP Request
-`GET /trade/api/v2/openOrders`
+`GET /trade/api/v2/open-orders`
 
 ### Required Permission
 
@@ -503,13 +512,13 @@ quoteAmount | string  | 订单成交金额 |  |
 
 ### 返回值
 
-返回数据格式参考 `GET /trade/api/v2/allOrders`
+返回数据格式参考 `GET /trade/api/v2/all-orders`
 
 
 ## 撤单
 
 ### HTTP Request
-`GET /trade/api/v2/cancelOrder`
+`GET /trade/api/v2/cancel-order`
 
 ### Required Permission
 
@@ -518,7 +527,7 @@ quoteAmount | string  | 订单成交金额 |  |
 ### 请求参数
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-orderId        | long   | no |    |  订单的OrderI d|  |
+orderId        | long   | no |    |  订单的OrderId|  |
 clientOrderId  | string | no |    |  订单的clientOrderId|  |
 
 ### 返回值
