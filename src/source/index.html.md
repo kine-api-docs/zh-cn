@@ -389,7 +389,7 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
 
 ### HTTP Request
 
-`GET /trade/api/v2/order`
+`GET /trade/api/order/v2/order`
 
 ### Required Permission
 
@@ -444,7 +444,7 @@ timestamp           | long       | 订单成交时间 |  |
 
 ### HTTP Request
 
-`GET /trade/api/v2/all-orders`
+`GET /trade/api/order/v2/all-orders`
 
 ### Required Permission
 
@@ -501,7 +501,7 @@ timestamp           | long       | 订单成交时间 |  |
 ## 查询委托订单
 
 ### HTTP Request
-`GET /trade/api/v2/open-orders`
+`GET /trade/api/order/v2/open-orders`
 
 ### Required Permission
 
@@ -512,13 +512,13 @@ timestamp           | long       | 订单成交时间 |  |
 
 ### 返回值
 
-返回数据格式参考 `GET /trade/api/v2/all-orders`
+返回数据格式参考 `GET /trade/api/order/v2/all-orders`
 
 
 ## 撤单
 
 ### HTTP Request
-`GET /trade/api/v2/cancel-order`
+`GET /trade/api/order/v2/cancel-order`
 
 ### Required Permission
 
