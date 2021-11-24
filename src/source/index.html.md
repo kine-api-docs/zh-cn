@@ -124,7 +124,7 @@ API Key 权限
 
 * `Request Method`  GET/POST  (Websocket 签名请使用 GET)
 * `Host` 主域名 目前只有一个 `api.kine.exchange`
-* `Request path` 接口请求路径，不包含域名。 例如: `/trade/api/order/place`
+* `Request path` 接口请求路径，不包含域名。 例如: `/trade/api/order/v2/place`
 * `API key`  API Key ID，需要包含在Request Header中 `KINE-API-ACCESS-KEY`
 * `SecretKey`  用于计算签名的秘钥。
 * `Timestamp` 毫秒时间戳 需要包含在request header `KINE-API-TS`
@@ -339,8 +339,8 @@ timestamp | long  | 响应时间 |  |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol          | string | yes |    | 交易对 |  |
 baseAmount      | string | yes |    | 交易数量 |  |
-direct          | string | yes |    | 交易方向 |  BUY, SELL|
-type            | int    | yes |    | 订单类型 |  1 市价单，2 条件单|
+direct          | string | yes |    | 交易方向 |  BUY买入, SELL卖出|
+type            | int    | yes |    | 订单类型 |  1 市价单，2 条件单(现价单)|
 positionId      | long   | yes |    | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
 clientOrderId   | string | no |     | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
 stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要指定止盈价格 |  0 |
