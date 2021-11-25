@@ -340,28 +340,51 @@ timestamp | long  | 响应时间 |  |
 symbol          | string | yes |    | 交易对 |  |
 baseAmount      | string | yes |    | 交易数量 |  |
 direct          | string | yes |    | 交易方向 |  BUY买入, SELL卖出|
-type            | int    | yes |    | 订单类型 |  1 市价单，7 条件单(现价单)|
+type            | int    | yes |    | 订单类型 |  1 市价单，7 条件单(限价单)|
 positionId      | long   | no  |    | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
 clientOrderId   | string | no |     | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
 stopProfitPrice | string | no |     | 如果市价单同时下止盈单，需要指定止盈价格 |  0 |
 stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要指定止损价格 |  0 |
-price           | string | no |     | 止盈，止损订单需要传入当前指数价格 |  0 |
+price           | string | no |     | 当前指数价格 |  0 |
+triggerPrice    | string | no |     | 当下条件单（限价单）时需要传入触发价格 |  0 |
 
+ > 市价买入 (type = 1)
 ```json
 {
-  "baseAmount": "0.25",
-  "clientOrderID": "test-321",
-  "direct": "SELL",
   "symbol": "BTCUSD",
+  "direct": "SELL",
   "type" : 1,
-  "positionId": 0
+  "baseAmount": "0.25",
+  "clientOrderID": "test-321"
 }
 ```
+
+> 限价买入  (type = 7)
+```json
+{
+  "symbol":"BTCUSD",
+  "direct":"BUY",
+  "type":"7",
+  "baseAmount":"0.001"
+}
+```
+
+> 市价卖出平仓  (type = 1, 平掉仓位 10000265)
+```json
+{
+  "baseAmount":0.001,
+  "direct":"SELL",
+  "symbol":"BTCUSD",
+  "type":"1",
+  "positionId":10000265
+}
+```
+
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
 --------- | ----------- | -----------| ----------| 
-result           | json格式  | 含有：  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码, data中为下单的orderId |  |
+result           | json格式  | 含有：  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码, data中为下单的orderId        |  |
 stopProfitResult | json格式  | 止盈订单下单结果，数据格式同上 |  |
 stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |  |
 
