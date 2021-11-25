@@ -848,7 +848,36 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 </tbody></table>
 <h1 id='api'>交易API</h1><h2 id='fd6ce2a756'>下单</h2><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /trade/api/order/v2/place</code></p>
-<h3 id='required-permission-4'>Required Permission</h3>
+
+<blockquote>
+<p>下单请求参数示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">市价买入</span><span class="w"> </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.25"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-321"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//限价买入</span><span class="w">  </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">7</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"triggerPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//市价卖出平仓</span><span class="w">  </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">,</span><span class="w"> </span><span class="err">平掉仓位</span><span class="w"> </span><span class="mi">10000265</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="p">:</span><span class="mi">10000265</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='required-permission-4'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json'>Request Body(Json)</h3>
 <table><thead>
@@ -942,42 +971,6 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>0</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>市价买入 (type = 1)
-<code>json
-{
-  &quot;symbol&quot;: &quot;BTCUSD&quot;,
-  &quot;direct&quot;: &quot;SELL&quot;,
-  &quot;type&quot; : 1,
-  &quot;baseAmount&quot;: &quot;0.25&quot;,
-  &quot;clientOrderID&quot;: &quot;test-321&quot;
-}
-</code></p>
-
-<p>限价买入  (type = 7)
-<code>json
-{
-  &quot;symbol&quot;:&quot;BTCUSD&quot;,
-  &quot;direct&quot;:&quot;BUY&quot;,
-  &quot;type&quot;:&quot;7&quot;,
-  &quot;baseAmount&quot;:&quot;0.001&quot;,
-  &quot;triggerPrice&quot;: &quot;50000&quot;,
-  &quot;price&quot;: &quot;55000&quot;
-}
-</code></p>
-
-<p>市价卖出平仓  (type = 1, 平掉仓位 10000265)
-<code>json
-{
-  &quot;baseAmount&quot;:0.001,
-  &quot;direct&quot;:&quot;SELL&quot;,
-  &quot;symbol&quot;:&quot;BTCUSD&quot;,
-  &quot;type&quot;:&quot;1&quot;,
-  &quot;positionId&quot;:10000265
-}
-</code></p>
-</blockquote>
 <h3 id='6483dab423-5'>返回值</h3>
 <table><thead>
 <tr>

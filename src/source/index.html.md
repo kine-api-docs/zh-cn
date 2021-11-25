@@ -329,6 +329,42 @@ timestamp | long  | 响应时间 |  |
 
 `POST /trade/api/order/v2/place`
 
+> 下单请求参数示例
+
+```json
+// 市价买入 (type = 1)
+{
+  "symbol": "BTCUSD",
+  "direct": "SELL",
+  "type" : 1,
+  "baseAmount": "0.25",
+  "clientOrderID": "test-321"
+}
+```
+
+```json
+//限价买入  (type = 7)
+{
+  "symbol":"BTCUSD",
+  "direct":"BUY",
+  "type":"7",
+  "baseAmount":"0.001",
+  "triggerPrice": "50000",
+  "price": "55000"
+}
+```
+
+```json
+//市价卖出平仓  (type = 1, 平掉仓位 10000265)
+{
+  "baseAmount":0.001,
+  "direct":"SELL",
+  "symbol":"BTCUSD",
+  "type":"1",
+  "positionId":10000265
+}
+```
+
 ### Required Permission
 
 `Trade`
@@ -348,42 +384,6 @@ stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要
 price           | string | no |     | 当前指数价格 |  0 |
 triggerPrice    | string | no |     | 当下条件单（限价单）时需要传入触发价格 |  0 |
 
-#### 市价买入 (type = 1)
-
-```json
-{
-  "symbol": "BTCUSD",
-  "direct": "SELL",
-  "type" : 1,
-  "baseAmount": "0.25",
-  "clientOrderID": "test-321"
-}
-```
-
-#### 限价买入  (type = 7)
-
-```json
-{
-  "symbol":"BTCUSD",
-  "direct":"BUY",
-  "type":"7",
-  "baseAmount":"0.001",
-  "triggerPrice": "50000",
-  "price": "55000"
-}
-```
-
-#### 市价卖出平仓  (type = 1, 平掉仓位 10000265)
-
-```json
-{
-  "baseAmount":0.001,
-  "direct":"SELL",
-  "symbol":"BTCUSD",
-  "type":"1",
-  "positionId":10000265
-}
-```
 
 
 ### 返回值
