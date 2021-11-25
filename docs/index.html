@@ -530,7 +530,7 @@
 <ul>
 <li><code>Request Method</code>  GET/POST  (Websocket 签名请使用 GET)</li>
 <li><code>Host</code> 主域名 目前只有一个 <code>api.kine.exchange</code></li>
-<li><code>Request path</code> 接口请求路径，不包含域名。 例如: <code>/trade/api/order/place</code></li>
+<li><code>Request path</code> 接口请求路径，不包含域名。 例如: <code>/trade/api/order/v2/place</code></li>
 <li><code>API key</code>  API Key ID，需要包含在Request Header中 <code>KINE-API-ACCESS-KEY</code></li>
 <li><code>SecretKey</code>  用于计算签名的秘钥。</li>
 <li><code>Timestamp</code> 毫秒时间戳 需要包含在request header <code>KINE-API-TS</code></li>
@@ -883,7 +883,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>yes</td>
 <td></td>
 <td>交易方向</td>
-<td>BUY, SELL</td>
+<td>BUY买入, SELL卖出</td>
 </tr>
 <tr>
 <td>type</td>
@@ -891,12 +891,12 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>yes</td>
 <td></td>
 <td>订单类型</td>
-<td>1 市价单，2 条件单</td>
+<td>1 市价单，7 条件单(现价单)</td>
 </tr>
 <tr>
 <td>positionId</td>
 <td>long</td>
-<td>yes</td>
+<td>no</td>
 <td></td>
 <td>开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID</td>
 <td>0</td>
@@ -1274,7 +1274,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <h3 id='6483dab423-8'>返回值</h3>
 <p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
 <h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET /trade/api/order/v2/cancel-order</code></p>
+<p><code>POST /trade/api/order/v2/cancel-order</code></p>
 <h3 id='required-permission-8'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-7'>请求参数</h3>
@@ -1305,7 +1305,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-9'>返回值</h3>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-9'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
