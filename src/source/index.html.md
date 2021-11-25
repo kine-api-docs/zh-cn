@@ -365,7 +365,9 @@ triggerPrice    | string | no |     | 当下条件单（限价单）时需要传
   "symbol":"BTCUSD",
   "direct":"BUY",
   "type":"7",
-  "baseAmount":"0.001"
+  "baseAmount":"0.001",
+  "triggerPrice": "50000",
+  "price": "55000"
 }
 ```
 
