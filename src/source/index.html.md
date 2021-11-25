@@ -348,7 +348,8 @@ stopLossPrice   | string | no |     | 如果市价单同时下止损单，需要
 price           | string | no |     | 当前指数价格 |  0 |
 triggerPrice    | string | no |     | 当下条件单（限价单）时需要传入触发价格 |  0 |
 
- > 市价买入 (type = 1)
+#### 市价买入 (type = 1)
+
 ```json
 {
   "symbol": "BTCUSD",
@@ -359,7 +360,8 @@ triggerPrice    | string | no |     | 当下条件单（限价单）时需要传
 }
 ```
 
-> 限价买入  (type = 7)
+#### 限价买入  (type = 7)
+
 ```json
 {
   "symbol":"BTCUSD",
@@ -371,7 +373,8 @@ triggerPrice    | string | no |     | 当下条件单（限价单）时需要传
 }
 ```
 
-> 市价卖出平仓  (type = 1, 平掉仓位 10000265)
+#### 市价卖出平仓  (type = 1, 平掉仓位 10000265)
+
 ```json
 {
   "baseAmount":0.001,
