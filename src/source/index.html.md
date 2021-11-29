@@ -21,9 +21,15 @@ code_clipboard: true
 
 # 更新历史
 
+## 2021-11-29
+
+增加了DEMO链接
+
+https://github.com/kine-api-docs/demo
+
 ## 2021-11-19
 
-* 中文文档 - 更新中
+* 中文文档
 
 # 简介
 
@@ -32,6 +38,9 @@ code_clipboard: true
 您可以通过API来访问KINE平台数据，用于下单、撤单、查询订单、获取账户信息等。
 
 我们提供了两种类型的接口: RESTFUL接口和WebSocket订阅。
+
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
 
 
 ## REST API
@@ -120,6 +129,9 @@ API Key 权限
 
 每一个API Key有权限范围，请确保您的 API Key有调用相关接口的权限。
 
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
+
 请求中，一个合法的签名是根据以下信息计算得出的:
 
 * `Request Method`  GET/POST  (Websocket 签名请使用 GET)
@@ -163,6 +175,9 @@ clientOrderId=123&status=2
 签名方法可以使用不同的语言实现。 右侧提供了Java和Python两种编程语言的实现。
 
 其它编程语言请自行百度 (HMAC SHA256)。
+
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
 
 > 签名样例
 
@@ -1101,6 +1116,9 @@ code  | string  |   错误码 | |
 # WebSocket API
 
 WebSocket API 提供了市场数据，账户更新的订阅。 以topic进行订阅，订阅后将收到相应数据的更新。
+
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
 
 ## 身份认证 (Authentication)
 
