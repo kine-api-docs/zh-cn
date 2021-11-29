@@ -23,9 +23,11 @@ code_clipboard: true
 
 ## 2021-11-29
 
-增加了DEMO链接
-
+1. 增加了DEMO链接
 https://github.com/kine-api-docs/demo
+2. 增加了签名问题排查建议
+3. 增加了content-type的说明。 统一使用：application/json;charset=utf-8
+
 
 ## 2021-11-19
 
@@ -39,13 +41,20 @@ https://github.com/kine-api-docs/demo
 
 我们提供了两种类型的接口: RESTFUL接口和WebSocket订阅。
 
+<aside class="notice">
 为了使您快速接入，我们提供了DEMO供您参考。
 https://github.com/kine-api-docs/demo
-
+</aside>
 
 ## REST API
 
 建议您使用REST API来完成一次性的操作，例如下单，撤单等。
+
+<aside class="notice">
+注意: 
+我们的REST API请求统一使用 
+content-type: application/json;charset=utf-8 
+</aside>
 
 ## WebSocket API
 
@@ -218,6 +227,16 @@ KINE-API-TS: 1618561349256
 KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 ```
+
+
+### 问题排查
+
+当接口调用返回签名错误时，请检查
+
+1. Request Header 是否包含了文档中提到的必填项  KINE-API-XXX
+2. 请打印出计算签名用的payload并仔细检查。 注意换行、空格
+3. 请参考DEMO代码，检查你的代码逻辑。 https://github.com/kine-api-docs/demo
+4. 如果依然无法解决，请联系我们的客服，我们的技术人员将帮助你解决。
 
 
 # Market Data API 市场数据

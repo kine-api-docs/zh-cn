@@ -454,9 +454,12 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='fce908f544'>更新历史</h1><h2 id='2021-11-29'>2021-11-29</h2>
-<p>增加了DEMO链接</p>
-
-<p>https://github.com/kine-api-docs/demo</p>
+<ol>
+<li>增加了DEMO链接
+https://github.com/kine-api-docs/demo</li>
+<li>增加了签名问题排查建议</li>
+<li>增加了content-type的说明。 统一使用：application/json;charset=utf-8</li>
+</ol>
 <h2 id='2021-11-19'>2021-11-19</h2>
 <ul>
 <li>中文文档</li>
@@ -468,10 +471,18 @@
 
 <p>我们提供了两种类型的接口: RESTFUL接口和WebSocket订阅。</p>
 
-<p>为了使您快速接入，我们提供了DEMO供您参考。
-https://github.com/kine-api-docs/demo</p>
+<aside class="notice">
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
+</aside>
 <h2 id='rest-api'>REST API</h2>
 <p>建议您使用REST API来完成一次性的操作，例如下单，撤单等。</p>
+
+<aside class="notice">
+注意: 
+我们的REST API请求统一使用 
+content-type: application/json;charset=utf-8 
+</aside>
 <h2 id='websocket-api'>WebSocket API</h2>
 <p>建议您使用WebSocket API来获取数据更新。例如：市场数据，账户更新，订单更新等。</p>
 <h2 id='1da6708ecc'>鉴权</h2>
@@ -614,7 +625,16 @@ Headers:
 KINE-API-TS: 1618561349256
 KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
 KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
-</code></pre></div><h1 id='market-data-api'>Market Data API 市场数据</h1>
+</code></pre></div><h3 id='4e56a8d197'>问题排查</h3>
+<p>当接口调用返回签名错误时，请检查</p>
+
+<ol>
+<li>Request Header 是否包含了文档中提到的必填项  KINE-API-XXX</li>
+<li>请打印出计算签名用的payload并仔细检查。 注意换行、空格</li>
+<li>请参考DEMO代码，检查你的代码逻辑。 https://github.com/kine-api-docs/demo</li>
+<li>如果依然无法解决，请联系我们的客服，我们的技术人员将帮助你解决。</li>
+</ol>
+<h1 id='market-data-api'>Market Data API 市场数据</h1>
 <p>市场数据API是公开接口，不需要签名</p>
 <h2 id='03160fd1d2'>查询所有交易对以及交易规则</h2><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /market/api/trading-rules</code></p>
