@@ -236,7 +236,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 1. Request Header 是否包含了文档中提到的必填项  KINE-API-XXX
 2. 请打印出计算签名用的payload并仔细检查。 注意换行、空格
 3. 请参考DEMO代码，检查你的代码逻辑。 https://github.com/kine-api-docs/demo
-4. 如果依然无法解决，请联系我们的客服，我们的技术人员将帮助你解决。
+4. 如果依然无法解决，请联系我们的客服，我们的技术人员将帮助你解决。  
+   [电报群](https://t.me/kine_api_support) 
 
 
 # Market Data API 市场数据
@@ -1491,3 +1492,4 @@ V2版本的账户快照推送。
 
 # Reference
 
+API对接技术支持 [电报群](https://t.me/kine_api_support) 
