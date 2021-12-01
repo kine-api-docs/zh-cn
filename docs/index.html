@@ -310,6 +310,9 @@
             <a href="#fce908f544" class="toc-h1 toc-link" data-title="更新历史">更新历史</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-12-03" class="toc-h2 toc-link" data-title="2021-12-03">2021-12-03</a>
+                  </li>
+                  <li>
                     <a href="#2021-11-29" class="toc-h2 toc-link" data-title="2021-11-29">2021-11-29</a>
                   </li>
                   <li>
@@ -437,6 +440,9 @@
                   <li>
                     <a href="#v2" class="toc-h2 toc-link" data-title="账户更新V2">账户更新V2</a>
                   </li>
+                  <li>
+                    <a href="#c680da3fc7" class="toc-h2 toc-link" data-title="订单更新">订单更新</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -453,7 +459,12 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-11-29'>2021-11-29</h2>
+        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-12-03'>2021-12-03</h2>
+<ol>
+<li>订单查询，增加条件单，止盈止损单相关字段。  数量，触发价，订单类型</li>
+<li>Websocket增加订单更新通知。  topic: <code>order.all</code></li>
+</ol>
+<h2 id='2021-11-29'>2021-11-29</h2>
 <ol>
 <li>增加了DEMO链接
 https://github.com/kine-api-docs/demo</li>
@@ -505,6 +516,12 @@ content-type: application/json;charset=utf-8
 
 <p>关于Websocket长链接，关于连接数，消息发送速率，链接最大存活时间我们也有相关的限制。
 具体请参考 <code>WebSocket API</code> - <code>Session limit</code></p>
+
+<aside class="warning">
+注意: 
+如果您调用很频繁可能遇到 403 的错误， 这是被防火墙拦截了。 请您尽量使用websocket来获取最新数据的更新而不是频繁查询接口。
+如您确实需要更高频率的调用，请联系我们的客服。  
+</aside>
 <h2 id='security'>Security 安全</h2><h3 id='42a39dec26'>使用签名进行身份认证</h3>
 <p><code>SIGNED</code> 接口调用，需要额外的Http Request Headers: </p>
 
@@ -1119,6 +1136,24 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 <tr>
+<td>type</td>
+<td>int</td>
+<td>1 市价单 2 条件单（&lt;=触发价）3 条件单（&gt;=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerPrice</td>
+<td>string</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>conditionalBaseAmount</td>
+<td>string</td>
+<td>条件单、止盈止损单请求数量</td>
+<td></td>
+</tr>
+<tr>
 <td>executedPrice</td>
 <td>string</td>
 <td>成交价格</td>
@@ -1267,6 +1302,24 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>direct</td>
 <td>string</td>
 <td>BUY买入，SELL卖出</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>1 市价单 2 条件单（&lt;=触发价）3 条件单（&gt;=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerPrice</td>
+<td>string</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>conditionalBaseAmount</td>
+<td>string</td>
+<td>条件单、止盈止损单请求数量</td>
 <td></td>
 </tr>
 <tr>
@@ -2416,6 +2469,10 @@ accessKey=xxxxxxxxxxxx
 <td>account-v2.all</td>
 <td>账户更新 V2</td>
 </tr>
+<tr>
+<td>order.all</td>
+<td>订单更新 ， 数据格式与订单查询接口保持一致</td>
+</tr>
 </tbody></table>
 <h2 id='8202557066'>价格更新数据流</h2>
 <p>Price topic : <code>md.index-price.aggregated</code></p>
@@ -2554,6 +2611,48 @@ accessKey=xxxxxxxxxxxx
   </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="err">&lt;&lt;&lt;数据格式与/account/api/v</span><span class="mi">2</span><span class="err">/account-balances接口数据保持一致，请参考其接口定义&gt;&gt;&gt;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='c680da3fc7'>订单更新</h2>
+<p>Topic: <code>order.all</code></p>
+
+<p>订单更新消息， 每次订单状态的变化都会触发订单更新推送。</p>
+
+<p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
+
+<blockquote>
+<p>Subscribe Order update</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646724055</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">&lt;&lt;&lt;返回数据格式参考</span><span class="w"> </span><span class="err">`GET</span><span class="w"> </span><span class="err">/trade/api/order/v</span><span class="mi">2</span><span class="err">/all-orders`&gt;&gt;&gt;</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='reference'>Reference</h1>
