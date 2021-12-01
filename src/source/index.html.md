@@ -545,7 +545,7 @@ orderID             | long       | 订单ID|  |
 clientOrderID       | string     | 订单ClientOrderId|  |
 symbol              | string     | 交易对|  |
 direct              | string     | BUY买入，SELL卖出 |  |
-type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓当 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
+type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
 triggerPrice        | string     | 触发价 |  |
 conditionalBaseAmount  | string     | 条件单、止盈止损单请求数量 |  |
 executedPrice       | string     | 成交价格 |  |
