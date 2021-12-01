@@ -21,6 +21,12 @@ code_clipboard: true
 
 # 更新历史
 
+
+## 2021-12-03
+
+1. 订单查询，增加条件单，止盈止损单相关字段。  数量，触发价，订单类型
+2. Websocket增加订单更新通知。  topic: `order.all`
+
 ## 2021-11-29
 
 1. 增加了DEMO链接
@@ -91,6 +97,12 @@ REST 和 WebSocket 接口都有公开接口和私有接口:
 
 关于Websocket长链接，关于连接数，消息发送速率，链接最大存活时间我们也有相关的限制。
 具体请参考 `WebSocket API` - `Session limit`
+
+<aside class="warning">
+注意: 
+如果您调用很频繁可能遇到 403 的错误， 这是被防火墙拦截了。 请您尽量使用websocket来获取最新数据的更新而不是频繁查询接口。
+如您确实需要更高频率的调用，请联系我们的客服。  
+</aside>
 
 ## Security 安全
 
@@ -473,6 +485,9 @@ orderID             | long       | 订单ID|  |
 clientOrderID       | string     | 订单ClientOrderId|  |
 symbol              | string     | 交易对|  |
 direct              | string     | BUY买入，SELL卖出 |  |
+type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
+triggerPrice        | string     | 触发价 |  |
+conditionalBaseAmount  | string     | 条件单、止盈止损单请求数量 |  |
 executedPrice       | string     | 成交价格 |  |
 executedAmount      | string     | 成交数量 |  |
 executedQuoteAmount | string     | 成交金额  |  |
@@ -530,6 +545,9 @@ orderID             | long       | 订单ID|  |
 clientOrderID       | string     | 订单ClientOrderId|  |
 symbol              | string     | 交易对|  |
 direct              | string     | BUY买入，SELL卖出 |  |
+type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓当 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
+triggerPrice        | string     | 触发价 |  |
+conditionalBaseAmount  | string     | 条件单、止盈止损单请求数量 |  |
 executedPrice       | string     | 成交价格 |  |
 executedAmount      | string     | 成交数量 |  |
 executedQuoteAmount | string     | 成交金额  |  |
@@ -1359,6 +1377,7 @@ Limit | Limit Type | Limit Value | Deesc |
 |--- | ----|
 |  md.index-price.aggregated   | 聚合价格，包括所有资产的价格更新    |
 |  account-v2.all   |  账户更新 V2   |
+|  order.all   |  订单更新 ， 数据格式与订单查询接口保持一致  |
 
 ## 价格更新数据流
 
@@ -1488,6 +1507,52 @@ V2版本的账户快照推送。
 }
 ```
 
+## 订单更新
+
+Topic: `order.all`
+
+订单更新消息， 每次订单状态的变化都会触发订单更新推送。
+
+返回数据格式参考 `GET /trade/api/order/v2/all-orders`
+
+> Subscribe Order update
+
+```json
+{
+  "op": "SUB",
+  "ts": 1618646724055,
+  "data": {
+    "topic": "order.all"
+  }
+}
+```
+
+> Subscribe response
+
+```json
+{
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618646119344,
+  "data": {
+    "topic": "order.all"
+  }
+}
+```
+
+> Order
+
+```json
+{
+  "topic": "order.all",
+  "status": "success",
+  "op": "DATA",
+  "ts": 1618990231304,
+  "data": {
+    <<<返回数据格式参考 `GET /trade/api/order/v2/all-orders`>>>
+  }
+}
+```
 
 
 # Reference
