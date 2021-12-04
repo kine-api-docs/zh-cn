@@ -22,6 +22,10 @@ code_clipboard: true
 # 更新历史
 
 
+## 2021-12-04
+
+增加订单状态描述
+
 ## 2021-12-03
 
 1. 订单查询，增加条件单，止盈止损单相关字段。  数量，触发价，订单类型
@@ -492,7 +496,7 @@ executedPrice       | string     | 成交价格 |  |
 executedAmount      | string     | 成交数量 |  |
 executedQuoteAmount | string     | 成交金额  |  |
 fee                 | string     | 手续费 |  |
-status              | string     | 订单状态 |  |
+status              | string     | 订单状态     NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交|  |
 profit              | string     | 盈亏 |  |
 timestamp           | long       | 订单成交时间 |  |
 
@@ -552,7 +556,7 @@ executedPrice       | string     | 成交价格 |  |
 executedAmount      | string     | 成交数量 |  |
 executedQuoteAmount | string     | 成交金额  |  |
 fee                 | string     | 手续费 |  |
-status              | string     | 订单状态 |  |
+status              | string     | 订单状态 NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交 |  |
 profit              | string     | 盈亏 |  |
 timestamp           | long       | 订单成交时间 |  |
 

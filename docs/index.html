@@ -310,6 +310,9 @@
             <a href="#fce908f544" class="toc-h1 toc-link" data-title="更新历史">更新历史</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-12-04" class="toc-h2 toc-link" data-title="2021-12-04">2021-12-04</a>
+                  </li>
+                  <li>
                     <a href="#2021-12-03" class="toc-h2 toc-link" data-title="2021-12-03">2021-12-03</a>
                   </li>
                   <li>
@@ -459,7 +462,9 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-12-03'>2021-12-03</h2>
+        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-12-04'>2021-12-04</h2>
+<p>增加订单状态描述</p>
+<h2 id='2021-12-03'>2021-12-03</h2>
 <ol>
 <li>订单查询，增加条件单，止盈止损单相关字段。  数量，触发价，订单类型</li>
 <li>Websocket增加订单更新通知。  topic: <code>order.all</code></li>
@@ -1180,7 +1185,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <tr>
 <td>status</td>
 <td>string</td>
-<td>订单状态</td>
+<td>订单状态     NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交</td>
 <td></td>
 </tr>
 <tr>
@@ -1349,7 +1354,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <tr>
 <td>status</td>
 <td>string</td>
-<td>订单状态</td>
+<td>订单状态 NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交</td>
 <td></td>
 </tr>
 <tr>
