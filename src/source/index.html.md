@@ -374,7 +374,7 @@ timestamp | long  | 响应时间 |  |
 
 # 交易API
 
-## 下单
+## 下单（市价单，限价单）
 
 ### HTTP Request
 
@@ -458,6 +458,66 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
       },
     "stopProfitResult":null,
     "stopLossResult":null
+    }
+  }
+```
+
+
+## 下单（止盈止损）
+
+### HTTP Request
+
+`POST /api/order/v2/place-profit-loss`
+
+> 下单请求参数示例
+
+```json
+{
+  "symbol": "BTCUSD",
+  "direct": "SELL",
+  "positionId": "100000",
+  "clientOrderID": "test-321",
+  "clientPrice": "50000",
+  "stopProfitPrice" : "60000",
+  "stopProfitAmount" : "0.1",
+  "stopLossPrice" : "55000",
+  "stopLossAmount" : "0.1"
+}
+```
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol           | string | yes |    | 交易对     |  |
+direct           | string | yes |    | 交易方向   |  BUY买入, SELL卖出|
+positionId       | long   | yes |    | 开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID |  0 |
+clientOrderId    | string | no  |    | clientOrderId , which given by user | Valid character, A-Z,a-z,0-9,_,- length <= 128|
+clientPrice      | string | yes |    | 指数价格   |  0 |
+stopProfitPrice  | string | no  |    | 止盈价     |  0 |
+stopProfitAmount | string | no  |    | 止盈数量   |  0 |
+stopLossPrice    | string | no  |    | 止损价     |  0 |
+stopLossAmount   | string | no  |    | 止损数量   |  0 |
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+stopProfitResult | string  | 止盈订单下单结果，空字符串表示成功，非空表示失败 |  |
+stopLossResult   | string  | 止损订单下单结果，空字符串表示成功，非空表示失败 |  |
+
+```json
+{
+  "success":true,
+  "code":200,
+  "message":null,
+  "data":{
+    "stopProfitResult":"",
+    "stopLossResult":""
     }
   }
 ```
