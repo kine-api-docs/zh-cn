@@ -1621,4 +1621,6 @@ Topic: `order.all`
 
 # Reference
 
-API对接技术支持 [电报群](https://t.me/kine_api_support) 
+API对接技术支持(技术不在线时请耐心等待或创建工单) [电报群](https://t.me/kine_api_support) 
+
+创建技术支持工单(24h内回复) [创建工单](https://github.com/kine-api-docs/zh-cn/issues/new?assignees=ray-kine&labels=support&template=api----.md&title=)
