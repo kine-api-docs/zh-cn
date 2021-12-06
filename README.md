@@ -1,3 +1,7 @@
+## 需要帮助？
+[创建Issue](https://github.com/kine-api-docs/zh-cn/issues/new?assignees=ray-kine&labels=support&template=api----.md&title=
+)
+
 # kine-api-docs.github.io
 Kine API 中文文档
 
