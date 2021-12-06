@@ -454,7 +454,10 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
         "success":true,
         "code":200,
         "message":null,
-        "data":""
+        "data": {
+          "orderId": 1000000,
+          "positionId": 1000001
+        }
       },
     "stopProfitResult":null,
     "stopLossResult":null
