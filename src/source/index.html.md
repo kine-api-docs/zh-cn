@@ -279,8 +279,11 @@ enabled       | boolean |  是否可交易 true:可交易，false不可交易 | 
 priceDecimal  | int     |  价格精度 |  |
 qtyDecimal    | int     |  数量精度 |  |
 amountDecimal | int     |  金额精度 |  |
-minQty        | string  |  最小下单数量 |  |
-minAmount     | string  |  最小下单金额 |  |
+minQty        | decimal  |  最小下单数量 |  |
+minAmount         | decimal  |  最小下单金额 |  |
+defaultMarginType | enum     |  默认账户类型 全仓:CROSSED 逐仓:ISOLATED |  |
+defaultLeverage   | decimal  |  默认杠杆 |  |
+maxLeverage       | decimal  |  最大杠杆 |  |
 
 
 ## 查询某个交易对的指数价格
