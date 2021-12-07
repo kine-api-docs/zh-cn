@@ -1070,7 +1070,10 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
         </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
         </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"data"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000001</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
     </span><span class="nl">"stopProfitResult"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"stopLossResult"</span><span class="p">:</span><span class="kc">null</span><span class="w">
@@ -1266,6 +1269,12 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 <tr>
+<td>positionId</td>
+<td>long</td>
+<td>0 表示没有对应的仓位ID 例如挂条件单</td>
+<td></td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>交易对</td>
@@ -1343,6 +1352,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3432259521202880500</span><span class="p">,</span><span class="w">
       </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123323443</span><span class="p">,</span><span class="w">
       </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"executedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4170.5"</span><span class="p">,</span><span class="w">
@@ -1432,6 +1442,12 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>clientOrderID</td>
 <td>string</td>
 <td>订单ClientOrderId</td>
+<td></td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>0 表示没有对应的仓位ID 例如挂条件单</td>
 <td></td>
 </tr>
 <tr>
@@ -2800,7 +2816,7 @@ accessKey=xxxxxxxxxxxx
 </span></code></pre></div><h1 id='reference'>Reference</h1>
 <p>API对接技术支持(技术不在线时请耐心等待或创建工单) <a href="https://t.me/kine_api_support">电报群</a> </p>
 
-<p>创建技术支持工单(24h内回复) <a href="https://github.com/kine-api-docs/zh-cn/issues/new?assignees=ray-kine&amp;labels=support&amp;template=api----.md&amp;title=">创建工单</a></p>
+<p>创建技术支持工单(24h内回复) <a href="https://github.com/kine-api-docs/zh-cn/issues/new/choose">创建工单</a></p>
 <h1 id='errors'>Errors</h1>
 <p>The Kine API uses the following error codes:</p>
 
