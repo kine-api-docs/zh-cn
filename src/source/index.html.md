@@ -550,6 +550,7 @@ clientOrderId  | string | no |    |  订单的clientOrderId|  |
 --------- | ----------- | -----------| ----------| 
 orderID             | long       | 订单ID|  |
 clientOrderID       | string     | 订单ClientOrderId|  |
+positionId          | long       |  0 表示没有对应的仓位ID 例如挂条件单 |   |
 symbol              | string     | 交易对|  |
 direct              | string     | BUY买入，SELL卖出 |  |
 type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
@@ -569,6 +570,7 @@ timestamp           | long       | 订单成交时间 |  |
   "data": {
       "orderID": 3432259521202880500,
       "clientOrderID": "",
+      "positionId": 123323443,
       "symbol": "ETHUSD",
       "direct": "SELL",
       "executedPrice": "4170.5",
@@ -610,6 +612,7 @@ limit    | number | no | 200 | 最大返回条数 |  |
 --------- | ----------- | -----------| ----------| 
 orderID             | long       | 订单ID|  |
 clientOrderID       | string     | 订单ClientOrderId|  |
+positionId          | long       | 0 表示没有对应的仓位ID 例如挂条件单 |   |
 symbol              | string     | 交易对|  |
 direct              | string     | BUY买入，SELL卖出 |  |
 type                | int        | 1 市价单 2 条件单（<=触发价）3 条件单（>=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单  |  |
@@ -1626,4 +1629,4 @@ Topic: `order.all`
 
 API对接技术支持(技术不在线时请耐心等待或创建工单) [电报群](https://t.me/kine_api_support) 
 
-创建技术支持工单(24h内回复) [创建工单](https://github.com/kine-api-docs/zh-cn/issues/new?assignees=ray-kine&labels=support&template=api----.md&title=)
+创建技术支持工单(24h内回复) [创建工单](https://github.com/kine-api-docs/zh-cn/issues/new/choose)
