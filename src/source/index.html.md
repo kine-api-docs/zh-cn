@@ -604,7 +604,7 @@ timestamp           | long       | 订单成交时间 |  |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol   | string | yes |  | 交易对 |  |
+symbol   | string | no |  | 交易对 |  |
 orderId  | number | no | 0 | 其实订单ID |  |
 startTs  | number | no |  | 开始时间 |  |
 endTs    | number | no |  | 结束时间 |  |
