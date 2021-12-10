@@ -473,7 +473,7 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
 
 ### HTTP Request
 
-`POST /api/order/v2/place-profit-loss`
+`POST /trade/api/order/v2/place-profit-loss`
 
 > 下单请求参数示例
 
