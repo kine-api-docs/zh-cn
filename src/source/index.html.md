@@ -21,6 +21,11 @@ code_clipboard: true
 
 # 更新历史
 
+## 2021-12-12
+
+1. 增加一键平仓 `POST /trade/api/order/v2/close-all`
+2. 增加合仓分仓设置接口 `POST /account/api/set-position-type`
+3. 增加合仓分仓获取接口 `GET /account/api/get-position-type`
 
 ## 2021-12-04
 
