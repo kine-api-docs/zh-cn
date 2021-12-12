@@ -310,6 +310,9 @@
             <a href="#fce908f544" class="toc-h1 toc-link" data-title="更新历史">更新历史</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#2021-12-12" class="toc-h2 toc-link" data-title="2021-12-12">2021-12-12</a>
+                  </li>
+                  <li>
                     <a href="#2021-12-04" class="toc-h2 toc-link" data-title="2021-12-04">2021-12-04</a>
                   </li>
                   <li>
@@ -386,6 +389,9 @@
                     <a href="#eff2251e79" class="toc-h2 toc-link" data-title="下单（止盈止损）">下单（止盈止损）</a>
                   </li>
                   <li>
+                    <a href="#f26a93903f" class="toc-h2 toc-link" data-title="一键平仓">一键平仓</a>
+                  </li>
+                  <li>
                     <a href="#28e72153cd" class="toc-h2 toc-link" data-title="单个订单查询">单个订单查询</a>
                   </li>
                   <li>
@@ -413,6 +419,12 @@
                   </li>
                   <li>
                     <a href="#322a696edb" class="toc-h2 toc-link" data-title="账户 逐仓切换全仓">账户 逐仓切换全仓</a>
+                  </li>
+                  <li>
+                    <a href="#67fb858401" class="toc-h2 toc-link" data-title="账户 设置合仓,分仓">账户 设置合仓,分仓</a>
+                  </li>
+                  <li>
+                    <a href="#7e34937bab" class="toc-h2 toc-link" data-title="账户 获取合仓,分仓">账户 获取合仓,分仓</a>
                   </li>
                   <li>
                     <a href="#4b79a3b7a1" class="toc-h2 toc-link" data-title="账户财务历史">账户财务历史</a>
@@ -465,7 +477,13 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-12-04'>2021-12-04</h2>
+        <h1 id='fce908f544'>更新历史</h1><h2 id='2021-12-12'>2021-12-12</h2>
+<ol>
+<li>增加一键平仓 <code>POST /trade/api/order/v2/close-all</code></li>
+<li>增加合仓分仓设置接口 <code>POST /account/api/set-position-type</code></li>
+<li>增加合仓分仓获取接口 <code>GET /account/api/get-position-type</code></li>
+</ol>
+<h2 id='2021-12-04'>2021-12-04</h2>
 <p>增加订单状态描述</p>
 <h2 id='2021-12-03'>2021-12-03</h2>
 <ol>
@@ -1231,11 +1249,93 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
     </span><span class="nl">"stopLossResult"</span><span class="p">:</span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='f26a93903f'>一键平仓</h2>
+<ul>
+<li>支持一键平掉用户的所有仓位</li>
+<li>支持一键平掉用户在某个交易对上的所有仓位</li>
+<li>支持一键平掉某一个指定仓位</li>
+</ul>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/close-all</code></p>
+
+<blockquote>
+<p>平掉 BTC上的指定仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000001</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉 BTC上的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉 BTC,ETH上的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="s2">"ETHUSD"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉用户的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='required-permission-6'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-3'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbols</td>
+<td>array</td>
+<td>no</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>no</td>
+<td></td>
+<td>仓位Id</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-7'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span></code></pre></div><h2 id='28e72153cd'>单个订单查询</h2>
 <p>根据订单orderId或者clientOrderId获取订单数据</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/order</code></p>
-<h3 id='required-permission-6'>Required Permission</h3>
+<h3 id='required-permission-7'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
@@ -1265,7 +1365,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-7'>返回值</h3>
+<h3 id='6483dab423-8'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1385,9 +1485,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='b2ab67e640'>查询历史订单列表</h2><h3 id='http-request-8'>HTTP Request</h3>
+</span></code></pre></div><h2 id='b2ab67e640'>查询历史订单列表</h2><h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/all-orders</code></p>
-<h3 id='required-permission-7'>Required Permission</h3>
+<h3 id='required-permission-8'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
@@ -1441,7 +1541,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-8'>返回值</h3>
+<h3 id='6483dab423-9'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1560,17 +1660,17 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='16d62256fe'>查询委托订单</h2><h3 id='http-request-9'>HTTP Request</h3>
+</span></code></pre></div><h2 id='16d62256fe'>查询委托订单</h2><h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/open-orders</code></p>
-<h3 id='required-permission-8'>Required Permission</h3>
+<h3 id='required-permission-9'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-6'>请求参数</h3>
 <p>无</p>
-<h3 id='6483dab423-9'>返回值</h3>
+<h3 id='6483dab423-10'>返回值</h3>
 <p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
-<h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-10'>HTTP Request</h3>
+<h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /trade/api/order/v2/cancel-order</code></p>
-<h3 id='required-permission-9'>Required Permission</h3>
+<h3 id='required-permission-10'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
@@ -1604,7 +1704,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-10'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-11'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1710,11 +1810,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>Illegal client order ID</td>
 </tr>
 </tbody></table>
-<h1 id='api-2'>账户API</h1><h2 id='d4dc015dc3'>查询用户资产</h2><h3 id='http-request-11'>HTTP Request</h3>
+<h1 id='api-2'>账户API</h1><h2 id='d4dc015dc3'>查询用户资产</h2><h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET /account/api/v2/account-positions</code></p>
-<h3 id='required-permission-10'>Required Permission</h3>
+<h3 id='required-permission-11'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='6483dab423-11'>返回值</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='6483dab423-12'>返回值</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1855,11 +1955,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>分仓模式下，调整账户杠杆，只影响新的开仓，不影响已有仓位的杠杆</li>
 <li>合仓模式下，会改变账户和已存在仓位的杠杆</li>
 </ul>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST /account/api/update-leverage</code></p>
-<h3 id='required-permission-11'>Required Permission</h3>
+<h3 id='required-permission-12'>Required Permission</h3>
 <p><code>Trade</code></p>
-<h3 id='request-body-json-3'>Request Body(Json)</h3>
+<h3 id='request-body-json-4'>Request Body(Json)</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1890,69 +1990,6 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-12'>返回值</h3>
-<table><thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>描述</th>
-<th>举例</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>success</td>
-<td>boolean</td>
-<td>true: 成功, false: 失败</td>
-<td></td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>错误描述</td>
-<td></td>
-</tr>
-<tr>
-<td>code</td>
-<td>string</td>
-<td>错误码</td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "code": 0,
-  "data": true,
-  "message": "string",
-  "success": true
-}
-</code></pre></div><h2 id='5bba295f56'>账户 全仓切换逐仓</h2>
-<p>全仓账户切换逐仓账户：当前账户不能有仓位和挂单</p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>POST /account/api/swap-to-isolated</code></p>
-<h3 id='required-permission-12'>Required Permission</h3>
-<p><code>Trade</code></p>
-<h3 id='json'>参数 (Json)</h3>
-<table><thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>是否必须</th>
-<th>默认值</th>
-<th>描述</th>
-<th>举例</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>yes</td>
-<td></td>
-<td>交易对</td>
-<td></td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='6483dab423-13'>返回值</h3>
 <table><thead>
@@ -1988,13 +2025,13 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   "message": "string",
   "success": true
 }
-</code></pre></div><h2 id='322a696edb'>账户 逐仓切换全仓</h2>
-<p>逐仓账户切换全仓账户：当前账户不能有仓位和挂单</p>
+</code></pre></div><h2 id='5bba295f56'>账户 全仓切换逐仓</h2>
+<p>全仓账户切换逐仓账户：当前账户不能有仓位和挂单</p>
 <h3 id='http-request-14'>HTTP Request</h3>
-<p><code>POST /account/api/swap-to-crossed</code></p>
+<p><code>POST /account/api/swap-to-isolated</code></p>
 <h3 id='required-permission-13'>Required Permission</h3>
 <p><code>Trade</code></p>
-<h3 id='json-2'>参数 (Json)</h3>
+<h3 id='json'>参数 (Json)</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2051,9 +2088,205 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   "message": "string",
   "success": true
 }
-</code></pre></div><h2 id='4b79a3b7a1'>账户财务历史</h2><h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET /account/api/account-history</code></p>
+</code></pre></div><h2 id='322a696edb'>账户 逐仓切换全仓</h2>
+<p>逐仓账户切换全仓账户：当前账户不能有仓位和挂单</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-crossed</code></p>
 <h3 id='required-permission-14'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-2'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-15'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='67fb858401'>账户 设置合仓,分仓</h2>
+<ul>
+<li>合仓：一个交易对上最多只能有一个仓位</li>
+<li>分仓：一个交易对上支持有多个仓位</li>
+</ul>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST /account/api/set-position-type</code></p>
+<h3 id='required-permission-15'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-3'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>positionType</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>合仓: 1, 分仓: 2</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"positionType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-16'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='7e34937bab'>账户 获取合仓,分仓</h2>
+<ul>
+<li>合仓：一个交易对上最多只能有一个仓位</li>
+<li>分仓：一个交易对上支持有多个仓位</li>
+</ul>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET /account/api/get-position-type</code></p>
+<h3 id='required-permission-16'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-4'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='6483dab423-17'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>int</td>
+<td>合仓: 1, 分仓: 2</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='4b79a3b7a1'>账户财务历史</h2><h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET /account/api/account-history</code></p>
+<h3 id='required-permission-17'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <div class="highlight"><pre class="highlight plaintext"><code>操作枚举
 1 - DEPOSIT,
@@ -2142,7 +2375,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <p><code>http request
 GET /account/api/account-history?startTime=1619798400000&amp;endTime=1619798460000&amp;currency=kUSD&amp;action=1&amp;page=2&amp;size=10
 </code></p>
-<h3 id='6483dab423-15'>返回值</h3>
+<h3 id='6483dab423-18'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2251,11 +2484,11 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <li>划转钱包保证金到交易账户（全仓），即增加全仓保证金</li>
 <li>交易账户（全仓）划转到钱包保证金账户，即减少全仓保证金</li>
 </ol>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST /account/api/transfer</code></p>
-<h3 id='required-permission-15'>Required Permission</h3>
+<h3 id='required-permission-18'>Required Permission</h3>
 <p><code>Trade</code></p>
-<h3 id='json-3'>请求 (Json)</h3>
+<h3 id='json-5'>请求 (Json)</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2287,7 +2520,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-16'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-19'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2326,11 +2559,11 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <li>全仓交易账户转入逐仓交易账户，即增加逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
 <li>逐仓交易账户转入全仓交易账户，即减少逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
 </ol>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>POST /account/api/isolated-transfer</code></p>
-<h3 id='required-permission-16'>Required Permission</h3>
+<h3 id='required-permission-19'>Required Permission</h3>
 <p><code>Trade</code></p>
-<h3 id='json-4'>请求 (Json)</h3>
+<h3 id='json-6'>请求 (Json)</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2380,7 +2613,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="nl">"positionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-17'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-20'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
