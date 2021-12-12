@@ -528,6 +528,74 @@ stopLossResult   | string  | 止损订单下单结果，空字符串表示成功
   }
 ```
 
+
+## 一键平仓
+ - 支持一键平掉用户的所有仓位
+ - 支持一键平掉用户在某个交易对上的所有仓位
+ - 支持一键平掉某一个指定仓位
+
+### HTTP Request
+
+`POST /trade/api/order/v2/close-all`
+
+> 平掉 BTC上的指定仓位
+
+```json
+{
+  "symbols": ["BTCUSD"],
+  "positionId": 10000001
+}
+```
+
+
+> 平掉 BTC上的所有仓位
+
+```json
+{
+  "symbols": ["BTCUSD"]
+}
+```
+
+> 平掉 BTC,ETH上的所有仓位
+
+```json
+{
+  "symbols": ["BTCUSD","ETHUSD"]
+}
+```
+
+> 平掉用户的所有仓位
+
+```json
+{
+  
+}
+```
+
+### Required Permission
+
+`Trade`
+
+### Request Body(Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbols          | array  | no |    | 交易对     |  |
+positionId       | long   | no |    | 仓位Id |  0 |
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+
+```json
+{
+  "success":true,
+  "code":200,
+  "message":null,
+  "data": ""
+```
+
 ## 单个订单查询
 
 根据订单orderId或者clientOrderId获取订单数据
@@ -999,6 +1067,90 @@ symbol | string | yes |    | 交易对 | |
 success | boolean  | true: 成功, false: 失败 | |
 message | string  |  错误描述 | |
 code  | string  |   错误码 | |
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+
+## 账户 设置合仓,分仓
+
+- 合仓：一个交易对上最多只能有一个仓位
+- 分仓：一个交易对上支持有多个仓位
+
+### HTTP Request
+
+`POST /account/api/set-position-type`
+
+
+### Required Permission
+
+`Trade`
+
+### 参数 (Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例|
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+positionType | int | yes |    | 合仓: 1, 分仓: 2 | |
+
+```json
+{
+  "positionType": 2
+}
+```
+
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: 成功, false: 失败 | |
+message | string   | 错误描述 | |
+code    | string   | 错误码 | |
+data    | boolean  | true: 成功, false: 失败 | | 
+
+```
+{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+```
+
+
+## 账户 获取合仓,分仓
+
+- 合仓：一个交易对上最多只能有一个仓位
+- 分仓：一个交易对上支持有多个仓位
+
+### HTTP Request
+
+`GET /account/api/get-position-type`
+
+
+### Required Permission
+
+`Trade`
+
+### 参数 (Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例|
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+
+
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+success | boolean  | true: 成功, false: 失败 | |
+message | string  |  错误描述 | |
+code    | int  |   错误码 | |
+data    | int  |   合仓: 1, 分仓: 2 | | 
 
 ```
 {
