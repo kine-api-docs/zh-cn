@@ -803,7 +803,40 @@ Error Code | Description |
 31203 | Invalid direction |
 31204 | Illegal client order ID |
 
+
 # 账户API
+
+## 查询用户UID
+
+### HTTP Request
+
+`GET /account/api/v2/user-id`
+
+### Required Permission
+
+`ReadOnly`
+
+### 请求参数
+无
+
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+success | boolean |  true: 成功, false: 失败 | |
+message | string  |  错误描述     | |
+code    | string  |  错误码       | |
+data    | long    |  当前用户的UID| |
+
+```json
+{
+  "code": 0,
+  "data": 1000000,
+  "message": "string",
+  "success": true
+}
+```
+
 
 ## 查询用户资产
 
