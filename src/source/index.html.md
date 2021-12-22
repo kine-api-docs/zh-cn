@@ -21,6 +21,10 @@ code_clipboard: true
 
 # 更新历史
 
+## 2021-12-22
+
+1. 增加K线历史查询接口， 以及订订阅
+
 ## 2021-12-12
 
 1. 增加一键平仓 `POST /trade/api/order/v2/close-all`
@@ -379,6 +383,78 @@ fundingRate | string  | 当前资金费率 |  |
 estifundingRate | string  | 预测资金费率 |  |
 nextFundingTime | long  | 资金费率收取时间 |  |
 timestamp | long  | 响应时间 |  |
+
+## 查询K线历史
+
+### HTTP Request
+
+`GET /market/api/kline`
+
+该接口用于查询k线历史。
+如需获取实时k线，请通过websocket订阅实时k线更新。
+
+>K线数据示例
+
+```json
+{
+  "success": true,
+  "code": 200,
+  "message": null,
+  "data": {
+    "lines": [
+      [
+        1639973820000,  // k线时间戳， 时间区间的起始时间戳
+        46854,          // open  起始价格
+        46928,          // high  最高价
+        46833,          // low 最低价
+        46928,          // close 结束价格
+        0               // 交易量 金额USD
+      ],
+      [
+        1639973880000,
+        46906,
+        46926,
+        46873,
+        46904,
+        0
+      ],
+      [
+        1639973940000,
+        46902,
+        46938,
+        46902,
+        46912,
+        0
+      ]
+    ]
+  }
+}
+
+```
+
+### 请求参数
+
+参数 | 类型 | 是否必须 |默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes | false   |  交易对 |  BTCUSD |
+period | string | yes | false   |  k线周期 |  "1min","5min","15min","30min","60min","4hour","1day","1week","1mon" |
+size | string | false | 150   |  kline历史条数， 默认150， 最大2000 |  查询历史多少根k线 |
+
+### 返回值
+
+为减少数据大小， 这里使用了精简的数据结构。 二维数组来表示k线数据。
+每一行是一根k线， 数据中每个位置的数据定义，请参考下列表格， 或者右侧示例。
+
+** 返回数据包含历史数据（size） + 1 (最新实时kline)
+
+字段索引 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+0 | long  |  k线起始时间戳 |  |
+1 | number  | open ， 起始价格 |  |
+2 | number  | high ， 最高价格 |  |
+3 | number  | low， 最低价格 |  |
+4 | number  | close， 结束价格 |  |
+5 | number  | 交易金额USD |  |
 
 # 交易API
 
@@ -1641,6 +1717,7 @@ Limit | Limit Type | Limit Value | Deesc |
 |  md.index-price.aggregated   | 聚合价格，包括所有资产的价格更新    |
 |  account-v2.all   |  账户更新 V2   |
 |  order.all   |  订单更新 ， 数据格式与订单查询接口保持一致  |
+|  md.kline.{symbol}.{period}   |  订阅实时K线推送 |
 
 ## 价格更新数据流
 
@@ -1816,6 +1893,32 @@ Topic: `order.all`
   }
 }
 ```
+
+## 实时k线推送
+
+> 实时k线推送数据
+```json
+{
+    "topic": "md.kline.btcusd.30min",
+    "status": "success",
+    "op": "DATA",
+    "ts": 1639975098550,
+    "data": [
+      1639974600000, 
+      46826, 
+      46953, 
+      46808, 
+      46844, 
+      0]
+}
+```
+
+Topic: `md.kline.{symbol}.{period}`
+
+实时k线推送。
+
+返回数据格式参考 `GET /market/api/kline`
+
 
 
 # Reference
