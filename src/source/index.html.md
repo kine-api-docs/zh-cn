@@ -21,6 +21,11 @@ code_clipboard: true
 
 # 更新历史
 
+## 2022-01-07
+
+1. `POST /trade/api/order/v2/place` 返回对象增加fee, profit, profitTakeoffAmount
+
+
 ## 2021-12-22
 
 1. 增加K线历史查询接口， 以及订订阅
@@ -540,7 +545,11 @@ stopLossResult   | json格式  | 止损订单下单结果，数据格式同上 |
         "message":null,
         "data": {
           "orderId": 1000000,
-          "positionId": 1000001
+          "positionId": 1000001,
+          "orderID" : 1000000,
+          "fee": 0,
+          "profit": 0,
+          "profitTakeoffAmount": 0
         }
       },
     "stopProfitResult":null,
