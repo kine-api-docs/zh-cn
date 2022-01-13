@@ -442,7 +442,7 @@
                     <a href="#4b79a3b7a1" class="toc-h2 toc-link" data-title="账户财务历史">账户财务历史</a>
                   </li>
                   <li>
-                    <a href="#62978dcc3f" class="toc-h2 toc-link" data-title="钱包账户与交易账户之间的划转">钱包账户与交易账户之间的划转</a>
+                    <a href="#0660a24836" class="toc-h2 toc-link" data-title="资金账户与交易账户之间的划转">资金账户与交易账户之间的划转</a>
                   </li>
                   <li>
                     <a href="#b256e462ca" class="toc-h2 toc-link" data-title="全仓交易账户与逐仓交易账户之间的划转">全仓交易账户与逐仓交易账户之间的划转</a>
@@ -2026,11 +2026,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
     </span><span class="nl">"positionType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                  </span><span class="err">用户仓位类型</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">合仓:每个交易对只允许</span><span class="mi">1</span><span class="err">个仓位</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="err">分仓:每个交易对可以有多个仓位</span><span class="w">
     </span><span class="nl">"intradayProfit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.408419</span><span class="p">,</span><span class="w">         </span><span class="err">当日盈亏（已实现盈亏</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">未实现盈亏)</span><span class="w">
     </span><span class="nl">"totalTradingValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">499.072519</span><span class="p">,</span><span class="w">    </span><span class="err">交易账户总保证金</span><span class="w">
-    </span><span class="nl">"totalWalletValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1322994.310008</span><span class="p">,</span><span class="w"> </span><span class="err">钱包账户总价值（每个币种数量*价格之和）</span><span class="w">
-    </span><span class="nl">"totalNetValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1323493.382527</span><span class="p">,</span><span class="w">    </span><span class="err">交易账户</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">钱包账户</span><span class="w"> </span><span class="err">总价值</span><span class="w">
+    </span><span class="nl">"totalWalletValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1322994.310008</span><span class="p">,</span><span class="w"> </span><span class="err">资金账户总价值（每个币种数量*价格之和）</span><span class="w">
+    </span><span class="nl">"totalNetValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1323493.382527</span><span class="p">,</span><span class="w">    </span><span class="err">交易账户</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">资金账户</span><span class="w"> </span><span class="err">总价值</span><span class="w">
     </span><span class="nl">"unrealizedProfit"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">            </span><span class="err">当前未实现盈亏</span><span class="w">
     </span><span class="nl">"intradayProfitRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">            </span><span class="err">当日收益率</span><span class="w">
-    </span><span class="nl">"walletAccountSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">           </span><span class="err">钱傲账户每个币种详情</span><span class="w">
+    </span><span class="nl">"walletAccountSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">           </span><span class="err">资金账户每个币种详情：币种，余额</span><span class="w">
       </span><span class="nl">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10015805</span><span class="p">,</span><span class="w">
@@ -2682,10 +2682,10 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='62978dcc3f'>钱包账户与交易账户之间的划转</h2>
+</span></code></pre></div><h2 id='0660a24836'>资金账户与交易账户之间的划转</h2>
 <ol>
-<li>划转钱包保证金到交易账户（全仓），即增加全仓保证金</li>
-<li>交易账户（全仓）划转到钱包保证金账户，即减少全仓保证金</li>
+<li>划转保证金到交易账户（全仓），即增加全仓保证金</li>
+<li>交易账户（全仓）划转到资金账户，即减少全仓保证金</li>
 </ol>
 <h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST /account/api/transfer</code></p>
@@ -2716,7 +2716,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <td>yes</td>
 <td></td>
 <td>划转方向</td>
-<td>1 - 划转钱包保证金到交易账户（全仓）, 2 - 交易账户（全仓）划转到钱包保证金账户</td>
+<td>1 - 划转资金账户保证金到交易账户（全仓）, 2 - 交易账户（全仓）划转到资金账户</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
