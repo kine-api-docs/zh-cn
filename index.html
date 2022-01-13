@@ -1,0 +1,3363 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>KINE API 文档</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-e033bdd3.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;java&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-219b067f.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="java">java</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#fce908f544" class="toc-h1 toc-link" data-title="更新历史">更新历史</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#2022-01-07" class="toc-h2 toc-link" data-title="2022-01-07">2022-01-07</a>
+                  </li>
+                  <li>
+                    <a href="#2021-12-22" class="toc-h2 toc-link" data-title="2021-12-22">2021-12-22</a>
+                  </li>
+                  <li>
+                    <a href="#2021-12-12" class="toc-h2 toc-link" data-title="2021-12-12">2021-12-12</a>
+                  </li>
+                  <li>
+                    <a href="#2021-12-04" class="toc-h2 toc-link" data-title="2021-12-04">2021-12-04</a>
+                  </li>
+                  <li>
+                    <a href="#2021-12-03" class="toc-h2 toc-link" data-title="2021-12-03">2021-12-03</a>
+                  </li>
+                  <li>
+                    <a href="#2021-11-29" class="toc-h2 toc-link" data-title="2021-11-29">2021-11-29</a>
+                  </li>
+                  <li>
+                    <a href="#2021-11-19" class="toc-h2 toc-link" data-title="2021-11-19">2021-11-19</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#rest-api" class="toc-h2 toc-link" data-title="REST API">REST API</a>
+                  </li>
+                  <li>
+                    <a href="#websocket-api" class="toc-h2 toc-link" data-title="WebSocket API">WebSocket API</a>
+                  </li>
+                  <li>
+                    <a href="#1da6708ecc" class="toc-h2 toc-link" data-title="鉴权">鉴权</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#b122f813d5" class="toc-h1 toc-link" data-title="基本信息">基本信息</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-urls" class="toc-h2 toc-link" data-title="API URLs">API URLs</a>
+                  </li>
+                  <li>
+                    <a href="#limits" class="toc-h2 toc-link" data-title="Limits 限频">Limits 限频</a>
+                  </li>
+                  <li>
+                    <a href="#security" class="toc-h2 toc-link" data-title="Security 安全">Security 安全</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication 身份验证">Authentication 身份验证</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#signature" class="toc-h2 toc-link" data-title="Signature 签名">Signature 签名</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#market-data-api" class="toc-h1 toc-link" data-title="Market Data API 市场数据">Market Data API 市场数据</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#03160fd1d2" class="toc-h2 toc-link" data-title="查询所有交易对以及交易规则">查询所有交易对以及交易规则</a>
+                  </li>
+                  <li>
+                    <a href="#29f8d95748" class="toc-h2 toc-link" data-title="查询某个交易对的指数价格">查询某个交易对的指数价格</a>
+                  </li>
+                  <li>
+                    <a href="#e30fc6af24" class="toc-h2 toc-link" data-title="获取全部交易对价格">获取全部交易对价格</a>
+                  </li>
+                  <li>
+                    <a href="#7c3e2fe3fc" class="toc-h2 toc-link" data-title="获取资金费率">获取资金费率</a>
+                  </li>
+                  <li>
+                    <a href="#k" class="toc-h2 toc-link" data-title="查询K线历史">查询K线历史</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api" class="toc-h1 toc-link" data-title="交易API">交易API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#4aa0d18111" class="toc-h2 toc-link" data-title="下单（市价单，限价单）">下单（市价单，限价单）</a>
+                  </li>
+                  <li>
+                    <a href="#eff2251e79" class="toc-h2 toc-link" data-title="下单（止盈止损）">下单（止盈止损）</a>
+                  </li>
+                  <li>
+                    <a href="#f26a93903f" class="toc-h2 toc-link" data-title="一键平仓">一键平仓</a>
+                  </li>
+                  <li>
+                    <a href="#28e72153cd" class="toc-h2 toc-link" data-title="单个订单查询">单个订单查询</a>
+                  </li>
+                  <li>
+                    <a href="#b2ab67e640" class="toc-h2 toc-link" data-title="查询历史订单列表">查询历史订单列表</a>
+                  </li>
+                  <li>
+                    <a href="#16d62256fe" class="toc-h2 toc-link" data-title="查询委托订单">查询委托订单</a>
+                  </li>
+                  <li>
+                    <a href="#fc150cab0e" class="toc-h2 toc-link" data-title="撤单">撤单</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-2" class="toc-h1 toc-link" data-title="账户API">账户API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#uid" class="toc-h2 toc-link" data-title="查询用户UID">查询用户UID</a>
+                  </li>
+                  <li>
+                    <a href="#d4dc015dc3" class="toc-h2 toc-link" data-title="查询用户资产">查询用户资产</a>
+                  </li>
+                  <li>
+                    <a href="#4215cf81c7" class="toc-h2 toc-link" data-title="调整杠杆">调整杠杆</a>
+                  </li>
+                  <li>
+                    <a href="#5bba295f56" class="toc-h2 toc-link" data-title="账户 全仓切换逐仓">账户 全仓切换逐仓</a>
+                  </li>
+                  <li>
+                    <a href="#322a696edb" class="toc-h2 toc-link" data-title="账户 逐仓切换全仓">账户 逐仓切换全仓</a>
+                  </li>
+                  <li>
+                    <a href="#67fb858401" class="toc-h2 toc-link" data-title="账户 设置合仓,分仓">账户 设置合仓,分仓</a>
+                  </li>
+                  <li>
+                    <a href="#7e34937bab" class="toc-h2 toc-link" data-title="账户 获取合仓,分仓">账户 获取合仓,分仓</a>
+                  </li>
+                  <li>
+                    <a href="#4b79a3b7a1" class="toc-h2 toc-link" data-title="账户财务历史">账户财务历史</a>
+                  </li>
+                  <li>
+                    <a href="#0660a24836" class="toc-h2 toc-link" data-title="资金账户与交易账户之间的划转">资金账户与交易账户之间的划转</a>
+                  </li>
+                  <li>
+                    <a href="#b256e462ca" class="toc-h2 toc-link" data-title="全仓交易账户与逐仓交易账户之间的划转">全仓交易账户与逐仓交易账户之间的划转</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-api-3" class="toc-h1 toc-link" data-title="WebSocket API">WebSocket API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication-2" class="toc-h2 toc-link" data-title="身份认证 (Authentication)">身份认证 (Authentication)</a>
+                  </li>
+                  <li>
+                    <a href="#ping-pong" class="toc-h2 toc-link" data-title="存活检查 (Ping/Pong)">存活检查 (Ping/Pong)</a>
+                  </li>
+                  <li>
+                    <a href="#websocket" class="toc-h2 toc-link" data-title="Websocket回话限制">Websocket回话限制</a>
+                  </li>
+                  <li>
+                    <a href="#topic" class="toc-h2 toc-link" data-title="订阅Topic">订阅Topic</a>
+                  </li>
+                  <li>
+                    <a href="#8202557066" class="toc-h2 toc-link" data-title="价格更新数据流">价格更新数据流</a>
+                  </li>
+                  <li>
+                    <a href="#v2" class="toc-h2 toc-link" data-title="账户更新V2">账户更新V2</a>
+                  </li>
+                  <li>
+                    <a href="#c680da3fc7" class="toc-h2 toc-link" data-title="订单更新">订单更新</a>
+                  </li>
+                  <li>
+                    <a href="#k-2" class="toc-h2 toc-link" data-title="实时k线推送">实时k线推送</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#reference" class="toc-h1 toc-link" data-title="Reference">Reference</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Copyright by KINE</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='fce908f544'>更新历史</h1><h2 id='2022-01-07'>2022-01-07</h2>
+<ol>
+<li><code>POST /trade/api/order/v2/place</code> 返回对象增加fee, profit, profitTakeoffAmount</li>
+</ol>
+<h2 id='2021-12-22'>2021-12-22</h2>
+<ol>
+<li>增加K线历史查询接口， 以及订订阅</li>
+</ol>
+<h2 id='2021-12-12'>2021-12-12</h2>
+<ol>
+<li>增加一键平仓 <code>POST /trade/api/order/v2/close-all</code></li>
+<li>增加合仓分仓设置接口 <code>POST /account/api/set-position-type</code></li>
+<li>增加合仓分仓获取接口 <code>GET /account/api/get-position-type</code></li>
+</ol>
+<h2 id='2021-12-04'>2021-12-04</h2>
+<p>增加订单状态描述</p>
+<h2 id='2021-12-03'>2021-12-03</h2>
+<ol>
+<li>订单查询，增加条件单，止盈止损单相关字段。  数量，触发价，订单类型</li>
+<li>Websocket增加订单更新通知。  topic: <code>order.all</code></li>
+</ol>
+<h2 id='2021-11-29'>2021-11-29</h2>
+<ol>
+<li>增加了DEMO链接
+https://github.com/kine-api-docs/demo</li>
+<li>增加了签名问题排查建议</li>
+<li>增加了content-type的说明。 统一使用：application/json;charset=utf-8</li>
+</ol>
+<h2 id='2021-11-19'>2021-11-19</h2>
+<ul>
+<li>中文文档</li>
+</ul>
+<h1 id='5ea2e0cde2'>简介</h1>
+<p>欢迎查看KINE API文档。</p>
+
+<p>您可以通过API来访问KINE平台数据，用于下单、撤单、查询订单、获取账户信息等。</p>
+
+<p>我们提供了两种类型的接口: RESTFUL接口和WebSocket订阅。</p>
+
+<aside class="notice">
+为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo
+</aside>
+<h2 id='rest-api'>REST API</h2>
+<p>建议您使用REST API来完成一次性的操作，例如下单，撤单等。</p>
+
+<aside class="notice">
+注意: 
+我们的REST API请求统一使用 
+content-type: application/json;charset=utf-8 
+</aside>
+<h2 id='websocket-api'>WebSocket API</h2>
+<p>建议您使用WebSocket API来获取数据更新。例如：市场数据，账户更新，订单更新等。</p>
+<h2 id='1da6708ecc'>鉴权</h2>
+<p>REST 和 WebSocket 接口都有公开接口和私有接口:</p>
+
+<p>公开接口: 用于获取基础数据，例如市场数据.</p>
+
+<p>私有接口: 用于用户账户相关的操作。 例如下单，划转，账户余额查询。 
+私有接口调用需要使用API Key进行签名（<code>SIGNED</code>）以保证用户数据的安全。</p>
+<h1 id='b122f813d5'>基本信息</h1><h2 id='api-urls'>API URLs</h2><h3 id='rest-api-2'>REST API</h3>
+<p><code>https://api.kine.exchange</code></p>
+<h3 id='websocket-api-2'>WebSocket API</h3>
+<p><code>wss://api.kine.exchange/ws</code></p>
+<h2 id='limits'>Limits 限频</h2>
+<p>我们对REST接口访问有限频管理，具体请参考接口定义。</p>
+
+<p>公开API根据IP地址限频，非公开接口按照用户ID来限频。</p>
+
+<p>限频错误码为  <code>HTTP 429</code> </p>
+
+<p>关于Websocket长链接，关于连接数，消息发送速率，链接最大存活时间我们也有相关的限制。
+具体请参考 <code>WebSocket API</code> - <code>Session limit</code></p>
+
+<aside class="warning">
+注意: 
+如果您调用很频繁可能遇到 403 的错误， 这是被防火墙拦截了。 请您尽量使用websocket来获取最新数据的更新而不是频繁查询接口。
+如您确实需要更高频率的调用，请联系我们的客服。  
+</aside>
+<h2 id='security'>Security 安全</h2><h3 id='42a39dec26'>使用签名进行身份认证</h3>
+<p><code>SIGNED</code> 接口调用，需要额外的Http Request Headers: </p>
+
+<p><code>KINE-API-ACCESS-KEY</code>, <code>KINE-API-TS</code>,<code>KINE-API-SIGNATURE</code>.</p>
+
+<ul>
+<li><code>KINE-API-ACCESS-KEY</code> 是您的API KEY</li>
+<li><code>KINE-API-SIGNATURE</code> 是通过 <code>HMAC SHA256</code> 算法得到的签名. 签名算法请参考 <code>身份验证</code> 部分.</li>
+<li><code>KINE-API-TS</code> 是当前时间的时间戳（UTC时间），如果时间差距太大，签名验证可能失败，请确保您的服务器时间是准确的。 <code>毫秒时间戳</code></li>
+</ul>
+<h3 id='api-key'>如何获取您的API Key？</h3>
+<p>请前往API Key管理页面生成您的API KEY。 </p>
+
+<p>https://kine.exchange/account/api-key</p>
+
+<p><code>API Key</code> API Key的ID。</p>
+
+<p><code>SecretKey</code> 用来生成接口调用的签名。 (生成后只能查看一次，请妥善保存。！！！！)</p>
+
+<p>API Key 权限</p>
+
+<ul>
+<li><code>ReadOnly</code> 只读权限。 只能用来查询用户信息。 例如账户余额，订单历史等。</li>
+<li><code>Trade</code> 交易权限。允许使用该API Key进行下单，平仓，划转等。</li>
+</ul>
+
+<aside class="warning">
+注意: 
+为了确保您账户资产的安全。
+
+1. 请不要将API Key分享给别人。
+   
+2. 如果API Key被泄露，请尽快在管理页面删除。 
+</aside>
+<h3 id='3c0527cf02'>如何签名您的接口调用?</h3>
+<p>请参考<code>身份认证</code>章节。</p>
+<h1 id='authentication'>Authentication 身份验证</h1>
+<p>网络中的请求有可能被拦截并篡改，为了保证数据安全，所有请求个人账户数据的接口调用需要使用用户的Secret Key进行签名，确保您的请求不会被攻击者篡改。</p>
+
+<p>每一个API Key有权限范围，请确保您的 API Key有调用相关接口的权限。</p>
+
+<p>为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo</p>
+
+<p>请求中，一个合法的签名是根据以下信息计算得出的:</p>
+
+<ul>
+<li><code>Request Method</code>  GET/POST  (Websocket 签名请使用 GET)</li>
+<li><code>Host</code> 主域名 目前只有一个 <code>api.kine.exchange</code></li>
+<li><code>Request path</code> 接口请求路径，不包含域名。 例如: <code>/trade/api/order/v2/place</code></li>
+<li><code>API key</code>  API Key ID，需要包含在Request Header中 <code>KINE-API-ACCESS-KEY</code></li>
+<li><code>SecretKey</code>  用于计算签名的秘钥。</li>
+<li><code>Timestamp</code> 毫秒时间戳 需要包含在request header <code>KINE-API-TS</code></li>
+<li><code>Request Parameters</code> 请求参数。 这里的请求参数是指HTTP请求参数，拼接在URL中的参数，而不是Request Body中的数据。 不论GET、POST请求， 签名只需要HTTP请求参数，不需要Body中的数据。</li>
+<li><code>Payload</code> 将以上相关信息拼接成固定格式的文本，然后对其进行加密得到最终的签名.  格式请参考 <code>Payload</code> 章节</li>
+<li><code>Signature</code> 对Payload加密得到的签名， 需要包含在 request header  <code>KINE-API-SIGNATURE</code></li>
+</ul>
+<h2 id='signature'>Signature 签名</h2><h3 id='1-payload'>1. 准备签名用的文本 Payload ， 请参考右侧示例</h3><div class="highlight"><pre class="highlight plaintext"><code>{requestMethod}\n
+{host}\n               
+{request path}\n       ## 请求路径
+{request parameters}\n ## 实际拼接在URL上？右侧的部分，如果没有参数，请保留 `空行`。
+{timestamp}            ## 发起请求时的时间戳
+</code></pre></div>
+<blockquote>
+<p>Payload 实例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET
+api.kine.exchange
+/trade/api/history
+clientOrderId=123&amp;status=2
+123123123123
+</code></pre></div><h3 id='2'>2. 生成签名.</h3>
+<p><code>signature = sign(payload, secretKey);</code></p>
+
+<p>签名方法的入参是Payload和SecretKey</p>
+
+<p>签名方法可以使用不同的语言实现。 右侧提供了Java和Python两种编程语言的实现。</p>
+
+<p>其它编程语言请自行百度 (HMAC SHA256)。</p>
+
+<p>为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo</p>
+
+<blockquote>
+<p>签名样例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code>        <span class="nc">String</span> <span class="n">accessKey</span> <span class="o">=</span> <span class="s">"123485552fb24cf49412345688888888"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="s">"e95a0ba0648215e61d7c29ad6c96c2185c2c15fa3ce173d2b412345688888888"</span><span class="o">;</span>
+
+        <span class="c1">// sign:</span>
+        <span class="nc">Mac</span> <span class="n">hmacSha256</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">hmacSha256</span> <span class="o">=</span> <span class="nc">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"HmacSHA256"</span><span class="o">);</span>
+            <span class="nc">SecretKeySpec</span> <span class="n">secKey</span> <span class="o">=</span>
+                    <span class="k">new</span> <span class="nf">SecretKeySpec</span><span class="o">(</span><span class="n">secretKey</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">),</span> <span class="s">"HmacSHA256"</span><span class="o">);</span>
+            <span class="n">hmacSha256</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secKey</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">BadSignatureException</span><span class="o">(</span><span class="s">"No such algorithm: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InvalidKeyException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">BadSignatureException</span><span class="o">(</span><span class="s">"Invalid key: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="nc">String</span> <span class="n">payload</span> <span class="o">=</span> <span class="s">"The payload text"</span><span class="o">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">hmacSha256</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
+        <span class="nc">String</span> <span class="n">signature</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">hash</span><span class="o">);</span>
+</code></pre></div><h3 id='3-http-header-3'>3. HTTP HEADER中需要增加以下3个：</h3>
+<ul>
+<li><code>KINE-API-ACCESS-KEY</code>   The API key</li>
+<li><code>KINE-API-TS</code>           The UTC timestamp</li>
+<li><code>KINE-API-SIGNATURE</code>    The signature generated in Step. 2</li>
+</ul>
+
+<blockquote>
+<p>签名请求示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET https://api.kine.exchange/trade/api/history?clientOrderId=123&amp;status=2
+
+Headers:
+KINE-API-TS: 1618561349256
+KINE-API-ACCESS-KEY: 072285552fb24cf49412345688888888
+KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
+</code></pre></div><h3 id='4e56a8d197'>问题排查</h3>
+<p>当接口调用返回签名错误时，请检查</p>
+
+<ol>
+<li>Request Header 是否包含了文档中提到的必填项  KINE-API-XXX</li>
+<li>请打印出计算签名用的payload并仔细检查。 注意换行、空格</li>
+<li>请参考DEMO代码，检查你的代码逻辑。 https://github.com/kine-api-docs/demo</li>
+<li>如果依然无法解决，请联系我们的客服，我们的技术人员将帮助你解决。<br>
+<a href="https://t.me/kine_api_support">电报群</a> </li>
+</ol>
+<h1 id='market-data-api'>Market Data API 市场数据</h1>
+<p>市场数据API是公开接口，不需要签名</p>
+<h2 id='03160fd1d2'>查询所有交易对以及交易规则</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /market/api/trading-rules</code></p>
+<h3 id='required-permission'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<p>无</p>
+<h3 id='6483dab423'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td>ETHUSD，BTCUSD</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>boolean</td>
+<td>是否可交易 true:可交易，false不可交易</td>
+<td></td>
+</tr>
+<tr>
+<td>priceDecimal</td>
+<td>int</td>
+<td>价格精度</td>
+<td></td>
+</tr>
+<tr>
+<td>qtyDecimal</td>
+<td>int</td>
+<td>数量精度</td>
+<td></td>
+</tr>
+<tr>
+<td>amountDecimal</td>
+<td>int</td>
+<td>金额精度</td>
+<td></td>
+</tr>
+<tr>
+<td>minQty</td>
+<td>decimal</td>
+<td>最小下单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>minAmount</td>
+<td>decimal</td>
+<td>最小下单金额</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultMarginType</td>
+<td>enum</td>
+<td>默认账户类型 全仓:CROSSED 逐仓:ISOLATED</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultLeverage</td>
+<td>decimal</td>
+<td>默认杠杆</td>
+<td></td>
+</tr>
+<tr>
+<td>maxLeverage</td>
+<td>decimal</td>
+<td>最大杠杆</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='29f8d95748'>查询某个交易对的指数价格</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /market/api/price/{symbol}</code></p>
+<h3 id='required-permission-2'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td>BTCUSD</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-2'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>价格</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>long</td>
+<td>指数时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='e30fc6af24'>获取全部交易对价格</h2><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /market/api/agg-price</code></p>
+<h3 id='required-permission-3'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='6483dab423-3'>返回值</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prices</td>
+<td>Price</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>指数时间</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Price:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>指数时间</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>bignumber</td>
+<td>价格</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798400000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798360000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46578"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619798367000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.5"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='7c3e2fe3fc'>获取资金费率</h2><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /market/api/funding-rate/{symbol}</code></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td>false</td>
+<td>交易对</td>
+<td>BTCUSD</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-4'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>fundingRate</td>
+<td>string</td>
+<td>当前资金费率</td>
+<td></td>
+</tr>
+<tr>
+<td>estifundingRate</td>
+<td>string</td>
+<td>预测资金费率</td>
+<td></td>
+</tr>
+<tr>
+<td>nextFundingTime</td>
+<td>long</td>
+<td>资金费率收取时间</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>long</td>
+<td>响应时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='k'>查询K线历史</h2><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /market/api/kline</code></p>
+
+<p>该接口用于查询k线历史。
+如需获取实时k线，请通过websocket订阅实时k线更新。</p>
+
+<blockquote>
+<p>K线数据示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1639973820000</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">k线时间戳，</span><span class="w"> </span><span class="err">时间区间的起始时间戳</span><span class="w">
+        </span><span class="mi">46854</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">open</span><span class="w">  </span><span class="err">起始价格</span><span class="w">
+        </span><span class="mi">46928</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">high</span><span class="w">  </span><span class="err">最高价</span><span class="w">
+        </span><span class="mi">46833</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">low</span><span class="w"> </span><span class="err">最低价</span><span class="w">
+        </span><span class="mi">46928</span><span class="p">,</span><span class="w">          </span><span class="err">//</span><span class="w"> </span><span class="err">close</span><span class="w"> </span><span class="err">结束价格</span><span class="w">
+        </span><span class="mi">0</span><span class="w">               </span><span class="err">//</span><span class="w"> </span><span class="err">交易量</span><span class="w"> </span><span class="err">金额USD</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1639973880000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46906</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46926</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46873</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46904</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1639973940000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46902</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46938</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46902</span><span class="p">,</span><span class="w">
+        </span><span class="mi">46912</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td>false</td>
+<td>交易对</td>
+<td>BTCUSD</td>
+</tr>
+<tr>
+<td>period</td>
+<td>string</td>
+<td>yes</td>
+<td>false</td>
+<td>k线周期</td>
+<td>&quot;1min&quot;,&quot;5min&quot;,&quot;15min&quot;,&quot;30min&quot;,&quot;60min&quot;,&quot;4hour&quot;,&quot;1day&quot;,&quot;1week&quot;,&quot;1mon&quot;</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>false</td>
+<td>150</td>
+<td>kline历史条数， 默认150， 最大2000</td>
+<td>查询历史多少根k线</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-5'>返回值</h3>
+<p>为减少数据大小， 这里使用了精简的数据结构。 二维数组来表示k线数据。
+每一行是一根k线， 数据中每个位置的数据定义，请参考下列表格， 或者右侧示例。</p>
+
+<p>** 返回数据包含历史数据（size） + 1 (最新实时kline)</p>
+
+<table><thead>
+<tr>
+<th>字段索引</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>long</td>
+<td>k线起始时间戳</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>number</td>
+<td>open ， 起始价格</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>number</td>
+<td>high ， 最高价格</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>number</td>
+<td>low， 最低价格</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>number</td>
+<td>close， 结束价格</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>number</td>
+<td>交易金额USD</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='api'>交易API</h1><h2 id='4aa0d18111'>下单（市价单，限价单）</h2><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/place</code></p>
+
+<blockquote>
+<p>下单请求参数示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">市价买入</span><span class="w"> </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.25"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-321"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//限价买入</span><span class="w">  </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">7</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"triggerPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//市价卖出平仓</span><span class="w">  </span><span class="err">(type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="mi">1</span><span class="err">,</span><span class="w"> </span><span class="err">平掉仓位</span><span class="w"> </span><span class="mi">10000265</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="p">:</span><span class="mi">10000265</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='required-permission-4'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>baseAmount</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易数量</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易方向</td>
+<td>BUY买入, SELL卖出</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>订单类型</td>
+<td>1 市价单，7 条件单(限价单)</td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>no</td>
+<td></td>
+<td>开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID</td>
+<td>0</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>clientOrderId , which given by user</td>
+<td>Valid character, A-Z,a-z,0-9,_,- length &lt;= 128</td>
+</tr>
+<tr>
+<td>stopProfitPrice</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>如果市价单同时下止盈单，需要指定止盈价格</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stopLossPrice</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>如果市价单同时下止损单，需要指定止损价格</td>
+<td>0</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>当前指数价格</td>
+<td>0</td>
+</tr>
+<tr>
+<td>triggerPrice</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>当下条件单（限价单）时需要传入触发价格</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-6'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>json格式</td>
+<td>含有：  市价单下单结果 success: true表示成功，success:false表示失败 code表示返回码, data中为下单的orderId</td>
+<td></td>
+</tr>
+<tr>
+<td>stopProfitResult</td>
+<td>json格式</td>
+<td>止盈订单下单结果，数据格式同上</td>
+<td></td>
+</tr>
+<tr>
+<td>stopLossResult</td>
+<td>json格式</td>
+<td>止损订单下单结果，数据格式同上</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nl">"result"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000001</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"profitTakeoffAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"stopProfitResult"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stopLossResult"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='eff2251e79'>下单（止盈止损）</h2><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/place-profit-loss</code></p>
+
+<blockquote>
+<p>下单请求参数示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test-321"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stopProfitPrice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"60000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stopProfitAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stopLossPrice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"55000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stopLossAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='required-permission-5'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-2'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易方向</td>
+<td>BUY买入, SELL卖出</td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>yes</td>
+<td></td>
+<td>开仓0，加仓，减仓，平仓时需要传入要执行的当前仓位ID</td>
+<td>0</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>clientOrderId , which given by user</td>
+<td>Valid character, A-Z,a-z,0-9,_,- length &lt;= 128</td>
+</tr>
+<tr>
+<td>clientPrice</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>指数价格</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stopProfitPrice</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>止盈价</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stopProfitAmount</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>止盈数量</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stopLossPrice</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>止损价</td>
+<td>0</td>
+</tr>
+<tr>
+<td>stopLossAmount</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>止损数量</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-7'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>stopProfitResult</td>
+<td>string</td>
+<td>止盈订单下单结果，空字符串表示成功，非空表示失败</td>
+<td></td>
+</tr>
+<tr>
+<td>stopLossResult</td>
+<td>string</td>
+<td>止损订单下单结果，空字符串表示成功，非空表示失败</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="nl">"stopProfitResult"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stopLossResult"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='f26a93903f'>一键平仓</h2>
+<ul>
+<li>支持一键平掉用户的所有仓位</li>
+<li>支持一键平掉用户在某个交易对上的所有仓位</li>
+<li>支持一键平掉某一个指定仓位</li>
+</ul>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/close-all</code></p>
+
+<blockquote>
+<p>平掉 BTC上的指定仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000001</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉 BTC上的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉 BTC,ETH上的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="s2">"ETHUSD"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>平掉用户的所有仓位</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='required-permission-6'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-3'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbols</td>
+<td>array</td>
+<td>no</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>no</td>
+<td></td>
+<td>仓位Id</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-8'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span></code></pre></div><h2 id='28e72153cd'>单个订单查询</h2>
+<p>根据订单orderId或者clientOrderId获取订单数据</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET /trade/api/order/v2/order</code></p>
+<h3 id='required-permission-7'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>no</td>
+<td></td>
+<td>订单的OrderId</td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>订单的clientOrderId</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-9'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderID</td>
+<td>long</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderID</td>
+<td>string</td>
+<td>订单ClientOrderId</td>
+<td></td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>0 表示没有对应的仓位ID 例如挂条件单</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>BUY买入，SELL卖出</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>1 市价单 2 条件单（&lt;=触发价）3 条件单（&gt;=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerPrice</td>
+<td>string</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>conditionalBaseAmount</td>
+<td>string</td>
+<td>条件单、止盈止损单请求数量</td>
+<td></td>
+</tr>
+<tr>
+<td>executedPrice</td>
+<td>string</td>
+<td>成交价格</td>
+<td></td>
+</tr>
+<tr>
+<td>executedAmount</td>
+<td>string</td>
+<td>成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>executedQuoteAmount</td>
+<td>string</td>
+<td>成交金额</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>订单状态     NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交</td>
+<td></td>
+</tr>
+<tr>
+<td>profit</td>
+<td>string</td>
+<td>盈亏</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>long</td>
+<td>订单成交时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3432259521202880500</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"positionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123323443</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4170.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4170.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.1705"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1637575561094</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXECUTED"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-37.7455"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profitTakeoffAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='b2ab67e640'>查询历史订单列表</h2><h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /trade/api/order/v2/all-orders</code></p>
+<h3 id='required-permission-8'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>其实订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>startTs</td>
+<td>number</td>
+<td>no</td>
+<td></td>
+<td>开始时间</td>
+<td></td>
+</tr>
+<tr>
+<td>endTs</td>
+<td>number</td>
+<td>no</td>
+<td></td>
+<td>结束时间</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number</td>
+<td>no</td>
+<td>200</td>
+<td>最大返回条数</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-10'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderID</td>
+<td>long</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderID</td>
+<td>string</td>
+<td>订单ClientOrderId</td>
+<td></td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>0 表示没有对应的仓位ID 例如挂条件单</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>string</td>
+<td>BUY买入，SELL卖出</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>1 市价单 2 条件单（&lt;=触发价）3 条件单（&gt;=触发价） 4 强平单 5 强制减仓单 9 多仓止盈单 10 空仓止盈单 11 空仓止损单 12 多仓止损单</td>
+<td></td>
+</tr>
+<tr>
+<td>triggerPrice</td>
+<td>string</td>
+<td>触发价</td>
+<td></td>
+</tr>
+<tr>
+<td>conditionalBaseAmount</td>
+<td>string</td>
+<td>条件单、止盈止损单请求数量</td>
+<td></td>
+</tr>
+<tr>
+<td>executedPrice</td>
+<td>string</td>
+<td>成交价格</td>
+<td></td>
+</tr>
+<tr>
+<td>executedAmount</td>
+<td>string</td>
+<td>成交数量</td>
+<td></td>
+</tr>
+<tr>
+<td>executedQuoteAmount</td>
+<td>string</td>
+<td>成交金额</td>
+<td></td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>手续费</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>订单状态 NEW:新订单, EXPIRED:已过期, CANCELED:已取消, EXECUTED:已执行, REJECTED:已拒绝, FAILED:失败,PENDING:挂单未成交</td>
+<td></td>
+</tr>
+<tr>
+<td>profit</td>
+<td>string</td>
+<td>盈亏</td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>long</td>
+<td>订单成交时间</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="mi">3432259521202880500</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clientOrderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4170.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"executedQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4170.5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.1705"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1637575561094</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXECUTED"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-37.7455"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profitTakeoffAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='16d62256fe'>查询委托订单</h2><h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /trade/api/order/v2/open-orders</code></p>
+<h3 id='required-permission-9'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<p>无</p>
+<h3 id='6483dab423-11'>返回值</h3>
+<p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
+<h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/cancel-order</code></p>
+<h3 id='required-permission-10'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>no</td>
+<td></td>
+<td>订单的OrderId</td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>订单的clientOrderId</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-12'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='da73e71d1d'>下单错误编码</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>31102</td>
+<td>Max OI exceeded</td>
+</tr>
+<tr>
+<td>31103</td>
+<td>Less than min OI</td>
+</tr>
+<tr>
+<td>31104</td>
+<td>Invalid symbol</td>
+</tr>
+<tr>
+<td>31105</td>
+<td>Quantity precision error</td>
+</tr>
+<tr>
+<td>31106</td>
+<td>Price precision error</td>
+</tr>
+<tr>
+<td>31107</td>
+<td>No position for one-click liquidation</td>
+</tr>
+<tr>
+<td>31108</td>
+<td>Invalid parameter</td>
+</tr>
+<tr>
+<td>31109</td>
+<td>Max OI per trade exceeded</td>
+</tr>
+<tr>
+<td>31110</td>
+<td>Max OI per user exceeded</td>
+</tr>
+<tr>
+<td>31111</td>
+<td>System max OI per symbol exceeded</td>
+</tr>
+<tr>
+<td>31112</td>
+<td>Max OI by risk rate exceeded</td>
+</tr>
+<tr>
+<td>31113</td>
+<td>Symbol not enabled</td>
+</tr>
+<tr>
+<td>31201</td>
+<td>Can&#39;t place order when settlement</td>
+</tr>
+<tr>
+<td>31202</td>
+<td>Invalid amount</td>
+</tr>
+<tr>
+<td>31203</td>
+<td>Invalid direction</td>
+</tr>
+<tr>
+<td>31204</td>
+<td>Illegal client order ID</td>
+</tr>
+</tbody></table>
+<h1 id='api-2'>账户API</h1><h2 id='uid'>查询用户UID</h2><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /account/api/v2/user-id</code></p>
+<h3 id='required-permission-11'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
+<p>无</p>
+<h3 id='6483dab423-13'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>long</td>
+<td>当前用户的UID</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='d4dc015dc3'>查询用户资产</h2><h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET /account/api/v2/account-positions</code></p>
+<h3 id='required-permission-12'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='6483dab423-14'>返回值</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"tradingMarginCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">    </span><span class="err">用户交易保证金类型，目前支持USDT，USDC，kUSD三种</span><span class="w">
+    </span><span class="nl">"positionType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                  </span><span class="err">用户仓位类型</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">合仓:每个交易对只允许</span><span class="mi">1</span><span class="err">个仓位</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="err">分仓:每个交易对可以有多个仓位</span><span class="w">
+    </span><span class="nl">"intradayProfit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.408419</span><span class="p">,</span><span class="w">         </span><span class="err">当日盈亏（已实现盈亏</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">未实现盈亏)</span><span class="w">
+    </span><span class="nl">"totalTradingValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">499.072519</span><span class="p">,</span><span class="w">    </span><span class="err">交易账户总保证金</span><span class="w">
+    </span><span class="nl">"totalWalletValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1322994.310008</span><span class="p">,</span><span class="w"> </span><span class="err">资金账户总价值（每个币种数量*价格之和）</span><span class="w">
+    </span><span class="nl">"totalNetValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1323493.382527</span><span class="p">,</span><span class="w">    </span><span class="err">交易账户</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">资金账户</span><span class="w"> </span><span class="err">总价值</span><span class="w">
+    </span><span class="nl">"unrealizedProfit"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">            </span><span class="err">当前未实现盈亏</span><span class="w">
+    </span><span class="nl">"intradayProfitRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">            </span><span class="err">当日收益率</span><span class="w">
+    </span><span class="nl">"walletAccountSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">           </span><span class="err">资金账户每个币种详情：币种，余额</span><span class="w">
+      </span><span class="nl">"accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10015805</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINE"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0168</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"freeze"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.435</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">14350.024108</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10015805</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">1298623.6389</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"freeze"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1298623.6389</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10015805</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.647</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"freeze"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.647</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10015805</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"freeze"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"locked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"totalValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">1322994.310008</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"tradingAccountSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="err">交易账户每个账户详情</span><span class="w">
+      </span><span class="nl">"accounts"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">           </span><span class="err">交易对</span><span class="w">
+          </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CROSSED"</span><span class="p">,</span><span class="w">      </span><span class="err">保证金类型</span><span class="w"> </span><span class="err">CROSSED全仓</span><span class="w"> </span><span class="err">ISOLATED逐仓</span><span class="w">
+          </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">               </span><span class="err">账户设置的杠杆</span><span class="w">
+          </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">        </span><span class="err">基础币种</span><span class="w">
+          </span><span class="nl">"baseAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">           </span><span class="err">账户中计价币种的数量（即多仓，空仓的数量之和，多仓用正数，空仓用负数，如持有</span><span class="mi">1</span><span class="err">个多仓，</span><span class="mf">-0.5</span><span class="err">空仓，则结果为</span><span class="mf">0.5</span><span class="err">）</span><span class="w">
+          </span><span class="nl">"baseGrossAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">      </span><span class="err">账户中计价币种的数量绝对值之和（即多仓，空仓的数量绝对值之和，如持有</span><span class="mi">1</span><span class="err">个多仓，</span><span class="mf">-0.5</span><span class="err">空仓，则结果为</span><span class="mf">1.5</span><span class="err">）</span><span class="w">
+          </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">      </span><span class="err">计价币种，无论是USDT，USDC，kUSD保证金，此处统一为kUSD</span><span class="w">
+          </span><span class="nl">"quoteAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">          </span><span class="err">计价币种保证金数量，如果是全仓则为</span><span class="mi">0</span><span class="err">，如果是逐仓则为所有此逐仓仓位的保证金之和</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">57373</span><span class="p">,</span><span class="w">               </span><span class="err">当前交易对指数价格</span><span class="w">
+          </span><span class="nl">"initialMargin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">        </span><span class="err">持仓情况下账户的初始保证金</span><span class="w">
+          </span><span class="nl">"positionMargin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">       </span><span class="err">持仓情况下账户的仓位保证金</span><span class="w">
+          </span><span class="nl">"unRealizedPnl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">        </span><span class="err">持仓情况下所有此账户下仓位的未实现盈亏</span><span class="w">
+          </span><span class="nl">"maintMargin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">          </span><span class="err">持仓情况下账户所需要的维持保证金，当维持保证金低于可用保证金（marginAvailable）是账户会被强平</span><span class="w">
+          </span><span class="nl">"marginBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">452.556519</span><span class="p">,</span><span class="w">   </span><span class="err">账户的保证金余额</span><span class="w">
+          </span><span class="nl">"marginAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">452.556519</span><span class="p">,</span><span class="w"> </span><span class="err">账户的可用保证金（可转出）</span><span class="w">
+          </span><span class="nl">"marginRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">               </span><span class="err">维持保证金/保证金余额</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISOLATED"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"baseAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"baseGrossAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"quoteAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.916</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4196.2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"initialMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.916</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"positionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.962</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"unRealizedPnl"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maintMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.981</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">46.516</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.554</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4511</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="err">]</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">   </span><span class="err">所有仓位详情</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000312</span><span class="p">,</span><span class="w">             </span><span class="err">仓位ID</span><span class="w">
+          </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">         </span><span class="err">交易对</span><span class="w">
+          </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISOLATED"</span><span class="p">,</span><span class="w">   </span><span class="err">保证金类型</span><span class="w"> </span><span class="err">CROSSED全仓</span><span class="w"> </span><span class="err">ISOLATED逐仓</span><span class="w">
+          </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">      </span><span class="err">基础币种</span><span class="w">
+          </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">    </span><span class="err">计价币种，无论是USDT，USDC，kUSD保证金，此处统一为kUSD</span><span class="w">
+          </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">            </span><span class="err">杠杆</span><span class="w">
+          </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                </span><span class="err">持仓数量，正数表示多仓，负数表示空仓</span><span class="w">
+          </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">4191.6</span><span class="p">,</span><span class="w">         </span><span class="err">开仓均价</span><span class="w">
+          </span><span class="nl">"avgHoldPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">4195.8</span><span class="p">,</span><span class="w">     </span><span class="err">持仓均价</span><span class="w">
+          </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">4170.5</span><span class="p">,</span><span class="w"> </span><span class="err">强平价格</span><span class="w">
+          </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">4196.2</span><span class="p">,</span><span class="w">        </span><span class="err">当前指数价格</span><span class="w">
+          </span><span class="nl">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">              </span><span class="err">未实现盈亏</span><span class="w">
+          </span><span class="nl">"profitRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1098</span><span class="p">,</span><span class="w">       </span><span class="err">盈亏比例</span><span class="w">
+          </span><span class="nl">"initialMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.916</span><span class="p">,</span><span class="w">    </span><span class="err">初始保证金</span><span class="w">
+          </span><span class="nl">"positionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.962</span><span class="p">,</span><span class="w">   </span><span class="err">仓位保证金</span><span class="w">
+          </span><span class="nl">"maintRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">         </span><span class="err">维持保证金率，根据仓位市值大小会对应不同的比例，具体看https://kine.io相应的文档</span><span class="w">
+          </span><span class="nl">"maintMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.981</span><span class="p">,</span><span class="w">      </span><span class="err">所需要的维持保证金</span><span class="w">
+          </span><span class="nl">"unRealizedPnl"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">       </span><span class="err">未实现盈亏</span><span class="w">
+          </span><span class="nl">"marginBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">46.516</span><span class="p">,</span><span class="w">    </span><span class="err">保证金余额</span><span class="w">
+          </span><span class="nl">"marginRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4511</span><span class="p">,</span><span class="w">      </span><span class="err">维持保证金/保证金余额</span><span class="w">
+          </span><span class="nl">"marginAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.554</span><span class="w">    </span><span class="err">可用保证金（可转出）</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"crossedInitialMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">           </span><span class="err">所有全仓仓位的初始保证金之和</span><span class="w">
+      </span><span class="nl">"crossedPositionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">          </span><span class="err">所有全仓仓位的仓位保证金之和</span><span class="w">
+      </span><span class="nl">"crossedMaintMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">             </span><span class="err">所有全仓仓位所需要的维持保证金之和</span><span class="w">
+      </span><span class="nl">"crossedUnRealizedPnl"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">           </span><span class="err">所有全仓仓位的未实现盈亏之和</span><span class="w">
+      </span><span class="nl">"crossedMarginBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">452.556519</span><span class="p">,</span><span class="w">  </span><span class="err">全仓账户的保证金余额</span><span class="w">
+      </span><span class="nl">"crossedMarginRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">             </span><span class="err">全仓整体的保证金比例</span><span class="w">
+      </span><span class="nl">"crossedMarginAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">452.556519</span><span class="p">,</span><span class="w"> </span><span class="err">全仓账户的可用保证金</span><span class="w">
+      </span><span class="nl">"isolatedUnRealizedPnl"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">        </span><span class="err">所有逐仓仓位的未实现盈亏之和</span><span class="w">
+      </span><span class="nl">"isolatedMarginBalance"</span><span class="p">:</span><span class="w"> </span><span class="mf">46.516</span><span class="p">,</span><span class="w">     </span><span class="err">所有逐仓仓位的保证金余额之和</span><span class="w">
+      </span><span class="nl">"isolatedPositionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.962</span><span class="p">,</span><span class="w">    </span><span class="err">所有逐仓仓位的仓位保证金之和</span><span class="w">
+      </span><span class="nl">"isolatedMarginAvailable"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.554</span><span class="p">,</span><span class="w">    </span><span class="err">所有逐仓仓位的可用保证金之和</span><span class="w">
+      </span><span class="nl">"marginBalanceTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">499.072519</span><span class="p">,</span><span class="w">    </span><span class="err">全仓+逐仓的保证金余额之和</span><span class="w">
+      </span><span class="nl">"unRealizedPnlTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.6</span><span class="p">,</span><span class="w">           </span><span class="err">全仓+逐仓的未实现盈亏之和</span><span class="w">
+      </span><span class="nl">"positionMarginTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">41.962</span><span class="p">,</span><span class="w">       </span><span class="err">全仓+逐仓的保证金余额之和</span><span class="w">
+      </span><span class="nl">"marginAvailableTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">457.110519</span><span class="w">   </span><span class="err">全仓+逐仓的可用保证金之和</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='4215cf81c7'>调整杠杆</h2>
+<ul>
+<li>分仓模式下，调整账户杠杆，只影响新的开仓，不影响已有仓位的杠杆</li>
+<li>合仓模式下，会改变账户和已存在仓位的杠杆</li>
+</ul>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST /account/api/update-leverage</code></p>
+<h3 id='required-permission-13'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='request-body-json-4'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td>BTCUSD</td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>杠杆倍数, i.e 10, 50, 100 and 125</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-15'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='5bba295f56'>账户 全仓切换逐仓</h2>
+<p>全仓账户切换逐仓账户：当前账户不能有仓位和挂单</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-isolated</code></p>
+<h3 id='required-permission-14'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-16'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='322a696edb'>账户 逐仓切换全仓</h2>
+<p>逐仓账户切换全仓账户：当前账户不能有仓位和挂单</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>POST /account/api/swap-to-crossed</code></p>
+<h3 id='required-permission-15'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-2'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-17'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='67fb858401'>账户 设置合仓,分仓</h2>
+<ul>
+<li>合仓：一个交易对上最多只能有一个仓位</li>
+<li>分仓：一个交易对上支持有多个仓位</li>
+</ul>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>POST /account/api/set-position-type</code></p>
+<h3 id='required-permission-16'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-3'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>positionType</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>合仓: 1, 分仓: 2</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"positionType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-18'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='7e34937bab'>账户 获取合仓,分仓</h2>
+<ul>
+<li>合仓：一个交易对上最多只能有一个仓位</li>
+<li>分仓：一个交易对上支持有多个仓位</li>
+</ul>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET /account/api/get-position-type</code></p>
+<h3 id='required-permission-17'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-4'>参数 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='6483dab423-19'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>int</td>
+<td>合仓: 1, 分仓: 2</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "code": 0,
+  "data": true,
+  "message": "string",
+  "success": true
+}
+</code></pre></div><h2 id='4b79a3b7a1'>账户财务历史</h2><h3 id='http-request-20'>HTTP Request</h3>
+<p><code>GET /account/api/account-history</code></p>
+<h3 id='required-permission-18'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<div class="highlight"><pre class="highlight plaintext"><code>操作枚举
+1 - DEPOSIT,
+2 - WITHDRAW, 
+3 - TRANSFER_WALLET_TO_TRADE, 
+4 - TRANSFER_TRADE_TO_WALLET, 
+5 - DEDUCT, 6 - REFUND, 
+7 - TRANSFER_IN, 
+8 - TRANSFER_OUT, 
+9 - REWARD, 
+10 - REBATE, 
+11 - EXCHANGE_IN, 
+12 - EXCHANGE_OUT, 
+13 - FUNDING_FEE_PAY, 
+14 - FUNDING_FEE_COLLECT, 
+17 - FREEZE, 
+18 - UNFREEZE, 
+24 - WITHDRAW_REJECTED, 
+30 - TRADE_MINING_JUNIOR_REWARD, 
+31 - AIR_DROP, 
+33 - TRADE_MINING_SENIOR_REWARD, 
+34 - LOCK, 
+35 - UNLOCK, 
+100 - OTHERS
+</code></pre></div><h3 id='1f9ac54b15-10'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startTime</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>开始时间</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>number</td>
+<td>no</td>
+<td>0</td>
+<td>结束时间</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>币种</td>
+<td></td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>操作</td>
+<td>操作枚举，请参考右侧示例</td>
+</tr>
+<tr>
+<td>page</td>
+<td>number</td>
+<td>no</td>
+<td>1</td>
+<td>第几页</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>number</td>
+<td>no</td>
+<td>20</td>
+<td>每页多少条</td>
+<td>最多50条</td>
+</tr>
+</tbody></table>
+
+<p><code>http request
+GET /account/api/account-history?startTime=1619798400000&amp;endTime=1619798460000&amp;currency=kUSD&amp;action=1&amp;page=2&amp;size=10
+</code></p>
+<h3 id='6483dab423-20'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId</td>
+<td>number</td>
+<td>用户UID</td>
+<td></td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>number</td>
+<td>操作开始时间</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>number</td>
+<td>操作结束时间</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>币种</td>
+<td></td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>操作</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>金额</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>状态</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722199450</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722199450</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10077439</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXCHANGE_OUT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722199450</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722199450</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10077439</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXCHANGE_IN"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722189929</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623722189929</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10077439</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSFER_WALLET_TO_TRADE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623665804197</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1623665804197</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10077439</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSFER_TRADE_TO_WALLET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kUSD"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='0660a24836'>资金账户与交易账户之间的划转</h2>
+<ol>
+<li>划转保证金到交易账户（全仓），即增加全仓保证金</li>
+<li>交易账户（全仓）划转到资金账户，即减少全仓保证金</li>
+</ol>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>POST /account/api/transfer</code></p>
+<h3 id='required-permission-19'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-5'>请求 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>大于0的数字，最多支持4位小数</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>number</td>
+<td>yes</td>
+<td></td>
+<td>划转方向</td>
+<td>1 - 划转资金账户保证金到交易账户（全仓）, 2 - 交易账户（全仓）划转到资金账户</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-21'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误信息</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='b256e462ca'>全仓交易账户与逐仓交易账户之间的划转</h2>
+<ol>
+<li>全仓交易账户转入逐仓交易账户，即增加逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
+<li>逐仓交易账户转入全仓交易账户，即减少逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
+</ol>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>POST /account/api/isolated-transfer</code></p>
+<h3 id='required-permission-20'>Required Permission</h3>
+<p><code>Trade</code></p>
+<h3 id='json-6'>请求 (Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对对应的账户</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>大于0的数字，最多支持4位小数</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>number</td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td>3 - 全仓到逐仓, 4 - 逐仓到全仓</td>
+</tr>
+<tr>
+<td>positionId</td>
+<td>long</td>
+<td>yes</td>
+<td></td>
+<td>要增加保证的逐仓仓位ID，或者要减少保证金的逐仓仓位ID</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"positionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='6483dab423-22'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>true: 成功, false: 失败</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误描述</td>
+<td></td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>错误码</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='websocket-api-3'>WebSocket API</h1>
+<p>WebSocket API 提供了市场数据，账户更新的订阅。 以topic进行订阅，订阅后将收到相应数据的更新。</p>
+
+<p>为了使您快速接入，我们提供了DEMO供您参考。
+https://github.com/kine-api-docs/demo</p>
+<h2 id='authentication-2'>身份认证 (Authentication)</h2>
+<blockquote>
+<p>Sample Code for websocket signature</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code>
+<span class="kd">var</span> <span class="nx">awsAccessKeyId</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">xxx</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">awsAccessKeySecret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">xxxx</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">signatureMethod</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">HmacSHA256</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">requestMethod</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">api.kine.exchange</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/ws</span><span class="dl">"</span><span class="p">;</span>
+
+
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">requestMethod</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
+
+  <span class="nx">host</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
+
+  <span class="nx">path</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
+
+  <span class="dl">"</span><span class="s2">accessKey=</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">awsAccessKeyId</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="dl">"</span> <span class="o">+</span>
+
+  <span class="dl">""</span> <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
+<span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">signatureBytes</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">awsAccessKeySecret</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Base64</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">signatureBytes</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">authMessage</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">op</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">AUTH</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">ts</span> <span class="o">=</span> <span class="nx">timestamp</span><span class="p">;</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">accessKey</span> <span class="o">=</span> <span class="nx">awsAccessKeyId</span><span class="p">;</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">ts</span> <span class="o">=</span> <span class="nx">timestamp</span><span class="p">;</span>
+<span class="nx">authMessage</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">signature</span> <span class="o">=</span> <span class="nx">signature</span><span class="p">;</span>
+<span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">app-id</span><span class="dl">"</span><span class="p">,</span> <span class="nx">awsAccessKeyId</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">app-key</span><span class="dl">"</span><span class="p">,</span> <span class="nx">awsAccessKeySecret</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">signature</span><span class="dl">"</span><span class="p">,</span> <span class="nx">signature</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">authMessage</span><span class="p">));</span>
+
+
+</code></pre></div>
+<p>建立websocket会话后，需要发送Auth消息进行身份认证， 认证通过后才能订阅私有数据（账户、订单更新）。否则只能订阅市场公开数据。</p>
+
+<p>The signed auth message is a json message. The payload is similar with REST API.</p>
+<h3 id='auth-message'>Auth Message 身份认证消息</h3>
+<blockquote>
+<p>websocket auth message</p>
+</blockquote>
+
+<p>身份认证消息包含使用API Key进行的签名， 签名算法请参考REST接口签名算法。</p>
+
+<p>Payload以及认证消息示例， 具体请参照右侧示例。</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">身份认证消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232922010</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"96b514aee78f1a1ed1a24453fc8e5c52b1c04361"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678789</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">认证响应消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTH_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541051</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">10079469</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Payload Example</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>--------
+GET
+api.kine.exchange
+/ws
+accessKey=xxxxxxxxxxxx
+123432345
+---------
+</code></pre></div><h2 id='ping-pong'>存活检查 (Ping/Pong)</h2>
+<blockquote>
+<p>Ping Message</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PING"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485224</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Pong Message</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PONG"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485337</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PING"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618232485224</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>我们使用自定义的Ping/Pong消息进行存活检查。 （非websocket协议内的ping/pong）</p>
+
+<p>我们同时支持双向的Ping/Pong。</p>
+
+<ol>
+<li><p>服务端会定时(5/s)Ping客户端，检查客户端是否存活。 </p></li>
+<li><p>客户端根据需要，也可以主动Ping服务端，检查链接是否存活。</p></li>
+</ol>
+
+<p>消息格式请参考右侧示例。</p>
+
+<aside class="warning">
+客户端收到PING后请立刻回复PONG，如不及时回复(大于15s)，服务端将主动断开链接。
+</aside>
+<h2 id='websocket'>Websocket回话限制</h2>
+<p>关于Websocket回话有一定的限制，请留意。</p>
+
+<table><thead>
+<tr>
+<th>Limit</th>
+<th>Limit Type</th>
+<th>Limit Value</th>
+<th>Deesc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>每个IP允许创建的最大会话数</td>
+<td>count</td>
+<td>50</td>
+<td></td>
+</tr>
+<tr>
+<td>每个API Key允许创建的最大会话数</td>
+<td>count</td>
+<td>10</td>
+<td>每个API KEY最多创建的且认证后的websocket会话数</td>
+</tr>
+<tr>
+<td>最大允许客户端发送消息的速率</td>
+<td>Rate</td>
+<td>10/s</td>
+<td>Incoming message rate limit per session (No limit for output)</td>
+</tr>
+<tr>
+<td>会话最大存活时间</td>
+<td>Duration</td>
+<td>24h</td>
+<td>超时服务端将主动断开链接，客户端请重新链接</td>
+</tr>
+</tbody></table>
+<h2 id='topic'>订阅Topic</h2>
+<blockquote>
+<p>subscribe message 订阅消息示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//订阅消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//订阅成功响应消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>un-subscribe message</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//取消订阅消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//取消订阅成功响应消息</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UN_SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618805541048</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{topic name}"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>客户端发送订阅消息，订阅响应的数据流。</p>
+
+<table><thead>
+<tr>
+<th>Topic Name</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>md.index-price.aggregated</td>
+<td>聚合价格，包括所有资产的价格更新</td>
+</tr>
+<tr>
+<td>account-v2.all</td>
+<td>账户更新 V2</td>
+</tr>
+<tr>
+<td>order.all</td>
+<td>订单更新 ， 数据格式与订单查询接口保持一致</td>
+</tr>
+<tr>
+<td>md.kline.{symbol}.{period}</td>
+<td>订阅实时K线推送</td>
+</tr>
+</tbody></table>
+<h2 id='8202557066'>价格更新数据流</h2>
+<p>Price topic : <code>md.index-price.aggregated</code></p>
+
+<p>订阅价格更新数据流的流程:</p>
+
+<ul>
+<li>客户端创建链接，并发送订阅消息。</li>
+<li>服务端返回订阅成功消息</li>
+<li>服务端发送最新价格 每500ms</li>
+</ul>
+<h3 id='message-examples'>Message examples 消息示例</h3>
+<p>消息示例，请参考右侧。</p>
+
+<blockquote>
+<p>Subscribe the prices</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119181</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Example of price response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"md.index-price.aggregated"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646334452</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62120"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAZEUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.59"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646262217</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2455.3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618644164511</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">....</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='response-of-price'>Response of price</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>DataType</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>Asset Symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>Current price</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>UTC timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='v2'>账户更新V2</h2>
+<p>Topic: <code>account-v2.all</code></p>
+
+<p>V2版本的账户快照推送。
+数据结构定义与/account/api/v2/account-positions接口保持一致。</p>
+
+<p>你账户的快照数据将在下面两个条件触发推送更新。</p>
+
+<ol>
+<li>每3秒钟，将根据最新价格，计算后进行推送。</li>
+<li>您的资产变更后将立即推送。 例如：下单，平仓，划转等</li>
+</ol>
+
+<blockquote>
+<p>Subscribe account</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646724055</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account-v2.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account-v2.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>User accounts</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account-v2.all"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">&lt;&lt;&lt;数据格式与/account/api/v</span><span class="mi">2</span><span class="err">/account-balances接口数据保持一致，请参考其接口定义&gt;&gt;&gt;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='c680da3fc7'>订单更新</h2>
+<p>Topic: <code>order.all</code></p>
+
+<p>订单更新消息， 每次订单状态的变化都会触发订单更新推送。</p>
+
+<p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
+
+<blockquote>
+<p>Subscribe Order update</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646724055</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.all"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">&lt;&lt;&lt;返回数据格式参考</span><span class="w"> </span><span class="err">`GET</span><span class="w"> </span><span class="err">/trade/api/order/v</span><span class="mi">2</span><span class="err">/all-orders`&gt;&gt;&gt;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='k-2'>实时k线推送</h2>
+<blockquote>
+<p>实时k线推送数据
+<code>json
+{
+    &quot;topic&quot;: &quot;md.kline.btcusd.30min&quot;,
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;op&quot;: &quot;DATA&quot;,
+    &quot;ts&quot;: 1639975098550,
+    &quot;data&quot;: [
+      1639974600000, 
+      46826, 
+      46953, 
+      46808, 
+      46844, 
+      0]
+}
+</code></p>
+</blockquote>
+
+<p>Topic: <code>md.kline.{symbol}.{period}</code></p>
+
+<p>实时k线推送。</p>
+
+<p>返回数据格式参考 <code>GET /market/api/kline</code></p>
+<h1 id='reference'>Reference</h1>
+<p>API对接技术支持(技术不在线时请耐心等待或创建工单) <a href="https://t.me/kine_api_support">电报群</a> </p>
+
+<p>创建技术支持工单(24h内回复) <a href="https://github.com/kine-api-docs/zh-cn/issues/new/choose">创建工单</a></p>
+<h1 id='errors'>Errors</h1>
+<p>The Kine API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified endpoint could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a endpoint with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- Your requests exceeded the rate limit.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="java">java</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
