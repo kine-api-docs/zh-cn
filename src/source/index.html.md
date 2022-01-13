@@ -949,7 +949,7 @@ data    | long    |  当前用户的UID| |
     "totalNetValue": 1323493.382527,    交易账户 + 钱包账户 总价值
     "unrealizedProfit": 4.6,            当前未实现盈亏
     "intradayProfitRate": 0,            当日收益率
-    "walletAccountSummary": {           钱傲账户每个币种详情
+    "walletAccountSummary": {           资金账户每个币种详情：币种，余额
       "accounts": [
         {
           "userId": 10015805,
