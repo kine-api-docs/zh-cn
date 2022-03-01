@@ -176,13 +176,13 @@ https://github.com/kine-api-docs/demo
 * `Request Method`  GET/POST  (Websocket 签名请使用 GET)
 * `Host` 主域名 目前只有一个 `api.kine.exchange`
 * `Request path` 接口请求路径，不包含域名。 例如: `/trade/api/order/v2/place`
-* `API key`  API Key ID，需要包含在Request Header中 `KINE-API-ACCESS-KEY`
-* `SecretKey`  用于计算签名的秘钥。
-* `Timestamp` 毫秒时间戳 需要包含在request header `KINE-API-TS`
 * `Request Parameters` 请求参数。 这里的请求参数是指HTTP请求参数，拼接在URL中的参数，而不是Request Body中的数据。 不论GET、POST请求， 签名只需要HTTP请求参数，不需要Body中的数据。
+* `Timestamp` 毫秒时间戳 需要包含在request header `KINE-API-TS`
 * `Payload` 将以上相关信息拼接成固定格式的文本，然后对其进行加密得到最终的签名.  格式请参考 `Payload` 章节
 * `Signature` 对Payload加密得到的签名， 需要包含在 request header  `KINE-API-SIGNATURE`
-
+* 
+* `API key`  API Key ID，需要包含在Request Header中 `KINE-API-ACCESS-KEY`
+* `SecretKey`  用于计算签名的秘钥。
 ## Signature 签名
 
 ### 1. 准备签名用的文本 Payload ， 请参考右侧示例

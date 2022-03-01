@@ -364,7 +364,16 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication 身份验证">Authentication 身份验证</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#signature" class="toc-h2 toc-link" data-title="Signature 签名">Signature 签名</a>
+                    <a href="#1-payload" class="toc-h2 toc-link" data-title="1. 准备签名用的文本 Payload ， 请参考右侧示例">1. 准备签名用的文本 Payload ， 请参考右侧示例</a>
+                  </li>
+                  <li>
+                    <a href="#2" class="toc-h2 toc-link" data-title="2. 生成签名.">2. 生成签名.</a>
+                  </li>
+                  <li>
+                    <a href="#3-http-header-3" class="toc-h2 toc-link" data-title="3. HTTP HEADER中需要增加以下3个：">3. HTTP HEADER中需要增加以下3个：</a>
+                  </li>
+                  <li>
+                    <a href="#4e56a8d197" class="toc-h2 toc-link" data-title="问题排查">问题排查</a>
                   </li>
               </ul>
           </li>
@@ -621,14 +630,16 @@ https://github.com/kine-api-docs/demo</p>
 <li><code>Request Method</code>  GET/POST  (Websocket 签名请使用 GET)</li>
 <li><code>Host</code> 主域名 目前只有一个 <code>api.kine.exchange</code></li>
 <li><code>Request path</code> 接口请求路径，不包含域名。 例如: <code>/trade/api/order/v2/place</code></li>
-<li><code>API key</code>  API Key ID，需要包含在Request Header中 <code>KINE-API-ACCESS-KEY</code></li>
-<li><code>SecretKey</code>  用于计算签名的秘钥。</li>
-<li><code>Timestamp</code> 毫秒时间戳 需要包含在request header <code>KINE-API-TS</code></li>
 <li><code>Request Parameters</code> 请求参数。 这里的请求参数是指HTTP请求参数，拼接在URL中的参数，而不是Request Body中的数据。 不论GET、POST请求， 签名只需要HTTP请求参数，不需要Body中的数据。</li>
+<li><code>Timestamp</code> 毫秒时间戳 需要包含在request header <code>KINE-API-TS</code></li>
 <li><code>Payload</code> 将以上相关信息拼接成固定格式的文本，然后对其进行加密得到最终的签名.  格式请参考 <code>Payload</code> 章节</li>
 <li><code>Signature</code> 对Payload加密得到的签名， 需要包含在 request header  <code>KINE-API-SIGNATURE</code></li>
+<li></li>
+<li><code>API key</code>  API Key ID，需要包含在Request Header中 <code>KINE-API-ACCESS-KEY</code></li>
+<li><code>SecretKey</code>  用于计算签名的秘钥。
+## Signature 签名</li>
 </ul>
-<h2 id='signature'>Signature 签名</h2><h3 id='1-payload'>1. 准备签名用的文本 Payload ， 请参考右侧示例</h3><div class="highlight"><pre class="highlight plaintext"><code>{requestMethod}\n
+<h3 id='1-payload'>1. 准备签名用的文本 Payload ， 请参考右侧示例</h3><div class="highlight"><pre class="highlight plaintext"><code>{requestMethod}\n
 {host}\n               
 {request path}\n       ## 请求路径
 {request parameters}\n ## 实际拼接在URL上？右侧的部分，如果没有参数，请保留 `空行`。
