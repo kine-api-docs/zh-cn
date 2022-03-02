@@ -241,6 +241,66 @@ https://github.com/kine-api-docs/demo
         String signature = Base64.getEncoder().encodeToString(hash);
 ```
 
+``` python
+import time
+import hmac,base64
+from hashlib import sha256
+import requests
+import json
+
+
+#
+# 签名
+#
+def sign(payload, secretKey):
+    sign = base64.b64encode(hmac.new(secretKey.encode('utf-8'), payload.encode('utf-8'), digestmod=sha256).digest())
+    sign = str(sign, 'utf-8')
+    return sign
+
+#
+# 发送get请求
+#
+def kine_get(base_url, path, apikey, secretKey, requestParams = ''):
+    host = 'api.kine.exchange'
+
+    timestamp=str(int(time.time()*1000))
+    payload='GET'+'\n'+host+'\n'+path+'\n'+requestParams+'\n'+timestamp
+    signature=sign(payload, secretKey)
+
+    headers={
+        'KINE-API-TS': timestamp,
+        'KINE-API-ACCESS-KEY': apikey,
+        'KINE-API-SIGNATURE': signature, 
+        'Content-Type': 'application/json; charset=UTF-8'
+    }
+    res=requests.get(base_url + path, params=requestParams, headers=headers)
+    r = res.json()
+    print(r)
+    return r
+
+
+#
+# 发送post请求
+#
+def kine_post(base_url, path, apikey, secretKey, requestParams = '', requestBody = {}):
+    host = 'api.kine.exchange'
+
+    timestamp=str(int(time.time()*1000))
+    payload='POST'+'\n'+host+'\n'+path+'\n'+requestParams+'\n'+timestamp
+    signature=sign(payload, secretKey)
+
+    headers={ 
+        'KINE-API-TS': timestamp,
+        'KINE-API-ACCESS-KEY': apikey,
+        'KINE-API-SIGNATURE': signature, 
+        'Content-Type': 'application/json; charset=UTF-8'
+    }
+    res=requests.post(base_url + path, params=requestParams, data=json.dumps(requestBody), headers=headers)
+    r = res.json()
+    print(r)
+    return r
+```
+
 ### 3. HTTP HEADER中需要增加以下3个：
 
 * `KINE-API-ACCESS-KEY`   The API key
