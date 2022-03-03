@@ -21,6 +21,11 @@ code_clipboard: true
 
 # 更新历史
 
+## 2022-03-03
+
+1. `GET /account/api/max-buy-and-sell` 返回用户某个交易对上可以买，卖的最大数量和金额（基于用户资金的保证金，杠杆以及已有持仓计算）
+
+
 ## 2022-01-07
 
 1. `POST /trade/api/order/v2/place` 返回对象增加fee, profit, profitTakeoffAmount
@@ -978,6 +983,48 @@ data    | long    |  当前用户的UID| |
   "code": 0,
   "data": 1000000,
   "message": "string",
+  "success": true
+}
+```
+
+## 查询用户某个交易对上最大可买，可卖
+- 此计算是基于当前指数价格，以及用户的可用保证金，杠杆，已有持仓，全仓/逐仓，合仓/分仓增和计算得出。
+- 需要注意的是：使用此计算的结果下单可能会遇到下单错误，是因为上面计算的变量随时都在变化
+
+### HTTP Request
+
+`GET /account/api/max-buy-and-sell`
+
+### Required Permission
+
+`ReadOnly`
+
+### 请求参数
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+symbol | string |  BTCUSD, ETHUSD | |
+
+### 返回值
+
+字段 | 类型 | 描述 | 举例 |
+--------- | ----------- | -----------| ----------| 
+success | boolean |  true: 成功, false: 失败 | |
+message | string  |  错误描述     | |
+code    | string  |  错误码       | |
+data    | {}      |  最大可买和可卖 | |
+
+```json
+{
+  "code": 0,
+  "data": {
+    "maxBuyQty": 0.0,       最大可买数量
+    "maxSellQty": 0.0,      最大可卖数量
+    "maxBuyAmount": 0.0,    最大可买金额
+    "maxSellAmount": 0.0,   最大可卖金额
+    "price": 2907.4         计算时指数价格
+  },
+  "message": "",
   "success": true
 }
 ```
