@@ -58,9 +58,11 @@ https://github.com/kine-api-docs/demo
 3. 增加了content-type的说明。 统一使用：application/json;charset=utf-8
 
 
-## 2021-11-19
+## 2023-04-20
 
-* 中文文档
+1. 增加获取现货交易规则API `/market/api/v2/spot-trading-rules`
+2. 增加现货交易API
+3. 增加现货WebSocket订阅
 
 # 简介
 
@@ -340,9 +342,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 市场数据API是公开接口，不需要签名
 
 
-## 查询所有交易对以及交易规则
+## 查询所有合约交易对以及交易规则
 ### HTTP Request
-`GET /market/api/trading-rules`
+`GET /market/api/v2/perpetual-trading-rules`
 
 ### Required Permission
 `ReadOnly`
@@ -363,6 +365,80 @@ minAmount         | decimal  |  最小下单金额 |  |
 defaultMarginType | enum     |  默认账户类型 全仓:CROSSED 逐仓:ISOLATED |  |
 defaultLeverage   | decimal  |  默认杠杆 |  |
 maxLeverage       | decimal  |  最大杠杆 |  |
+
+
+## 查询所有现货交易对以及交易规则
+### HTTP Request
+`GET /market/api/v2/spot-trading-rules`
+
+### Required Permission
+`ReadOnly`
+
+### 请求参数
+无
+
+### 返回值
+字段 | 数据类型 | 描述 | 举例 |
+--------- | ----------- | --------|  ----- | 
+symbol         | string  |  交易对 | ETHUSD，BTCUSD |
+enabled        | boolean |  是否可交易 true:可交易，false不可交易 |  |
+priceDecimal   | int     |  价格精度 |  |
+qtyDecimal     | int     |  数量精度 |  |
+amountDecimal  | int     |  金额精度 |  |
+minBaseAmount  | decimal  |  最小下单数量 |  |
+minQuoteAmount | decimal  |  最小下单金额 |  |
+
+```json
+
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": [
+        {
+            "id": 1001,
+            "symbol": "ETHWUSDT",
+            "baseName": "EthereumPow",
+            "baseCurrency": "ETHW",
+            "quoteCurrency": "USDT",
+            "priceDecimal": 4,
+            "qtyDecimal": 2,
+            "amountDecimal": 4,
+            "markerFee": 0.00020000,
+            "takerFee": 0.00050000,
+            "minBaseAmount": 1.00000000,
+            "minQuoteAmount": 10.00000000,
+            "minPrice": 0.10000000,
+            "maxPrice": 100.00000000,
+            "shelve": 1,
+            "enabled": 1,
+            "klineEnabled": 0,
+            "pos": 1
+        },
+        {
+            "id": 1000,
+            "symbol": "KINEUSDT",
+            "baseName": "Kine Protocol",
+            "baseCurrency": "KINE",
+            "quoteCurrency": "USDT",
+            "priceDecimal": 4,
+            "qtyDecimal": 2,
+            "amountDecimal": 4,
+            "markerFee": 0.00020000,
+            "takerFee": 0.00050000,
+            "minBaseAmount": 1.00000000,
+            "minQuoteAmount": 10.00000000,
+            "minPrice": 0.10000000,
+            "maxPrice": 100.00000000,
+            "shelve": 1,
+            "enabled": 1,
+            "klineEnabled": 0,
+            "pos": 2
+        }
+    ]
+}
+
+```
 
 
 ## 查询某个交易对的指数价格
@@ -526,7 +602,7 @@ size | string | false | 150   |  kline历史条数， 默认150， 最大2000 | 
 4 | number  | close， 结束价格 |  |
 5 | number  | 交易金额USD |  |
 
-# 交易API
+# 合约交易API
 
 ## 下单（市价单，限价单）
 
@@ -952,6 +1028,333 @@ Error Code | Description |
 31202 | Invalid amount |
 31203 | Invalid direction |
 31204 | Illegal client order ID |
+
+# 现货交易API
+
+## 下单
+
+### HTTP Request
+`POST /trade/api/v2/spot-order/place`
+
+> 下单请求参数示例
+
+```json
+{
+    "symbol": "KINEUSDT",
+    "side": 1,
+    "type": 1,
+    "price": "90",
+    "baseAmount": "",
+    "quoteAmount": "90",
+    "validHours": 168
+}
+```
+
+### Request Body(Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol           | string | yes |    |  交易对    | 入KINEUSDT, ETHUSDT |
+side             | int    | yes |    |  订单方向  |  1买, 2卖       |
+type             | int    | yes |    |  订单类型  |  1市价单, 2限价单 |
+price            | string | no  |    |  限价单价格, 市价单可以为空, 需满足交易规则中priceDecimal约束   |  "" |
+baseAmount       | string | no  |    |  市价单,限价单的卖出数量, 需满足交易规则中qtyDecimal约束      |  "" |
+quoteAmount      | string | no  |    |  市价单,限价单的买入金额 , 需满足交易规则中amountDecimal约束      |  "" |
+validHours       | int    | no  |    |  限价单有效期(小时), 目前唯一值为168   |  "" |
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data | string  | 订单ID |  |
+
+```json
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": "3525915565644316801"
+}
+```
+
+## 撤单
+
+### HTTP Request
+`POST /trade/api/v2/spot-order/cancel`
+
+```json
+{
+    "orderId": "3525915565644316801",
+    "symbol": "KINEUSD"
+}
+```
+
+### Request Body(Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderId          | string | yes |    |  订单ID       |   1买, 2卖       |
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | boolean     | true成功    |           |
+
+```json
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": true
+}
+```
+
+## 查询当前委托
+
+### HTTP Request
+`GET /trade/api/v2/spot-order/query-pending`
+
+### Request 参数
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol        | string | no  |    |  查询交易对    |   KINEUSDT        |
+page          | int    | no  |    |  第几页       |   默认 1           |
+size          | int    | no  |    |  每页记录数    |   默认 20          |
+
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | 订单列表对象  |            |           |
+
+```json
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": {
+        "page": 1,     -- 第几页
+        "size": 20,    -- 每页记录数
+        "total": 4,    -- 总记录数
+        "items": [
+            {
+                "createTime": 1681811460834,       -- 创建时间 GMT00
+                "updateTime": 1681811460834,       -- 更新时间 GMT00
+                "orderId": "3525028926535499905",  -- 订单ID
+                "userId": 10002073,                -- 用户ID
+                "symbol": "ETHWUSDT",              -- 交易对
+                "type": 2,                         -- 订单类型: 1市价单, 2限价单
+                "side": 1,                         -- 订单方向: 1买, 2卖
+                "price": "90",                     -- 下单价格
+                "baseAmount": "1",                 -- 下单数量
+                "quoteAmount": "90",               -- 下单金额
+                "status": 2,                       -- 订单状态
+                "cumBaseAmount": "0",              -- 累计成交数量
+                "cumQuoteAmount": "0",             -- 累计成交金额
+                "cumFeeAmount": "0",               -- 累计手续费
+                "avgPrice": "0",                   -- 平均成交价格
+                "source": 2,                       -- 订单来源: 1web下单, 2app下单, 3api下单
+                "validHours": 168                  -- 订单有效时长(小时)
+            },
+            {
+                "createTime": 1681809927160,
+                "updateTime": 1681809927160,
+                "orderId": "3525025710330609792",
+                "userId": 10002073,
+                "symbol": "ETHWUSDT",
+                "type": 2,
+                "side": 1,
+                "price": "90",
+                "baseAmount": "1",
+                "quoteAmount": "90",
+                "status": 2,
+                "cumBaseAmount": "0",
+                "cumQuoteAmount": "0",
+                "cumFeeAmount": "0",
+                "avgPrice": "0",
+                "source": 2,
+                "validHours": 168
+            },
+            {
+                "createTime": 1681809688012,
+                "updateTime": 1682065173880,
+                "orderId": "3525025208777834624",
+                "userId": 10002073,
+                "symbol": "ETHWUSDT",
+                "type": 2,
+                "side": 2,
+                "price": "97",
+                "baseAmount": "1",
+                "quoteAmount": "97",
+                "status": 5,
+                "cumBaseAmount": "0.2371",
+                "cumQuoteAmount": "23",
+                "cumFeeAmount": "0.0046",
+                "avgPrice": "97.0055",
+                "source": 2,
+                "validHours": 168
+            },
+            {
+                "createTime": 1681803195073,
+                "updateTime": 1681803195073,
+                "orderId": "3525011592062173313",
+                "userId": 10002073,
+                "symbol": "ETHWUSDT",
+                "type": 2,
+                "side": 2,
+                "price": "99",
+                "baseAmount": "1",
+                "quoteAmount": "99",
+                "status": 2,
+                "cumBaseAmount": "0",
+                "cumQuoteAmount": "0",
+                "cumFeeAmount": "0",
+                "avgPrice": "0",
+                "source": 2,
+                "validHours": 168
+            }
+        ]
+    }
+}
+```
+
+
+## 查询历史委托
+
+### HTTP Request
+`GET /trade/api/v2/spot-order/query`
+
+### Request 参数
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol        | string | no  |    |  查询交易对    |   KINEUSDT        |
+type          | int    | no  |    |  订单类型      |   1市价单, 2限价单, 0不分区订单类型           |
+side          | int    | no  |    |  订单方向      |   1买, 2卖, 0不区分买卖           |
+page          | int    | no  |    |  第几页        |   默认 1           |
+size          | int    | no  |    |  每页记录数    |   默认 20          |
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | 订单列表对象  |            |           |
+
+
+## 查询单个订单
+
+### HTTP Request
+`GET /trade/api/v2/spot-order/query-order`
+
+
+### Request 参数
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+orderId    | string | yes  |    |  订单ID    |   3525915565644316801        |
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | 订单列表对象  |            |           |
+
+```json
+
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data":             
+    {
+        "createTime": 1681811460834,       -- 创建时间 GMT00
+        "updateTime": 1681811460834,       -- 更新时间 GMT00
+        "orderId": "3525028926535499905",  -- 订单ID
+        "userId": 10002073,                -- 用户ID
+        "symbol": "ETHWUSDT",              -- 交易对
+        "type": 2,                         -- 订单类型: 1市价单, 2限价单
+        "side": 1,                         -- 订单方向: 1买, 2卖
+        "price": "90",                     -- 下单价格
+        "baseAmount": "1",                 -- 下单数量
+        "quoteAmount": "90",               -- 下单金额
+        "status": 2,                       -- 订单状态
+        "cumBaseAmount": "0",              -- 累计成交数量
+        "cumQuoteAmount": "0",             -- 累计成交金额
+        "cumFeeAmount": "0",               -- 累计手续费
+        "avgPrice": "0",                   -- 平均成交价格
+        "source": 2,                       -- 订单来源: 1web下单, 2app下单, 3api下单
+        "validHours": 168                  -- 订单有效时长(小时)
+    }
+}
+
+```
+
+
+## 查询单个订单成交明细
+
+### HTTP Request
+`GET /trade/api/v2/spot-order/query-trade`
+
+
+### Request 参数
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+orderId    | string | yes  |    |  订单ID    |   3525915565644316801        |
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | 订单列表对象  |            |           |
+
+```json
+
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": {
+        "page": 1,
+        "size": 20,
+        "total": 1,
+        "items": [
+            {
+                "createTime": 1681212793678,       -- 成交时间
+                "orderId": "3523773429366915201",  -- 订单Id
+                "tradeId": "xxZjSTQ8hQwoARFxtC",   -- 成交Id
+                "userId": 10002073,                -- 用户UserId
+                "symbol": "KINEUSDT",              -- 交易对
+                "role": 2,                         -- 1Maker, 2Taker
+                "side": 1,                         -- 1买, 2卖
+                "price": "1.0055",                 -- 成交价格
+                "baseAmount": "10.9398",           -- 成交数量
+                "quoteAmount": "11",               -- 成交金额
+                "feeAmount": "0.0054699"           -- 手续费
+            }
+        ]
+    }
+}
+
+```
+
+
+## 订单状态
+
+编号 | 描述 |
+---------  | ------- |
+2   | PENDING, 委托未成交 |
+3   | REJECTED 订单被拒绝|
+4   | CANCELED 订单未成交被取消|
+5   | PARTIALLY_FILLED 订单部分成交|
+6   | PARTIALLY_FILLED_CANCELED 订单部分成交后被取消|
+7   | FILLED 订单完全成交|
+8   | EXPIRED 订单未成交过期|
+9   | PARTIALLY_FILLED_EXPIRED 订单部分成交后过期 |
+
+## 错误编码
+
 
 
 # 账户API
@@ -1963,7 +2366,7 @@ V2版本的账户快照推送。
 }
 ```
 
-## 订单更新
+## 合约订单更新
 
 Topic: `order.all`
 
@@ -2034,6 +2437,150 @@ Topic: `md.kline.{symbol}.{period}`
 实时k线推送。
 
 返回数据格式参考 `GET /market/api/kline`
+
+
+## 现货订单更新
+
+Topic: `spot-order.all`
+
+订单更新消息， 每次订单状态的变化都会触发订单更新推送。
+
+返回数据格式参考 `GET /trade/api/v2/spot-order/query-order`
+
+> Subscribe Order update
+
+```json
+{
+  "op": "SUB",
+  "ts": 1618646724055,
+  "data": {
+    "topic": "spot-order.all"
+  }
+}
+```
+
+> Subscribe response
+
+```json
+{
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618646119344,
+  "data": {
+    "topic": "spot-order.all"
+  }
+}
+```
+
+> Order
+
+```json
+{
+  "topic": "spot-order.all",
+  "status": "success",
+  "op": "DATA",
+  "ts": 1618990231304,
+  "data": 
+      {
+        "createTime": 1681811460834,       -- 创建时间 GMT00
+        "updateTime": 1681811460834,       -- 更新时间 GMT00
+        "orderId": "3525028926535499905",  -- 订单ID
+        "userId": 10002073,                -- 用户ID
+        "symbol": "ETHWUSDT",              -- 交易对
+        "type": 2,                         -- 订单类型: 1市价单, 2限价单
+        "side": 1,                         -- 订单方向: 1买, 2卖
+        "price": "90",                     -- 下单价格
+        "baseAmount": "1",                 -- 下单数量
+        "quoteAmount": "90",               -- 下单金额
+        "status": 2,                       -- 订单状态
+        "cumBaseAmount": "0",              -- 累计成交数量
+        "cumQuoteAmount": "0",             -- 累计成交金额
+        "cumFeeAmount": "0",               -- 累计手续费
+        "avgPrice": "0",                   -- 平均成交价格
+        "source": 2,                       -- 订单来源: 1web下单, 2app下单, 3api下单
+        "validHours": 168                  -- 订单有效时长(小时)
+    }
+}
+```
+
+## 现货订单OrderBook
+
+1. 订阅Topic: `spot-order-book.交易对` 
+1. 交易对需要小写, 如kineusdt, ethusdt
+2. 最多返回150档买卖数据,
+3. 每0.5秒推送1次
+
+> Subscribe request
+
+```json
+{
+  "op": "SUB",
+  "ts": 1618646724055,
+  "data": {
+    "topic": "spot-order-book.ethwusdt"
+  }
+}
+```
+
+> Subscribe response
+
+```json
+{
+  "status": "success",
+  "op": "SUB_RESULT",
+  "ts": 1618646119344,
+  "data": {
+    "topic": "spot-order-book.ethwusdt"
+  }
+}
+```
+
+> OrderBook
+
+```json
+{
+  "topic": "spot-order-book.ethwusdt",
+  "status": "success",
+  "op": "DATA",
+  "ts": 1682239531766,
+  "data": {
+    "symbol": "ETHWUSDT",
+    "status": true,
+    "ts": 1682239531752,
+    "price": "93.5",          -- 当前价格
+    "minPrice": "0.1",        -- 最小允许的价格
+    "maxPrice": "100",        -- 最大允许的价格
+    "x": "0",                 -- 流动性池ETHW数量
+    "y": "0",                 -- 流动性池USDT数量
+    "askOrders": [            -- 卖单列表
+      {
+        "price": "97",            -- 价格
+        "baseAmount": "0.76",     -- 数量
+        "quoteAmount": "74.0013"  -- 金额
+      },
+      {
+        "price": "99",
+        "baseAmount": "1",
+        "quoteAmount": "99"
+      }
+    ],
+    "bidOrders": [           -- 买单列表
+      {
+        "price": "90",
+        "baseAmount": "2",
+        "quoteAmount": "180"
+      },
+      {
+        "price": "83.5",
+        "baseAmount": "0.11",
+        "quoteAmount": "10"
+      }
+    ]
+  }
+}
+```
+
+
 
 
 
