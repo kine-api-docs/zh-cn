@@ -331,7 +331,7 @@
                     <a href="#2021-11-29" class="toc-h2 toc-link" data-title="2021-11-29">2021-11-29</a>
                   </li>
                   <li>
-                    <a href="#2021-11-19" class="toc-h2 toc-link" data-title="2021-11-19">2021-11-19</a>
+                    <a href="#2023-04-20" class="toc-h2 toc-link" data-title="2023-04-20">2023-04-20</a>
                   </li>
               </ul>
           </li>
@@ -384,7 +384,10 @@
             <a href="#market-data-api" class="toc-h1 toc-link" data-title="Market Data API 市场数据">Market Data API 市场数据</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#03160fd1d2" class="toc-h2 toc-link" data-title="查询所有交易对以及交易规则">查询所有交易对以及交易规则</a>
+                    <a href="#11ca861480" class="toc-h2 toc-link" data-title="查询所有合约交易对以及交易规则">查询所有合约交易对以及交易规则</a>
+                  </li>
+                  <li>
+                    <a href="#f424960d9f" class="toc-h2 toc-link" data-title="查询所有现货交易对以及交易规则">查询所有现货交易对以及交易规则</a>
                   </li>
                   <li>
                     <a href="#29f8d95748" class="toc-h2 toc-link" data-title="查询某个交易对的指数价格">查询某个交易对的指数价格</a>
@@ -401,7 +404,7 @@
               </ul>
           </li>
           <li>
-            <a href="#api" class="toc-h1 toc-link" data-title="交易API">交易API</a>
+            <a href="#api" class="toc-h1 toc-link" data-title="合约交易API">合约交易API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#4aa0d18111" class="toc-h2 toc-link" data-title="下单（市价单，限价单）">下单（市价单，限价单）</a>
@@ -427,7 +430,36 @@
               </ul>
           </li>
           <li>
-            <a href="#api-2" class="toc-h1 toc-link" data-title="账户API">账户API</a>
+            <a href="#api-2" class="toc-h1 toc-link" data-title="现货交易API">现货交易API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fd6ce2a756" class="toc-h2 toc-link" data-title="下单">下单</a>
+                  </li>
+                  <li>
+                    <a href="#fc150cab0e-2" class="toc-h2 toc-link" data-title="撤单">撤单</a>
+                  </li>
+                  <li>
+                    <a href="#175e2b116c" class="toc-h2 toc-link" data-title="查询当前委托">查询当前委托</a>
+                  </li>
+                  <li>
+                    <a href="#6f72be3112" class="toc-h2 toc-link" data-title="查询历史委托">查询历史委托</a>
+                  </li>
+                  <li>
+                    <a href="#327ddc77cb" class="toc-h2 toc-link" data-title="查询单个订单">查询单个订单</a>
+                  </li>
+                  <li>
+                    <a href="#181b9516ef" class="toc-h2 toc-link" data-title="查询单个订单成交明细">查询单个订单成交明细</a>
+                  </li>
+                  <li>
+                    <a href="#4e4ca9ca80" class="toc-h2 toc-link" data-title="订单状态">订单状态</a>
+                  </li>
+                  <li>
+                    <a href="#89b65a8999" class="toc-h2 toc-link" data-title="错误编码">错误编码</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-3" class="toc-h1 toc-link" data-title="账户API">账户API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#uid" class="toc-h2 toc-link" data-title="查询用户UID">查询用户UID</a>
@@ -486,10 +518,16 @@
                     <a href="#v2" class="toc-h2 toc-link" data-title="账户更新V2">账户更新V2</a>
                   </li>
                   <li>
-                    <a href="#c680da3fc7" class="toc-h2 toc-link" data-title="订单更新">订单更新</a>
+                    <a href="#4dbd54b180" class="toc-h2 toc-link" data-title="合约订单更新">合约订单更新</a>
                   </li>
                   <li>
                     <a href="#k-2" class="toc-h2 toc-link" data-title="实时k线推送">实时k线推送</a>
+                  </li>
+                  <li>
+                    <a href="#1f10f07ca4" class="toc-h2 toc-link" data-title="现货订单更新">现货订单更新</a>
+                  </li>
+                  <li>
+                    <a href="#orderbook" class="toc-h2 toc-link" data-title="现货订单OrderBook">现货订单OrderBook</a>
                   </li>
               </ul>
           </li>
@@ -539,10 +577,12 @@ https://github.com/kine-api-docs/demo</li>
 <li>增加了签名问题排查建议</li>
 <li>增加了content-type的说明。 统一使用：application/json;charset=utf-8</li>
 </ol>
-<h2 id='2021-11-19'>2021-11-19</h2>
-<ul>
-<li>中文文档</li>
-</ul>
+<h2 id='2023-04-20'>2023-04-20</h2>
+<ol>
+<li>增加获取现货交易规则API <code>/market/api/v2/spot-trading-rules</code></li>
+<li>增加现货交易API</li>
+<li>增加现货WebSocket订阅</li>
+</ol>
 <h1 id='5ea2e0cde2'>简介</h1>
 <p>欢迎查看KINE API文档。</p>
 
@@ -781,8 +821,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 </ol>
 <h1 id='market-data-api'>Market Data API 市场数据</h1>
 <p>市场数据API是公开接口，不需要签名</p>
-<h2 id='03160fd1d2'>查询所有交易对以及交易规则</h2><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /market/api/trading-rules</code></p>
+<h2 id='11ca861480'>查询所有合约交易对以及交易规则</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /market/api/v2/perpetual-trading-rules</code></p>
 <h3 id='required-permission'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15'>请求参数</h3>
@@ -857,11 +897,118 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='29f8d95748'>查询某个交易对的指数价格</h2><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /market/api/price/{symbol}</code></p>
+<h2 id='f424960d9f'>查询所有现货交易对以及交易规则</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /market/api/v2/spot-trading-rules</code></p>
 <h3 id='required-permission-2'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-2'>请求参数</h3>
+<p>无</p>
+<h3 id='6483dab423-2'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>交易对</td>
+<td>ETHUSD，BTCUSD</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>boolean</td>
+<td>是否可交易 true:可交易，false不可交易</td>
+<td></td>
+</tr>
+<tr>
+<td>priceDecimal</td>
+<td>int</td>
+<td>价格精度</td>
+<td></td>
+</tr>
+<tr>
+<td>qtyDecimal</td>
+<td>int</td>
+<td>数量精度</td>
+<td></td>
+</tr>
+<tr>
+<td>amountDecimal</td>
+<td>int</td>
+<td>金额精度</td>
+<td></td>
+</tr>
+<tr>
+<td>minBaseAmount</td>
+<td>decimal</td>
+<td>最小下单数量</td>
+<td></td>
+</tr>
+<tr>
+<td>minQuoteAmount</td>
+<td>decimal</td>
+<td>最小下单金额</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EthereumPow"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHW"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"qtyDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"markerFee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00020000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"takerFee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00050000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"maxPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"shelve"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"klineEnabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINEUSDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kine Protocol"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"qtyDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"markerFee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00020000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"takerFee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00050000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"maxPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.00000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"shelve"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"klineEnabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='29f8d95748'>查询某个交易对的指数价格</h2><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /market/api/price/{symbol}</code></p>
+<h3 id='required-permission-3'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -881,7 +1028,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>BTCUSD</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-2'>返回值</h3>
+<h3 id='6483dab423-3'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -909,11 +1056,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='e30fc6af24'>获取全部交易对价格</h2><h3 id='http-request-3'>HTTP Request</h3>
+<h2 id='e30fc6af24'>获取全部交易对价格</h2><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /market/api/agg-price</code></p>
-<h3 id='required-permission-3'>Required Permission</h3>
+<h3 id='required-permission-4'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='6483dab423-3'>返回值</h3>
+<h3 id='6483dab423-4'>返回值</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -983,9 +1130,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='7c3e2fe3fc'>获取资金费率</h2><h3 id='http-request-4'>HTTP Request</h3>
+</span></code></pre></div><h2 id='7c3e2fe3fc'>获取资金费率</h2><h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /market/api/funding-rate/{symbol}</code></p>
-<h3 id='1f9ac54b15-3'>请求参数</h3>
+<h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1005,7 +1152,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>BTCUSD</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-4'>返回值</h3>
+<h3 id='6483dab423-5'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1045,7 +1192,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k'>查询K线历史</h2><h3 id='http-request-5'>HTTP Request</h3>
+<h2 id='k'>查询K线历史</h2><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /market/api/kline</code></p>
 
 <p>该接口用于查询k线历史。
@@ -1088,7 +1235,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1124,7 +1271,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>查询历史多少根k线</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-5'>返回值</h3>
+<h3 id='6483dab423-6'>返回值</h3>
 <p>为减少数据大小， 这里使用了精简的数据结构。 二维数组来表示k线数据。
 每一行是一根k线， 数据中每个位置的数据定义，请参考下列表格， 或者右侧示例。</p>
 
@@ -1175,7 +1322,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='api'>交易API</h1><h2 id='4aa0d18111'>下单（市价单，限价单）</h2><h3 id='http-request-6'>HTTP Request</h3>
+<h1 id='api'>合约交易API</h1><h2 id='4aa0d18111'>下单（市价单，限价单）</h2><h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /trade/api/order/v2/place</code></p>
 
 <blockquote>
@@ -1206,7 +1353,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"positionId"</span><span class="p">:</span><span class="mi">10000265</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='required-permission-4'>Required Permission</h3>
+</span></code></pre></div><h3 id='required-permission-5'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json'>Request Body(Json)</h3>
 <table><thead>
@@ -1300,7 +1447,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>0</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-6'>返回值</h3>
+<h3 id='6483dab423-7'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1350,7 +1497,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
     </span><span class="nl">"stopLossResult"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='eff2251e79'>下单（止盈止损）</h2><h3 id='http-request-7'>HTTP Request</h3>
+</span></code></pre></div><h2 id='eff2251e79'>下单（止盈止损）</h2><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /trade/api/order/v2/place-profit-loss</code></p>
 
 <blockquote>
@@ -1367,7 +1514,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"stopLossPrice"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"55000"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"stopLossAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='required-permission-5'>Required Permission</h3>
+</span></code></pre></div><h3 id='required-permission-6'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json-2'>Request Body(Json)</h3>
 <table><thead>
@@ -1453,7 +1600,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>0</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-7'>返回值</h3>
+<h3 id='6483dab423-8'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1490,7 +1637,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>支持一键平掉用户在某个交易对上的所有仓位</li>
 <li>支持一键平掉某一个指定仓位</li>
 </ul>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /trade/api/order/v2/close-all</code></p>
 
 <blockquote>
@@ -1521,7 +1668,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='required-permission-6'>Required Permission</h3>
+</span></code></pre></div><h3 id='required-permission-7'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='request-body-json-3'>Request Body(Json)</h3>
 <table><thead>
@@ -1551,7 +1698,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>0</td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-8'>返回值</h3>
+<h3 id='6483dab423-9'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1568,11 +1715,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span></code></pre></div><h2 id='28e72153cd'>单个订单查询</h2>
 <p>根据订单orderId或者clientOrderId获取订单数据</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/order</code></p>
-<h3 id='required-permission-7'>Required Permission</h3>
+<h3 id='required-permission-8'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='1f9ac54b15-5'>请求参数</h3>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1600,7 +1747,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-9'>返回值</h3>
+<h3 id='6483dab423-10'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1720,11 +1867,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='b2ab67e640'>查询历史订单列表</h2><h3 id='http-request-10'>HTTP Request</h3>
+</span></code></pre></div><h2 id='b2ab67e640'>查询历史订单列表</h2><h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/all-orders</code></p>
-<h3 id='required-permission-8'>Required Permission</h3>
+<h3 id='required-permission-9'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='1f9ac54b15-6'>请求参数</h3>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1776,7 +1923,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-10'>返回值</h3>
+<h3 id='6483dab423-11'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -1895,19 +2042,19 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='16d62256fe'>查询委托订单</h2><h3 id='http-request-11'>HTTP Request</h3>
+</span></code></pre></div><h2 id='16d62256fe'>查询委托订单</h2><h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET /trade/api/order/v2/open-orders</code></p>
-<h3 id='required-permission-9'>Required Permission</h3>
-<p><code>ReadOnly</code></p>
-<h3 id='1f9ac54b15-7'>请求参数</h3>
-<p>无</p>
-<h3 id='6483dab423-11'>返回值</h3>
-<p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
-<h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-12'>HTTP Request</h3>
-<p><code>POST /trade/api/order/v2/cancel-order</code></p>
 <h3 id='required-permission-10'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <h3 id='1f9ac54b15-8'>请求参数</h3>
+<p>无</p>
+<h3 id='6483dab423-12'>返回值</h3>
+<p>返回数据格式参考 <code>GET /trade/api/order/v2/all-orders</code></p>
+<h2 id='fc150cab0e'>撤单</h2><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>POST /trade/api/order/v2/cancel-order</code></p>
+<h3 id='required-permission-11'>Required Permission</h3>
+<p><code>ReadOnly</code></p>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -1939,7 +2086,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-12'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-13'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2045,13 +2192,556 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>Illegal client order ID</td>
 </tr>
 </tbody></table>
-<h1 id='api-2'>账户API</h1><h2 id='uid'>查询用户UID</h2><h3 id='http-request-13'>HTTP Request</h3>
+<h1 id='api-2'>现货交易API</h1><h2 id='fd6ce2a756'>下单</h2><h3 id='http-request-14'>HTTP Request</h3>
+<p><code>POST /trade/api/v2/spot-order/place</code></p>
+
+<blockquote>
+<p>下单请求参数示例</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINEUSDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-body-json-4'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>交易对</td>
+<td>入KINEUSDT, ETHUSDT</td>
+</tr>
+<tr>
+<td>side</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>订单方向</td>
+<td>1买, 2卖</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>yes</td>
+<td></td>
+<td>订单类型</td>
+<td>1市价单, 2限价单</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>限价单价格, 市价单可以为空, 需满足交易规则中priceDecimal约束</td>
+<td>&quot;&quot;</td>
+</tr>
+<tr>
+<td>baseAmount</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>市价单,限价单的卖出数量, 需满足交易规则中qtyDecimal约束</td>
+<td>&quot;&quot;</td>
+</tr>
+<tr>
+<td>quoteAmount</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>市价单,限价单的买入金额 , 需满足交易规则中amountDecimal约束</td>
+<td>&quot;&quot;</td>
+</tr>
+<tr>
+<td>validHours</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>限价单有效期(小时), 目前唯一值为168</td>
+<td>&quot;&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-14'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>string</td>
+<td>订单ID</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525915565644316801"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='fc150cab0e-2'>撤单</h2><h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST /trade/api/v2/spot-order/cancel</code></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525915565644316801"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINEUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-body-json-5'>Request Body(Json)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>撤单交易对</td>
+<td>KINEUSDT, ETHUSDT</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>订单ID</td>
+<td>1买, 2卖</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-15'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>boolean</td>
+<td>true成功</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='175e2b116c'>查询当前委托</h2><h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET /trade/api/v2/spot-order/query-pending</code></p>
+<h3 id='request'>Request 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>查询交易对</td>
+<td>KINEUSDT</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>第几页</td>
+<td>默认 1</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>每页记录数</td>
+<td>默认 20</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-16'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>订单列表对象</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">     </span><span class="err">--</span><span class="w"> </span><span class="err">第几页</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">    </span><span class="err">--</span><span class="w"> </span><span class="err">每页记录数</span><span class="w">
+        </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">    </span><span class="err">--</span><span class="w"> </span><span class="err">总记录数</span><span class="w">
+        </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">创建时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+                </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">更新时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525028926535499905"</span><span class="p">,</span><span class="w">  </span><span class="err">--</span><span class="w"> </span><span class="err">订单ID</span><span class="w">
+                </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">                </span><span class="err">--</span><span class="w"> </span><span class="err">用户ID</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">交易对</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单类型:</span><span class="w"> </span><span class="mi">1</span><span class="err">市价单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">限价单</span><span class="w">
+                </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单方向:</span><span class="w"> </span><span class="mi">1</span><span class="err">买</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">卖</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">                     </span><span class="err">--</span><span class="w"> </span><span class="err">下单价格</span><span class="w">
+                </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">下单数量</span><span class="w">
+                </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">下单金额</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单状态</span><span class="w">
+                </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交数量</span><span class="w">
+                </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">             </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交金额</span><span class="w">
+                </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">累计手续费</span><span class="w">
+                </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                   </span><span class="err">--</span><span class="w"> </span><span class="err">平均成交价格</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单来源:</span><span class="w"> </span><span class="mi">1</span><span class="err">web下单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">app下单</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">api下单</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">                  </span><span class="err">--</span><span class="w"> </span><span class="err">订单有效时长(小时)</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681809927160</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681809927160</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525025710330609792"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681809688012</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682065173880</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525025208777834624"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2371"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0046"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97.0055"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681803195073</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681803195073</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525011592062173313"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='6f72be3112'>查询历史委托</h2><h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET /trade/api/v2/spot-order/query</code></p>
+<h3 id='request-2'>Request 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>no</td>
+<td></td>
+<td>查询交易对</td>
+<td>KINEUSDT</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>订单类型</td>
+<td>1市价单, 2限价单, 0不分区订单类型</td>
+</tr>
+<tr>
+<td>side</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>订单方向</td>
+<td>1买, 2卖, 0不区分买卖</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>第几页</td>
+<td>默认 1</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>no</td>
+<td></td>
+<td>每页记录数</td>
+<td>默认 20</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-17'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>订单列表对象</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='327ddc77cb'>查询单个订单</h2><h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET /trade/api/v2/spot-order/query-order</code></p>
+<h3 id='request-3'>Request 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>订单ID</td>
+<td>3525915565644316801</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-18'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>订单列表对象</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w">             
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">创建时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">更新时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525028926535499905"</span><span class="p">,</span><span class="w">  </span><span class="err">--</span><span class="w"> </span><span class="err">订单ID</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">                </span><span class="err">--</span><span class="w"> </span><span class="err">用户ID</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">交易对</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单类型:</span><span class="w"> </span><span class="mi">1</span><span class="err">市价单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">限价单</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单方向:</span><span class="w"> </span><span class="mi">1</span><span class="err">买</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">卖</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">                     </span><span class="err">--</span><span class="w"> </span><span class="err">下单价格</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">下单数量</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">下单金额</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单状态</span><span class="w">
+        </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交数量</span><span class="w">
+        </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">             </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交金额</span><span class="w">
+        </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">累计手续费</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                   </span><span class="err">--</span><span class="w"> </span><span class="err">平均成交价格</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单来源:</span><span class="w"> </span><span class="mi">1</span><span class="err">web下单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">app下单</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">api下单</span><span class="w">
+        </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">                  </span><span class="err">--</span><span class="w"> </span><span class="err">订单有效时长(小时)</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='181b9516ef'>查询单个订单成交明细</h2><h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET /trade/api/v2/spot-order/query-trade</code></p>
+<h3 id='request-4'>Request 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>订单ID</td>
+<td>3525915565644316801</td>
+</tr>
+</tbody></table>
+<h3 id='6483dab423-19'>返回值</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+<th>Value 举例</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>订单列表对象</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681212793678</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">成交时间</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3523773429366915201"</span><span class="p">,</span><span class="w">  </span><span class="err">--</span><span class="w"> </span><span class="err">订单Id</span><span class="w">
+                </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxZjSTQ8hQwoARFxtC"</span><span class="p">,</span><span class="w">   </span><span class="err">--</span><span class="w"> </span><span class="err">成交Id</span><span class="w">
+                </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">                </span><span class="err">--</span><span class="w"> </span><span class="err">用户UserId</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KINEUSDT"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">交易对</span><span class="w">
+                </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="mi">1</span><span class="err">Maker</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">Taker</span><span class="w">
+                </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="mi">1</span><span class="err">买</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">卖</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0055"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">成交价格</span><span class="w">
+                </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.9398"</span><span class="p">,</span><span class="w">           </span><span class="err">--</span><span class="w"> </span><span class="err">成交数量</span><span class="w">
+                </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">成交金额</span><span class="w">
+                </span><span class="nl">"feeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0054699"</span><span class="w">           </span><span class="err">--</span><span class="w"> </span><span class="err">手续费</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='4e4ca9ca80'>订单状态</h2>
+<table><thead>
+<tr>
+<th>编号</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2</td>
+<td>PENDING, 委托未成交</td>
+</tr>
+<tr>
+<td>3</td>
+<td>REJECTED 订单被拒绝</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CANCELED 订单未成交被取消</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PARTIALLY_FILLED 订单部分成交</td>
+</tr>
+<tr>
+<td>6</td>
+<td>PARTIALLY_FILLED_CANCELED 订单部分成交后被取消</td>
+</tr>
+<tr>
+<td>7</td>
+<td>FILLED 订单完全成交</td>
+</tr>
+<tr>
+<td>8</td>
+<td>EXPIRED 订单未成交过期</td>
+</tr>
+<tr>
+<td>9</td>
+<td>PARTIALLY_FILLED_EXPIRED 订单部分成交后过期</td>
+</tr>
+</tbody></table>
+<h2 id='89b65a8999'>错误编码</h2><h1 id='api-3'>账户API</h1><h2 id='uid'>查询用户UID</h2><h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET /account/api/v2/user-id</code></p>
-<h3 id='required-permission-11'>Required Permission</h3>
+<h3 id='required-permission-12'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='1f9ac54b15-9'>请求参数</h3>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
 <p>无</p>
-<h3 id='6483dab423-13'>返回值</h3>
+<h3 id='6483dab423-20'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2096,11 +2786,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>此计算是基于当前指数价格，以及用户的可用保证金，杠杆，已有持仓，全仓/逐仓，合仓/分仓增和计算得出。</li>
 <li>需要注意的是：使用此计算的结果下单可能会遇到下单错误，是因为上面计算的变量随时都在变化</li>
 </ul>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET /account/api/max-buy-and-sell</code></p>
-<h3 id='required-permission-12'>Required Permission</h3>
+<h3 id='required-permission-13'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='1f9ac54b15-10'>请求参数</h3>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2116,7 +2806,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='6483dab423-14'>返回值</h3>
+<h3 id='6483dab423-21'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2162,11 +2852,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='d4dc015dc3'>查询用户资产</h2><h3 id='http-request-15'>HTTP Request</h3>
+</span></code></pre></div><h2 id='d4dc015dc3'>查询用户资产</h2><h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET /account/api/v2/account-positions</code></p>
-<h3 id='required-permission-13'>Required Permission</h3>
+<h3 id='required-permission-14'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
-<h3 id='6483dab423-15'>返回值</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h3 id='6483dab423-22'>返回值</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2307,11 +2997,11 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>分仓模式下，调整账户杠杆，只影响新的开仓，不影响已有仓位的杠杆</li>
 <li>合仓模式下，会改变账户和已存在仓位的杠杆</li>
 </ul>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST /account/api/update-leverage</code></p>
-<h3 id='required-permission-14'>Required Permission</h3>
+<h3 id='required-permission-15'>Required Permission</h3>
 <p><code>Trade</code></p>
-<h3 id='request-body-json-4'>Request Body(Json)</h3>
+<h3 id='request-body-json-6'>Request Body(Json)</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2343,7 +3033,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-16'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-23'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2379,9 +3069,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 }
 </code></pre></div><h2 id='5bba295f56'>账户 全仓切换逐仓</h2>
 <p>全仓账户切换逐仓账户：当前账户不能有仓位和挂单</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>POST /account/api/swap-to-isolated</code></p>
-<h3 id='required-permission-15'>Required Permission</h3>
+<h3 id='required-permission-16'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json'>参数 (Json)</h3>
 <table><thead>
@@ -2406,7 +3096,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-17'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-24'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2442,9 +3132,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 }
 </code></pre></div><h2 id='322a696edb'>账户 逐仓切换全仓</h2>
 <p>逐仓账户切换全仓账户：当前账户不能有仓位和挂单</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST /account/api/swap-to-crossed</code></p>
-<h3 id='required-permission-16'>Required Permission</h3>
+<h3 id='required-permission-17'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json-2'>参数 (Json)</h3>
 <table><thead>
@@ -2469,7 +3159,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-18'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-25'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2508,9 +3198,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>合仓：一个交易对上最多只能有一个仓位</li>
 <li>分仓：一个交易对上支持有多个仓位</li>
 </ul>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST /account/api/set-position-type</code></p>
-<h3 id='required-permission-17'>Required Permission</h3>
+<h3 id='required-permission-18'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json-3'>参数 (Json)</h3>
 <table><thead>
@@ -2535,7 +3225,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"positionType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-19'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-26'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2580,9 +3270,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <li>合仓：一个交易对上最多只能有一个仓位</li>
 <li>分仓：一个交易对上支持有多个仓位</li>
 </ul>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET /account/api/get-position-type</code></p>
-<h3 id='required-permission-18'>Required Permission</h3>
+<h3 id='required-permission-19'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json-4'>参数 (Json)</h3>
 <table><thead>
@@ -2596,7 +3286,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 </tr>
 </thead><tbody>
 </tbody></table>
-<h3 id='6483dab423-20'>返回值</h3>
+<h3 id='6483dab423-27'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2636,9 +3326,9 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
   "message": "string",
   "success": true
 }
-</code></pre></div><h2 id='4b79a3b7a1'>账户财务历史</h2><h3 id='http-request-21'>HTTP Request</h3>
+</code></pre></div><h2 id='4b79a3b7a1'>账户财务历史</h2><h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET /account/api/account-history</code></p>
-<h3 id='required-permission-19'>Required Permission</h3>
+<h3 id='required-permission-20'>Required Permission</h3>
 <p><code>ReadOnly</code></p>
 <div class="highlight"><pre class="highlight plaintext"><code>操作枚举
 1 - DEPOSIT,
@@ -2663,7 +3353,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 34 - LOCK, 
 35 - UNLOCK, 
 100 - OTHERS
-</code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
+</code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数</th>
@@ -2727,7 +3417,7 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <p><code>http request
 GET /account/api/account-history?startTime=1619798400000&amp;endTime=1619798460000&amp;currency=kUSD&amp;action=1&amp;page=2&amp;size=10
 </code></p>
-<h3 id='6483dab423-21'>返回值</h3>
+<h3 id='6483dab423-28'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2836,9 +3526,9 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <li>划转保证金到交易账户（全仓），即增加全仓保证金</li>
 <li>交易账户（全仓）划转到资金账户，即减少全仓保证金</li>
 </ol>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST /account/api/transfer</code></p>
-<h3 id='required-permission-20'>Required Permission</h3>
+<h3 id='required-permission-21'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json-5'>请求 (Json)</h3>
 <table><thead>
@@ -2872,7 +3562,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.56"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-22'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-29'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -2911,9 +3601,9 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
 <li>全仓交易账户转入逐仓交易账户，即增加逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
 <li>逐仓交易账户转入全仓交易账户，即减少逐仓账户保证金，只有在逐仓有仓位情况下才可以划转</li>
 </ol>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST /account/api/isolated-transfer</code></p>
-<h3 id='required-permission-21'>Required Permission</h3>
+<h3 id='required-permission-22'>Required Permission</h3>
 <p><code>Trade</code></p>
 <h3 id='json-6'>请求 (Json)</h3>
 <table><thead>
@@ -2965,7 +3655,7 @@ GET /account/api/account-history?startTime=1619798400000&amp;endTime=16197984600
   </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
   </span><span class="nl">"positionId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='6483dab423-23'>返回值</h3>
+</span></code></pre></div><h3 id='6483dab423-30'>返回值</h3>
 <table><thead>
 <tr>
 <th>字段</th>
@@ -3378,7 +4068,7 @@ accessKey=xxxxxxxxxxxx
     </span><span class="err">&lt;&lt;&lt;数据格式与/account/api/v</span><span class="mi">2</span><span class="err">/account-balances接口数据保持一致，请参考其接口定义&gt;&gt;&gt;</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='c680da3fc7'>订单更新</h2>
+</span></code></pre></div><h2 id='4dbd54b180'>合约订单更新</h2>
 <p>Topic: <code>order.all</code></p>
 
 <p>订单更新消息， 每次订单状态的变化都会触发订单更新推送。</p>
@@ -3445,7 +4135,140 @@ accessKey=xxxxxxxxxxxx
 <p>实时k线推送。</p>
 
 <p>返回数据格式参考 <code>GET /market/api/kline</code></p>
-<h1 id='reference'>Reference</h1>
+<h2 id='1f10f07ca4'>现货订单更新</h2>
+<p>Topic: <code>spot-order.all</code></p>
+
+<p>订单更新消息， 每次订单状态的变化都会触发订单更新推送。</p>
+
+<p>返回数据格式参考 <code>GET /trade/api/v2/spot-order/query-order</code></p>
+
+<blockquote>
+<p>Subscribe Order update</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646724055</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order.all"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Order</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order.all"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618990231304</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">创建时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+        </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681811460834</span><span class="p">,</span><span class="w">       </span><span class="err">--</span><span class="w"> </span><span class="err">更新时间</span><span class="w"> </span><span class="err">GMT</span><span class="mi">00</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3525028926535499905"</span><span class="p">,</span><span class="w">  </span><span class="err">--</span><span class="w"> </span><span class="err">订单ID</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002073</span><span class="p">,</span><span class="w">                </span><span class="err">--</span><span class="w"> </span><span class="err">用户ID</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">交易对</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单类型:</span><span class="w"> </span><span class="mi">1</span><span class="err">市价单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">限价单</span><span class="w">
+        </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">                         </span><span class="err">--</span><span class="w"> </span><span class="err">订单方向:</span><span class="w"> </span><span class="mi">1</span><span class="err">买</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">卖</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">                     </span><span class="err">--</span><span class="w"> </span><span class="err">下单价格</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">下单数量</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">下单金额</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单状态</span><span class="w">
+        </span><span class="nl">"cumBaseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">              </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交数量</span><span class="w">
+        </span><span class="nl">"cumQuoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">             </span><span class="err">--</span><span class="w"> </span><span class="err">累计成交金额</span><span class="w">
+        </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">累计手续费</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                   </span><span class="err">--</span><span class="w"> </span><span class="err">平均成交价格</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单来源:</span><span class="w"> </span><span class="mi">1</span><span class="err">web下单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">app下单</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">api下单</span><span class="w">
+        </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">                  </span><span class="err">--</span><span class="w"> </span><span class="err">订单有效时长(小时)</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='orderbook'>现货订单OrderBook</h2>
+<ol>
+<li>订阅Topic: <code>spot-order-book.交易对</code> </li>
+<li>交易对需要小写, 如kineusdt, ethusdt</li>
+<li>最多返回150档买卖数据,</li>
+<li>每0.5秒推送1次</li>
+</ol>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646724055</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order-book.ethwusdt"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Subscribe response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUB_RESULT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1618646119344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order-book.ethwusdt"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>OrderBook</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot-order-book.ethwusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682239531766</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHWUSDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1682239531752</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93.5"</span><span class="p">,</span><span class="w">          </span><span class="err">--</span><span class="w"> </span><span class="err">当前价格</span><span class="w">
+    </span><span class="nl">"minPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">        </span><span class="err">--</span><span class="w"> </span><span class="err">最小允许的价格</span><span class="w">
+    </span><span class="nl">"maxPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">        </span><span class="err">--</span><span class="w"> </span><span class="err">最大允许的价格</span><span class="w">
+    </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">流动性池ETHW数量</span><span class="w">
+    </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">流动性池USDT数量</span><span class="w">
+    </span><span class="nl">"askOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">            </span><span class="err">--</span><span class="w"> </span><span class="err">卖单列表</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97"</span><span class="p">,</span><span class="w">            </span><span class="err">--</span><span class="w"> </span><span class="err">价格</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.76"</span><span class="p">,</span><span class="w">     </span><span class="err">--</span><span class="w"> </span><span class="err">数量</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"74.0013"</span><span class="w">  </span><span class="err">--</span><span class="w"> </span><span class="err">金额</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"bidOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">           </span><span class="err">--</span><span class="w"> </span><span class="err">买单列表</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83.5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.11"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='reference'>Reference</h1>
 <p>API对接技术支持(技术不在线时请耐心等待或创建工单) <a href="https://t.me/kine_api_support">电报群</a> </p>
 
 <p>创建技术支持工单(24h内回复) <a href="https://github.com/kine-api-docs/zh-cn/issues/new/choose">创建工单</a></p>
