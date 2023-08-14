@@ -1077,6 +1077,48 @@ data | string  | 订单ID |  |
 }
 ```
 
+
+## 批量下单
+
+### HTTP Request
+`POST /trade/api/v2/spot-order/place-all`
+
+> 下单请求参数示例
+
+```json
+[
+  {
+    "symbol": "KINEUSDT",
+    "side": 1,
+    "type": 1,
+    "price": "90",
+    "baseAmount": "",
+    "quoteAmount": "90",
+    "validHours": 168
+  },
+  {
+    "symbol": "KINEUSDT",
+    "side": 1,
+    "type": 1,
+    "price": "90",
+    "baseAmount": "",
+    "quoteAmount": "90",
+    "validHours": 168
+  }
+]
+```
+
+### 返回值
+
+```json
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": [3525915565644316801, 3525915565644316802]
+}
+```
+
 ## 撤单
 
 ### HTTP Request
