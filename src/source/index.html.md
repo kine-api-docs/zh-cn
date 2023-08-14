@@ -1084,7 +1084,7 @@ data | string  | 订单ID |  |
 
 ```json
 {
-    "orderId": "3525915565644316801",
+    "orderId": 3525915565644316801,
     "symbol": "KINEUSD"
 }
 ```
@@ -1094,7 +1094,45 @@ data | string  | 订单ID |  |
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
 symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
-orderId          | string | yes |    |  订单ID       |   1买, 2卖       |
+orderId          | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
+
+
+### 返回值
+字段 | 类型 | 描述 | Value 举例 |
+--------- | ----------- | -----------| ----------| 
+data      | boolean     | true成功    |           |
+
+```json
+{
+    "success": true,
+    "code": 200,
+    "message": null,
+    "data": true
+}
+```
+
+
+## 批量撤单 
+
+- 支持按照symbol撤销所有相关订单
+- 按照订单ID列表撤销所有相关订单
+
+### HTTP Request
+`POST /trade/api/v2/spot-order/cancel-all`
+
+```json
+{
+    "orderIdList": [3525915565644316801, 3525915565644316802],
+    "symbol": "KINEUSD"
+}
+```
+
+### Request Body(Json)
+
+参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderIdList      | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
 
 
 ### 返回值
