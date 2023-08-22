@@ -2280,6 +2280,14 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
 <td>限价单有效期(小时), 目前唯一值为168</td>
 <td>&quot;&quot;</td>
 </tr>
+<tr>
+<td>clientOrderId</td>
+<td>String</td>
+<td>no</td>
+<td></td>
+<td>客户订单编码, 最长 128 个字符,满足 [0-9a-zA-Z-_]+</td>
+<td>&quot;&quot;</td>
+</tr>
 </tbody></table>
 <h3 id='6483dab423-14'>返回值</h3>
 <table><thead>
@@ -2532,7 +2540,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
                 </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">               </span><span class="err">--</span><span class="w"> </span><span class="err">累计手续费</span><span class="w">
                 </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">                   </span><span class="err">--</span><span class="w"> </span><span class="err">平均成交价格</span><span class="w">
                 </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">                       </span><span class="err">--</span><span class="w"> </span><span class="err">订单来源:</span><span class="w"> </span><span class="mi">1</span><span class="err">web下单</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="err">app下单</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">api下单</span><span class="w">
-                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">                  </span><span class="err">--</span><span class="w"> </span><span class="err">订单有效时长(小时)</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">订单有效时长(小时)</span><span class="w">
+                </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="w">                 </span><span class="err">--</span><span class="w"> </span><span class="err">客户订单编码</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681809927160</span><span class="p">,</span><span class="w">
@@ -2551,7 +2560,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
                 </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681809688012</span><span class="p">,</span><span class="w">
@@ -2570,7 +2580,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
                 </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0046"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97.0055"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1681803195073</span><span class="p">,</span><span class="w">
@@ -2589,7 +2600,8 @@ KINE-API-SIGNATURE: xxxxxxxxxx+jJLJwYSxz7iMbA=
                 </span><span class="nl">"cumFeeAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="w">
+                </span><span class="nl">"validHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">""</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">

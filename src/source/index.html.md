@@ -1061,6 +1061,7 @@ price            | string | no  |    |  限价单价格, 市价单可以为空, 
 baseAmount       | string | no  |    |  市价单,限价单的卖出数量, 需满足交易规则中qtyDecimal约束      |  "" |
 quoteAmount      | string | no  |    |  市价单,限价单的买入金额 , 需满足交易规则中amountDecimal约束      |  "" |
 validHours       | int    | no  |    |  限价单有效期(小时), 目前唯一值为168   |  "" |
+clientOrderId    | String | no  |    |  客户订单编码, 最长 128 个字符,满足 \[0-9a-zA-Z-_]+  |  "" |
 
 
 ### 返回值
@@ -1238,7 +1239,8 @@ data      | 订单列表对象  |            |           |
                 "cumFeeAmount": "0",               -- 累计手续费
                 "avgPrice": "0",                   -- 平均成交价格
                 "source": 2,                       -- 订单来源: 1web下单, 2app下单, 3api下单
-                "validHours": 168                  -- 订单有效时长(小时)
+                "validHours": 168,                 -- 订单有效时长(小时)
+                "clientOrderId":""                 -- 客户订单编码
             },
             {
                 "createTime": 1681809927160,
@@ -1257,7 +1259,8 @@ data      | 订单列表对象  |            |           |
                 "cumFeeAmount": "0",
                 "avgPrice": "0",
                 "source": 2,
-                "validHours": 168
+                "validHours": 168,
+                "clientOrderId":""
             },
             {
                 "createTime": 1681809688012,
@@ -1276,7 +1279,8 @@ data      | 订单列表对象  |            |           |
                 "cumFeeAmount": "0.0046",
                 "avgPrice": "97.0055",
                 "source": 2,
-                "validHours": 168
+                "validHours": 168,
+                "clientOrderId":""
             },
             {
                 "createTime": 1681803195073,
@@ -1295,7 +1299,8 @@ data      | 订单列表对象  |            |           |
                 "cumFeeAmount": "0",
                 "avgPrice": "0",
                 "source": 2,
-                "validHours": 168
+                "validHours": 168,
+                "clientOrderId":""
             }
         ]
     }
