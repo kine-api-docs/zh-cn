@@ -464,6 +464,39 @@ symbol    | string  |  交易对 |  |
 price     | string  |  价格 |  |
 timestamp | long    |  指数时间 |  |
 
+
+## 查询某个交易对24hr价格变动情况
+### HTTP Request
+`GET /market/api/ticker/24hr`
+
+### Required Permission
+
+`ReadOnly`
+
+### 请求参数
+
+参数 | 数据类型 | 是否必须 | 默认值 | 描述 | 举例 |
+--------- | ------- | ------- | ----------- | -----------| ----------| 
+symbol | string | yes |    | 交易对  |  BTCUSD |
+
+
+### 返回值
+
+字段 | 数据类型 | 描述 | 举例 |
+--------- | ----------- | --------|  ----- | 
+symbol           | string  |  交易对 |  |
+openPrice        | decimal  |  开始价格 |  |
+closePrice       | decimal  |  结束价格 |  |
+highPrice        | decimal  |  最高价格 |  |
+lowPrice         | decimal  |  最低价格 |  |
+volume           | decimal  |  base交易总量 |  |
+quoteVolume      | decimal  |  quote交易总量 |  |
+priceChange      | decimal  |  价格变化 closePrice - openPrice |  |
+priceChangePercent | decimal  |  价格变化 100 (closePrice - openPrice) /openPrice |  |
+
+
+
+
 ## 获取全部交易对价格
 
 ### HTTP Request
