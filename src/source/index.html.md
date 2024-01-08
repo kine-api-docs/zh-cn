@@ -64,6 +64,12 @@ https://github.com/kine-api-docs/demo
 2. 增加现货交易API
 3. 增加现货WebSocket订阅
 
+## 2024-01-08
+
+1. 现货接口支持按照clientOrderId查询订单 `/trade/api/v2/spot-order/query-order`
+2. 现货接口支持按照clientOrderId撤单 `/trade/api/v2/spot-order/cancel`
+3. 现货接口支持按照clientOrderId批量撤单 `/trade/api/v2/spot-order/cancel-all`
+
 # 简介
 
 欢迎查看KINE API文档。
