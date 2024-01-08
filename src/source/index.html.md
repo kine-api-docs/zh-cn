@@ -480,12 +480,6 @@ timestamp | long    |  指数时间 |  |
 symbol | string | yes |    | 交易对  |  BTCUSD |
 
 
-```
-
-https://api.kine.exchange/market/api/ticker/24hr?symbol=ETHUSD
-
-```
-
 ### 返回值
 
 字段 | 数据类型 | 描述 | 举例 |
@@ -501,6 +495,8 @@ priceChange      | decimal  |  价格变化 closePrice - openPrice |  |
 priceChangePercent | decimal  |  价格变化 100 (closePrice - openPrice) /openPrice |  |
 
 ```json
+
+// https://api.kine.exchange/market/api/ticker/24hr?symbol=ETHUSD
 
 {
   "success": true,
@@ -1194,9 +1190,9 @@ data | string  | 订单ID |  |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
-orderId          | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
-
+symbol           | string | no |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderId          | string | no |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
+clientOrderId    | string | no |    |  订单的clientOrderId       |         |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
@@ -1232,9 +1228,9 @@ data      | boolean     | true成功    |           |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
-orderIdList      | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
-
+symbol            | string | no |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderIdList       | string | no |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
+clientOrderIdList | string | no |    |  订单的clientOrderId       |         |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
@@ -1397,7 +1393,8 @@ data      | 订单列表对象  |            |           |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-orderId    | string | yes  |    |  订单ID    |   3525915565644316801        |
+orderId          | string | no  |    |  订单ID    |   3525915565644316801        |
+clientOrderId    | string | no  |    |  客户端ID   |   订单的clientOrderId        |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
