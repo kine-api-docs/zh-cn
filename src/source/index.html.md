@@ -21,6 +21,20 @@ code_clipboard: true
 
 # 更新历史
 
+## 2024-01-08
+
+1. 现货接口支持按照clientOrderId查询订单 `/trade/api/v2/spot-order/query-order`
+2. 现货接口支持按照clientOrderId撤单 `/trade/api/v2/spot-order/cancel`
+3. 现货接口支持按照clientOrderId批量撤单 `/trade/api/v2/spot-order/cancel-all`
+
+
+## 2023-04-20
+
+1. 增加获取现货交易规则API `/market/api/v2/spot-trading-rules`
+2. 增加现货交易API
+3. 增加现货WebSocket订阅
+
+
 ## 2022-03-03
 
 1. `GET /account/api/max-buy-and-sell` 返回用户某个交易对上可以买，卖的最大数量和金额（基于用户资金的保证金，杠杆以及已有持仓计算）
@@ -56,13 +70,6 @@ code_clipboard: true
 https://github.com/kine-api-docs/demo
 2. 增加了签名问题排查建议
 3. 增加了content-type的说明。 统一使用：application/json;charset=utf-8
-
-
-## 2023-04-20
-
-1. 增加获取现货交易规则API `/market/api/v2/spot-trading-rules`
-2. 增加现货交易API
-3. 增加现货WebSocket订阅
 
 # 简介
 
@@ -480,12 +487,6 @@ timestamp | long    |  指数时间 |  |
 symbol | string | yes |    | 交易对  |  BTCUSD |
 
 
-```
-
-https://api.kine.exchange/market/api/ticker/24hr?symbol=ETHUSD
-
-```
-
 ### 返回值
 
 字段 | 数据类型 | 描述 | 举例 |
@@ -501,6 +502,8 @@ priceChange      | decimal  |  价格变化 closePrice - openPrice |  |
 priceChangePercent | decimal  |  价格变化 100 (closePrice - openPrice) /openPrice |  |
 
 ```json
+
+// https://api.kine.exchange/market/api/ticker/24hr?symbol=ETHUSD
 
 {
   "success": true,
@@ -1194,9 +1197,9 @@ data | string  | 订单ID |  |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
-orderId          | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
-
+symbol           | string | no |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderId          | string | no |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
+clientOrderId    | string | no |    |  订单的clientOrderId       |         |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
@@ -1232,9 +1235,9 @@ data      | boolean     | true成功    |           |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-symbol           | string | yes |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
-orderIdList      | long   | yes |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
-
+symbol            | string | no |    |  撤单交易对    |   KINEUSDT, ETHUSDT |
+orderIdList       | string | no |    |  订单ID       |   3525915565644316801, 3525915565644316802       |
+clientOrderIdList | string | no |    |  订单的clientOrderId       |         |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
@@ -1397,7 +1400,8 @@ data      | 订单列表对象  |            |           |
 
 参数 | 类型 | 是否必须 | 默认值 | 描述 | 举例 |
 --------- | ------- | ------- | ----------- | -----------| ----------| 
-orderId    | string | yes  |    |  订单ID    |   3525915565644316801        |
+orderId          | string | no  |    |  订单ID    |   3525915565644316801        |
+clientOrderId    | string | no  |    |  客户端ID   |   订单的clientOrderId        |
 
 ### 返回值
 字段 | 类型 | 描述 | Value 举例 |
