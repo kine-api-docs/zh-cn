@@ -21,6 +21,20 @@ code_clipboard: true
 
 # 更新历史
 
+## 2024-01-08
+
+1. 现货接口支持按照clientOrderId查询订单 `/trade/api/v2/spot-order/query-order`
+2. 现货接口支持按照clientOrderId撤单 `/trade/api/v2/spot-order/cancel`
+3. 现货接口支持按照clientOrderId批量撤单 `/trade/api/v2/spot-order/cancel-all`
+
+
+## 2023-04-20
+
+1. 增加获取现货交易规则API `/market/api/v2/spot-trading-rules`
+2. 增加现货交易API
+3. 增加现货WebSocket订阅
+
+
 ## 2022-03-03
 
 1. `GET /account/api/max-buy-and-sell` 返回用户某个交易对上可以买，卖的最大数量和金额（基于用户资金的保证金，杠杆以及已有持仓计算）
@@ -56,19 +70,6 @@ code_clipboard: true
 https://github.com/kine-api-docs/demo
 2. 增加了签名问题排查建议
 3. 增加了content-type的说明。 统一使用：application/json;charset=utf-8
-
-
-## 2023-04-20
-
-1. 增加获取现货交易规则API `/market/api/v2/spot-trading-rules`
-2. 增加现货交易API
-3. 增加现货WebSocket订阅
-
-## 2024-01-08
-
-1. 现货接口支持按照clientOrderId查询订单 `/trade/api/v2/spot-order/query-order`
-2. 现货接口支持按照clientOrderId撤单 `/trade/api/v2/spot-order/cancel`
-3. 现货接口支持按照clientOrderId批量撤单 `/trade/api/v2/spot-order/cancel-all`
 
 # 简介
 
